@@ -1,0 +1,255 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QP</title>
+    <link rel="stylesheet" href="{%static 'question_papers/qp.css'%}">
+    <link rel="stylesheet" href="{%static 'question_papers/all.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caladea:wght@700&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <div id="navbar">
+        <h1>QP</h1>
+        <div id="navitems">
+            <a href="/">Home</a>
+            <a href="{% url 'provider'%}">Provide</a>
+            <a href="{% url 'contact'%}">Contact</a>
+            <a href="#" class="fas fa-filter" id="short"> Filter</a>
+        </div>
+        <div id="rightnav">
+            <input type="text" placeholder="search is not available" id="type">
+            <i class="fas fa-search" id="search"></i>
+            <i id="blue" class="fas fa-filter" "></i>
+            <i class=" fas fa-ellipsis-v"></i>
+        </div>
+    </div>
+    <!-- End of Navigation -->
+    <div id="filter">
+        <form method="POST" action="{% url 'filter'%}">{% csrf_token %}
+            <h1><a href="#" class="fas fa-filter"> Filter</h1></a>
+
+            <label for="college">College : </label>
+            <select name="college" id="college">
+                {% for 1 in coll %}
+                <option value="{{1.college}}" name="college">{{1.college}}</option>
+                {% endfor %}
+            </select>
+            <label for="university">University : </label>
+            <select name="university" id="university">
+                {% for 2 in uni %}
+                <option value="{{2.university}}" name="university">{{2.university}}</option>
+                {% endfor %}
+            </select>
+            <label for="course">Course : </label>
+            <select name="course" id="course">
+                {% for 3 in co %}
+                <option value="{{3.course}}" name="course">{{3.course}}</option>
+                {% endfor %}
+            </select>
+            <label for="year">Year : </label>
+            <select name="year" id="year">
+                {% for 4 in yea %}
+                <option value="{{4.year}}" name="year">{{4.year}}</option>
+                {% endfor %}
+            </select>
+            <label for="subject">Subject : </label>
+            <select name="subject" id="subject">
+                {% for 5 in subj %}
+                <option value="{{5.subject}}" name="subject">{{5.subject}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Get</button>
+        </form>
+    </div>
+    <div class="colleges">
+        <p>Welcome to QP World</p>
+        <h1>{{Select}} </h1>
+        {% for qp in allqp %}
+        <div class="college">
+            <a href="{{qp.college}}">
+                <img src="{%static 'question_papers/images/college.png' %}" alt="#">
+                <h4>{{qp.college}}</h4>
+            </a>
+        </div>
+        {% endfor %}
+
+
+        {% for clg in college %}
+
+        {% ifchanged college %}
+        <div class="titles">
+            <h1>{{clg.college}}<img src="{%static 'question_papers/images/college.png'%}" alt="#">
+            </h1>
+        </div>
+        {% endifchanged %}
+        <div class="college">
+            <a href=" {{clg.university}}">
+            {% if clg.university == 'Mangolre University' %}
+            <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
+            {% elif clg.university == 'Kuvempu University'%}
+            <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
+            {% else %}
+            <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
+            {% endif %}
+            <h4>{{clg.university}}</h4> </a>
+        </div>
+        {% endfor %}
+
+        {% for uni in university %}
+
+        {% ifchanged college %}
+        <div class="titles">
+            <h1>{{uni.college}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
+            </h1>
+            <h1>{{uni.university}}{% if uni.university == 'Mangolre University' %}
+                <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
+                {% elif uni.university == 'Kuvempu University'%}
+                <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
+                {% else %}
+                <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
+                {% endif %} </h1>
+        </div>
+        {% endifchanged %}
+
+        <div class="college">
+            <a href="{{uni.course}}">
+                <img src="{%static 'question_papers/images/course.png' %}" alt="#">
+                <h4>{{uni.course}}</h4>
+            </a>
+        </div>
+        {% endfor %}
+
+        {% for cour in course %}
+        <style>
+            form {
+                display: none;
+            }
+        </style>
+        {% ifchanged course %}
+
+        <div class="titles">
+            <h1>{{cour.college}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
+            </h1>
+            <h1>{{cour.university}}{% if cour.university == 'Mangolre University' %}
+                <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
+                {% elif cour.university == 'Kuvempu University'%}
+                <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
+                {% else %}
+                <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
+                {% endif %} </h1>
+            <h1>{{cour.course}} <img src="{%static 'question_papers/images/course.png'%}" alt="#">
+            </h1>
+        </div>
+        {% endifchanged %}
+        <div class="college">
+            <a href="{{cour.year}}">
+                <img src="{%static 'question_papers/images/year.png'%}" alt="#">
+                <h4> {{cour.year}} </h4>
+            </a>
+        </div>
+        {% endfor %}
+
+        {% for titles in year %}
+        {% ifchanged college %}
+        <div class="titles">
+            <h1>{{titles.college}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
+            </h1>
+            <h1>{{titles.university}}
+                {% if titles.university == 'Mangolre University' %}
+                <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
+                {% elif titles.university == 'Kuvempu University'%}
+                <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
+                {% else %}
+                <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
+                {% endif %}
+            </h1>
+            <h1>{{titles.course}} <img src="{%static 'question_papers/images/course.png'%}" alt="#">
+            </h1>
+            <h1>{{titles.year}} <img src="{%static 'question_papers/images/year.png'%}" alt="#">
+            </h1>
+        </div>
+        {% endifchanged %}
+
+        {% endfor %}
+        {% for years in year %}
+        <div class="college">
+            <a href="{{years.subject}}">
+                <img src="{%static 'question_papers/images/subject.jpg'%}" alt="#">
+                <h4>{{years.subject}}</h4>
+            </a>
+
+        </div>
+        {% endfor %}
+
+        {% for title in paper %}
+
+        {% ifchanged course %}
+        <div class="titles">
+            <h1>{{title.college}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
+            </h1>
+            <h1>{{title.university}}{% if title.university == 'Mangolre University' %}
+                <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
+                {% elif title.university == 'Kuvempu University'%}
+                <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
+                {% else %}
+                <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
+                {% endif %} </h1>
+            <h1>{{title.course}} <img src="{%static 'question_papers/images/course.png'%}" alt="#">
+            </h1>
+
+            <a href="../">
+                <h1>{{title.year}} <img src="{%static 'question_papers/images/year.png'%}" alt="#">
+                </h1>
+            </a>
+
+            <h1>{{title.subject}}<img src="{%static 'question_papers/images/subject.jpg'%}" alt="#"></h1>
+        </div>
+        {% endifchanged %}
+        
+        {% endfor %}
+        {% for prepaper in paper %}
+            <div class="paper">
+            <div id="row">
+                <h1>{{prepaper.examination}} : </h1>
+
+                <!-- <td><a href="{{prepaper.paper.url}}" target="_blank">Open</a></td> -->
+                <a href="{{prepaper.paper.url}}" download> download </a>
+
+
+                <!-- <td colspan="3"><iframe src="{{prepaper.paper.url}}" frameborder="0"></iframe></td> -->
+                <a href="{{prepaper.paper.url}}"> View </a>
+
+            </div>
+
+
+            <p>
+                <center>Provided by {{prepaper.provider}}</center>
+            </p>
+
+
+        </div>
+            {% endfor %}
+
+    </div>
+
+    <footer>
+        <div class="center">
+            <p> Copyright &copy;2020 </p>
+            <p> www.myexams.com</p>
+            <p> All rights reserverd.</p>
+        </div>
+    </footer>
+    <script src="{%static 'question_papers/jquery3.4.1 .min.js'%}"></script>
+    <script src="{%static 'question_papers/qp.js'%}"></script>
+
+</body>
+
+</html>

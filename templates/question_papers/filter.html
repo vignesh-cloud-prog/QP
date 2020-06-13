@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static 'question_papers/qp.css'%}">
+
+</head>
+
+<body>
+{% if filter %}
+    <div class="colleges">
+        {% for title in filter %}
+        {% ifchanged course %}
+        <div class="titles">
+            <h1>{{title.college}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
+            </h1>
+            <h1>{{title.university}}{% if title.university == 'Mangolre University' %}
+                <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
+                {% elif title.university == 'Kuvempu University'%}
+                <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
+                {% else %}
+                <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
+                {% endif %} </h1>
+            <h1>{{title.course}} <img src="{%static 'question_papers/images/course.png'%}" alt="#">
+            </h1>
+            <a href="../">
+                <h1>{{title.year}} <img src="{%static 'question_papers/images/year.png'%}" alt="#">
+                </h1>
+            </a>
+            <h1>{{title.subject}}<img src="{%static 'question_papers/images/subject.jpg'%}" alt="#"></h1>
+        </div>
+        {% endifchanged %}
+        {% endfor %}
+        <div class="paper">
+            {% for prepaper in filter %}
+            <table>
+                <tr>
+                    <td>
+                        <h1>{{prepaper.examination}} : </h1>
+                    </td>
+                    <!-- <td><a href="{{prepaper.paper.url}}" target="_blank">Open</a></td> -->
+                    <td><a href="{{prepaper.paper.url}}" download> download </a></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><iframe src="{{prepaper.paper.url}}" frameborder="0"></iframe></td>
+                </tr>
+                <td colspan="3">
+                    <center>Provided by{{prepaper.provider}}
+                </td>
+                </center>
+            </table>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Filter does not match</p>
+    {% endif %}
+    </div>
+
+</body>
+
+</html>
