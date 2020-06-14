@@ -26,7 +26,7 @@ SECRET_KEY = '2bzp&z&ou_i-dw^b-wy6cv+m##8!6rdcll9+%p0b-ar1gc^f+9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['questionpaper.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['questionpaper.herokuapp.com','127.0.0.1','qplive-cli.herokuapp.com']
 
 
 # Application definition
