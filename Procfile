@@ -1,1 +1,1 @@
-web: gunicorn questionpaper.wsgi --log-file -
+web: gunicorn QP.wsgi
