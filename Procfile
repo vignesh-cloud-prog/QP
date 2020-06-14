@@ -1,1 +1,1 @@
-web: gunicorn QP.wsgi
+web: gunicorn qp.wsgi
