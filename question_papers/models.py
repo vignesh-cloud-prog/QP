@@ -19,7 +19,7 @@ class Question_papers(models.Model):
 
 class Provider(models.Model):
     name=models.CharField(max_length=20)
-    email=models.EmailField(max_length=20)
+    email=models.EmailField(max_length=100)
     level = models.CharField(max_length=100)
     board=models.CharField(max_length=100)
     claass = models.CharField(max_length=100)
@@ -34,8 +34,8 @@ class Provider(models.Model):
 
 
 class Issues(models.Model):
-    name=models.CharField(max_length=20)
-    email=models.EmailField(max_length=20)
+    name=models.CharField(max_length=100)
+    email=models.EmailField(max_length=100)
     phone=models.DecimalField(max_digits=10 ,decimal_places=0)
     issues=models.TextField()
     isuue_date=models.DateTimeField(default=datetime.now)

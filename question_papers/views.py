@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 from .models import Question_papers,Issues,Provider
 from django.http import request
 from django.contrib import messages
+from django.core.mail import send_mail
 from .forms import ProviderForm,issueForm
 
 # Create your views here.
@@ -97,5 +98,53 @@ def issues(request):
     Issues={'form':issueForm}
     return render(request,'question_papers/contact.html',Issues)
 
+
+def push(request):
+    pushes=Provider.objects.all()
+    push={'pushes':pushes}
+    return render(request,'question_papers/push.html',push)
+
+def pushed(request):
+    if request.method=='POST':
+        print("posting")
+        # provider=request.POST['pro']
+        provider=request.POST['pro']
+        college=request.POST['college']
+        university=request.POST['university']
+        course=request.POST['course']
+        year=request.POST['semister']
+        subject=request.POST['subject']
+        examination=request.POST['examination']
+        paper=request.POST['paper']
+        date=request.POST['date']
+        id=request.POST['id']
+        emailid=request.POST['email']
+        # paper=request.POST['paper']
+        push=Question_papers(provider=provider,college=college,university=university,course=course,year=year,subject=subject,examination=examination,paper=paper)
+        push.save()
+
+        pull=Provider(id=id,name=Provider,email=emailid,level=college,board=university,claass=course,sem=year,sub=subject,papertitle=examination,doc=paper,provide_date=date)
+        pull.delete()
+        
+        send_mail(
+            'hello',
+            'i am vignesh',
+            'qpcom80@gmail.com',
+            [emailid],
+            fail_silently=True,
+            
+        )
+
+        return render(request,'question_papers/push.html',)
+
     
 
+
+    TWITTER_ENDPOINT = 'https://twitter.com/intent/tweet?text=%s'
+FACEBOOK_ENDPOINT = 'https://www.facebook.com/sharer/sharer.php?u=%s'
+GPLUS_ENDPOINT = 'https://plus.google.com/share?url=%s'
+MAIL_ENDPOINT = 'mailto:?subject=%s&body=%s'
+LINKEDIN_ENDPOINT = 'https://www.linkedin.com/shareArticle?mini=true&title=%s&url=%s'
+REDDIT_ENDPOINT = 'https://www.reddit.com/submit?title=%s&url=%s'
+TELEGRAM_ENDPOINT = 'https://t.me/share/url?text=%s&url=%s'
+WHATSAPP_ENDPOINT = 'https://api.whatsapp.com/send?text=%s'

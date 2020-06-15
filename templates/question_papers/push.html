@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>push</title>
+</head>
+<body>
+{% for push in pushes %}
+<form action="pushed" method="POST">{% csrf_token %}
+<!-- <div class="titles"> -->
+    <!-- <h1 name="college">{{push.level}} -->
+    <!-- </h1> -->
+    <!-- <h1 name= "university">{{push.board}}</h1> -->
+    <!-- <h1 name="semister">{{push.sem}}  -->
+    <!-- </h1> -->
+    <!-- <a href="../"> -->
+        <!-- <h1 name="course">{{push.claass}} -->
+        <!-- </h1> -->
+    <!-- </a> -->
+    <!-- <h1 name="subject">{{push.sub}}</h1> -->
+<!-- </div> -->
+<!-- <div class="paper"> -->
+    <!-- <div id="row"> -->
+        <!-- <h1 name="year">{{push.papertitle}} : </h1> -->
+        <!-- <td><a href="{{prepaper.paper.url}}" target="_blank">Open</a></td> -->
+        <!-- <a name=paper href="{{push.doc.url}}" download> download </a> -->
+        <!-- <td colspan="3"><iframe src="{{prepaper.paper.url}}" frameborder="0"></iframe></td> -->
+        <!-- <a href="{{push.doc.url}}" target="_blank"> View </a> -->
+    <!-- </div> -->
+    <!-- <p> -->
+        
+        <!-- <center name="email">sent by {{push.email}}</center> -->
+        <!-- <center name= "date">sent by at {{push.provide_date}}</center> -->
+    <!-- </p> -->
+    <input type="text" name="pro" value="{{push.name}}">
+    <input type="text" name="email" value="{{push.email}}">
+    <input type="text" name="semister" value="{{push.sem}}">
+    <input type="text" name="subject" value="{{push.sub}}">
+    <input type="text" name="course" value="{{push.claass}}">
+    <input type="text" name="university" value="{{push.board}}">
+    <input type="text" name="college" value="{{push.level}}">
+    <input type="text" name="examination" value="{{push.papertitle}}">
+    <input type="text" name="date" value="{{push.provide_date}}">
+    <input type="text" name="id" value="{{push.id}}">
+    <input type="file" name="paper">
+    <!-- <input type="text" value="{{push.name}}"> -->
+    <button type="submit">Push</button>
+</form>
+{% endfor %}
+
+
+
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

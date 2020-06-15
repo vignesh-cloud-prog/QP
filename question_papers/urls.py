@@ -21,6 +21,8 @@ from question_papers import views
 
 urlpatterns = [
     path('provider/', views.provider, name='provider'),
+    path('push/', views.push, name='push'),
+    path('push/pushed', views.pushed, name='pushed'),
     path('contact/', views.issues, name='contact'),
     path('filter', views.filter, name='filter'),
     path('', views.colleges, name='home'),
