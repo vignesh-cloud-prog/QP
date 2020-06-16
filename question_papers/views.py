@@ -69,10 +69,13 @@ def provider(request):
         form.save()
         messages.success(request, 'Thank you, we will check and update it soon .')
         form=ProviderForm()
+        
     providers={
         'form':ProviderForm
     }
-    return render(request,'question_papers/provide.html',providers)
+    
+    return render(request,'question_papers/provide.html',providers
+    )
 
 
 def filter(request):
@@ -136,6 +139,14 @@ def pushed(request):
         )
 
         return render(request,'question_papers/push.html',)
+
+    def text(
+
+    ):
+        
+        return render('question_papers/share.html',text)
+
+
 
     
 
