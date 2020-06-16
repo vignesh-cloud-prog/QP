@@ -32,4 +32,7 @@ $('#blue').click(function(){
 $('#short').click(function(){
     $('#filter').toggle(1000);
 })
+$('#share').click(function(){
+    $('#papershare').toggle();
+})
 

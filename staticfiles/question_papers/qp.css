@@ -335,26 +335,32 @@ footer{
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color:rgb(119, 109, 109);
+    background-color:rgb(252, 252, 252);
     padding: 5px;
     margin: 4px 2px;
     border-radius: 4px;
 }
 #row{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-.paper h1{
     background-color: rgb(206, 194, 194);
     border-radius: 0.5rem;
-    padding: 0.5rem;
+    justify-content: center;
+
+}
+
+
+
+#paper{
+    margin: 0;
+    padding: 6px 2px 2px 12px;
     font-size: 1.5rem;
+    display: inline-block;
+    width: max-content;
+    align-items: center;
     justify-content: center;
     
+    
 }
-.paper a{
-    float: right;
+.link{
     text-decoration: none;
     background-color: rgb(245, 240, 240);
     color: black;
@@ -362,11 +368,42 @@ footer{
     padding: 0.5rem;
     margin: 0.2rem;
     font-size: 1.2rem;
+    
+    
+    
 
+    
+    
+
+}
+.icons{
+
+   float: right;
+   align-items: flex-end;
+
+   
 }
 .paper center{
     background-color: rgb(107, 95, 95);
     color: white;
     border-radius: 0.5rem;
+
+}
+
+#papershare{
+    display: none;
+    margin: 2px 8px;
+    align-self: flex-end;
+
+    
+}
+.social img{
+    width: 20px;
+    height: 20px;
+}
+.social{
+    display: block;
+    margin: 2px;
+    
 
 }
