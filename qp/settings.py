@@ -113,8 +113,6 @@ DATABASES['default'].update(db_from_env)
 # }
 
 
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -147,7 +145,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+#Email Configarations
 EMAIL_USE_TLS=True
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
