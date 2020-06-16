@@ -26,7 +26,7 @@ SECRET_KEY = '2bzp&z&ou_i-dw^b-wy6cv+m##8!6rdcll9+%p0b-ar1gc^f+9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['questionpaper.herokuapp.com','127.0.0.1','qplive-cli.herokuapp.com']
+ALLOWED_HOSTS = ['qpworld.herokuapp.com','127.0.0.1','questionpaper.herokuapp.com']
 
 
 # Application definition
@@ -94,6 +94,7 @@ DATABASES = {
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
+
 # DATABASES = {
     # 'default': {
         # 'ENGINE': 'django.db.backends.postgresql',

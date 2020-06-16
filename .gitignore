@@ -2,3 +2,5 @@ qp/Lib/
 qp/Scripts/
 qp/git.txt
 qp/pyvenv.cfg
+__pycache__/
+
