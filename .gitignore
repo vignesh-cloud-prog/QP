@@ -3,4 +3,5 @@ qp/Scripts/
 qp/git.txt
 qp/pyvenv.cfg
 __pycache__/
+media/
 

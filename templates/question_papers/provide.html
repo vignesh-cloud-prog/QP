@@ -1,3 +1,4 @@
+{% extends 'question_papers/qp.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -5,15 +6,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .fas{
+            display: none;
+    }
+        
+    </style>
     <title>Provide</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Average+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{%static 'question_papers/form.css'%}">
-    <link rel="stylesheet" href="{%static 'question_papers/all.css'%}">
-
 </head>
 
 <body>
+    {% block nav %}
+    
+
     <div class="container">
         <h3>Provide Question Papers</h3>
         <div class="form">
@@ -22,28 +27,68 @@
         </div>
         <button id="btn" type="submit" value="Submit" />Provide</button>
         </form>
-    </div>
 
-    {% if messages %}
-    <div class="content messages">
-        <div class="header">
-            <h2>Thank You!</h2>
+
+        {% if messages %}
+        <div class="content messages">
+            <div class="header">
+                <h2>Thank You!</h2>
+            </div>
+            <label for="click" class="fas fa-check"></label>
+            {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+            <div class="line"></div>
+            <label for="click" class="close-btn" onclick="this.parentElement.style.display='none';">Close</label>
         </div>
-        <label for="click" class="fas fa-check"></label>
-        {% for message in messages %}
-        <p class="{{ message.tags }}">{{ message }}</p>
-        {% endfor %}
-        <div class="line"></div>
-        <label for="click" class="close-btn" onclick="this.parentElement.style.display='none';">Close</label>
+        {% endif %}
+        <button style="background-color: palevioletred;" id="ask">Ask your friend</button>
+        {% load static %}
+        <div id="appshare" style="display: none;">
+            <a class="social"
+                href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}&text=Please provide the Question Paper by filling this form"
+                target="_blank"><img src="{%static 'question_papers/images/facebook.png'%}" alt="#"> Ask through Facebook</a>
+            <a class="social"
+                href="https://api.whatsapp.com/send?text={{request.build_absolute_uri}} &t=Please provide the Question Paper by filling this form"
+                target="_blank"><img src="{%static 'question_papers/images/whatsapp.jpg'%}" alt="#">
+                Ask through
+                whatsapp</a>
+            <a class="social" href="https://twitter.com/intent/tweet?text={{request.build_absolute_uri}} ,Please provide the Question Paper by filling this form" target="_blank"><img
+                    src="{%static 'question_papers/images/twitter.jpg'%}" alt="#">
+                Ask through
+                twitter</a>
+            <a class="social" href="mailto:?subject=Provide Question Paper&body=Please provide the Question Paper by filling this form ,{{request.build_absolute_uri}}" target="_blank"><img
+                    src="{%static 'question_papers/images/mail.jpg'%}" alt="#"> Ask
+                through mail</a>
+            <a class="social"
+                href="https://t.me/share/url?text=Please provide the Question Paper by filling this form&url={{request.build_absolute_uri}}"
+                target="_blank"><img src="{%static 'question_papers/images/telegram.jpg'%}" alt="#">
+                Ask through
+                telegram</a>
+            <a class="social" href="https://www.linkedin.com/shareArticle?mini=true&title=Question Paper from QP&url=
+{{request.build_absolute_uri}}&text=Please provide the Question Paper by filling this form" target="_blank"><img
+                    src="{%static 'question_papers/images/linkedin.jpg'%}" alt="#">
+                Ask through
+                linkedin</a>
+        </div>
+
+
     </div>
-    {% endif %}
-{% for texts in providers %}
-{{texts.text}}
-{% endfor %} 
-    {{providers.text}}
 
-    {{text}}
+    
+    
+    
+    
+    
+    
 
+    {% endblock nav %}
 </body>
+
+
+
+
+
+
 
 </html>

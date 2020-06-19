@@ -7,15 +7,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QP</title>
+    <link rel="stylesheet" href="{%static 'question_papers/form.css'%}">
     <link rel="stylesheet" href="{%static 'question_papers/qp.css'%}">
     <link rel="stylesheet" href="{%static 'question_papers/all.css'%}">
-    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Caladea:wght@700&display=swap" rel="stylesheet">
-
 
 </head>
 
 <body>
+
     <!-- Navigation -->
     <div id="navbar">
         <h1>QP</h1>
@@ -29,11 +28,16 @@
             <input type="text" placeholder="search is not available" id="type">
             <i class="fas fa-search" id="search"></i>
             <i id="blue" class="fas fa-filter" "></i>
-            <i class=" fas fa-ellipsis-v"></i>
-            <i class="fa fa-share-alt" aria-hidden="true"></i>
+            <i class=" fas fa-ellipsis-v" id="opt"></i>
 
         </div>
-        {% include "question_papers/share.html" %}
+        <div class="options">
+
+            <a class="fa fa-share-alt" aria-hidden="true" style="display: none; margin: 4px; font-size: 25px;"
+                id="shareapp"> Share App</a>
+
+            {% include "question_papers/share.html" %}
+        </div>
     </div>
     <!-- End of Navigation -->
     <div id="filter">
@@ -73,6 +77,8 @@
             <button type="submit">Get</button>
         </form>
     </div>
+    {% block nav %}
+
     <div class="colleges">
 
         <p>Welcome to QP World</p>
@@ -227,43 +233,43 @@
                     <h1 id="paper">{{prepaper.examination}} : </h1>
                 </a>
 
-                
+
                 <div class="icons">
                     <!-- <td><a href="{{prepaper.paper.url}}" target="_blank">Open</a></td> -->
                     <a href="{{prepaper.paper.url}}" download class="fa fa-download link"" aria-hidden=" true">
-                        download </a>
-                        <i class="fa fa-share link" aria-hidden="true" id="share">Share</i>
-                    </div>
-                    <!-- <td colspan="3"><iframe src="{{prepaper.paper.url}}" frameborder="0"></iframe></td> -->
+                        <p></p>
+                    </a>
+                    <i class="fa fa-share link" aria-hidden="true" id="share">
+                        <p></p>
+                    </i>
                 </div>
+                <!-- <td colspan="3"><iframe src="{{prepaper.paper.url}}" frameborder="0"></iframe></td> -->
+            </div>
             <div id="papershare">
                 <a class="social"
-                    href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}, {{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper"
+                    href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}   , {{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper"
                     target="_blank"><img src="{%static 'question_papers/images/facebook.png'%}" alt="#"> share on
                     facebook</a>
                 <a class="social"
-                    href="https://api.whatsapp.com/send?text={{request.build_absolute_uri}},{{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper"
+                    href="https://api.whatsapp.com/send?text={{request.build_absolute_uri}}   ,{{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper"
                     target="_blank"><img src="{%static 'question_papers/images/whatsapp.jpg'%}" alt="#"> share on
                     whatsapp</a>
                 <a class="social"
-                    href="https://twitter.com/intent/tweet?text={{request.build_absolute_uri}},{{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper"
+                    href="https://twitter.com/intent/tweet?text={{request.build_absolute_uri}}    ,{{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper"
                     target="_blank"><img src="{%static 'question_papers/images/twitter.jpg'%}" alt="#"> share on
                     twitter</a>
                 <a class="social"
-                    href="mailto:?subject=Question Paper from QP&body={{request.build_absolute_uri}},{{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper,"
+                    href="mailto:?subject=Question Paper from QP&body={{request.build_absolute_uri}}   ,{{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper,"
                     target="_blank"><img src="{%static 'question_papers/images/mail.jpg'%}" alt="#"> share on mail</a>
                 <a class="social"
-                    href="https://t.me/share/url?text=%s&url={{request.build_absolute_uri}},{{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper,"
+                    href="https://t.me/share/url?text=%s&url={{request.build_absolute_uri}}  ,{{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper,"
                     target="_blank"><img src="{%static 'question_papers/images/telegram.jpg'%}" alt="#"> share on
                     telegram</a>
                 <a class="social"
-                    href="https://www.linkedin.com/shareArticle?mini=true&title=Question Paper from QP&url={{request.build_absolute_uri}},{{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper,"
+                    href="https://www.linkedin.com/shareArticle?mini=true&title=Question Paper from QP&url={{request.build_absolute_uri}}  ,{{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper,"
                     target="_blank"><img src="{%static 'question_papers/images/linkedin.jpg'%}" alt="#"> share on
                     linkedin</a>
-                <a class="social"
-                    href="https://api.whatsapp.com/send?text={{request.build_absolute_uri}},{{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper,"
-                    target="_blank"><img src="{%static 'question_papers/images/instagram.jpg'%}" alt="#"> share on
-                    instagram</a>
+
             </div>
 
             <p>
@@ -282,27 +288,25 @@
 
 
     </div>
-
+    {% endblock nav %}
     <div class="designer">
         <p>
-            This app is created by 
+            This app is developed by
         </p>
         <h1>VIGNESH</h1>
         <p>Contact: 7338085595 / vigneshun80@gmail.com</p>
+        <p>follow us on:</p>
         <p>
-        follow us on:
-        <a 
-        href="https://www.facebook.com/Link-To-Learn-114271636881743"
-        target="_blank"><img src="{%static 'question_papers/images/facebook.png'%}" alt="#"> 
+            <a href="https://www.facebook.com/Link-To-Learn-114271636881743" target="_blank"><img
+                    src="{%static 'question_papers/images/facebook.png'%}" alt="#">
 
-        </a>
+            </a>
 
-        <a 
-        href="https://www.instagram.com/vignesh_n_u/"
-        target="_blank"><img src="{%static 'question_papers/images/instagram.jpg'%}" alt="#"> 
+            <a href="https://www.instagram.com/vignesh_n_u/" target="_blank"><img
+                    src="{%static 'question_papers/images/instagram.jpg'%}" alt="#">
 
-        </a>
-    </p>
+            </a>
+        </p>
 
 
     </div>
@@ -315,7 +319,10 @@
         </div>
     </footer>
     <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caladea:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Average+Sans&display=swap" rel="stylesheet">
     <script src="{%static 'question_papers/jquery3.4.1 .min.js'%}"></script>
     <script src="{%static 'question_papers/qp.js'%}"></script>
 

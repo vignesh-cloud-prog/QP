@@ -1,0 +1,36 @@
+<!-- <form action="contact" method="POST"> <input type="hidden" name="csrfmiddlewaretoken" value="BhmuTmQhvHeAWLmSvv6JDKpzejVS3eYo6jiNZaq3Obvfeije6k6q9tpbzlDfqjY9"> -->
+  <!-- <label for="">Name:</label> -->
+  <!-- <input type="text" name= "name"><br> -->
+  <!-- <label for="">Email:</label> -->
+<!-- <input type="email" name= "email"><br> -->
+<!-- <label for="">Phone:</label> -->
+<!-- <input type="number -->
+<!-- " name= "phone"><br> -->
+<!-- <label for="">Describe your issue:</label> -->
+<!-- <input type="text-area"name= "issue"><br> -->
+<!-- <button type="submit">Submit</button> -->
+<!-- </form> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST"  enctype="multipart/form-data"><input type="hidden" name="csrfmiddlewaretoken" value="BhmuTmQhvHeAWLmSvv6JDKpzejVS3eYo6jiNZaq3Obvfeije6k6q9tpbzlDfqjY9"> 
+        <p><label for="id_name">Name:</label> <input type="text" name="name" maxlength="20" required id="id_name"></p>
+<p><label for="id_email">Email:</label> <input type="email" name="email" maxlength="20" required id="id_email"></p>
+<p><label for="id_phone">Phone:</label> <input type="number" name="phone" step="1" required id="id_phone"></p>
+<p><label for="id_issues">Issues:</label> <textarea name="issues" cols="40" rows="10" required id="id_issues">
+</textarea></p>
+        <input type="submit" value="Submit"/>
+    </form>
+     
+</body>
+</html>
+
+
+
+

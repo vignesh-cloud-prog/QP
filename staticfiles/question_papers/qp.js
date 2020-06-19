@@ -36,3 +36,13 @@ $('#share').click(function(){
     $('#papershare').toggle();
 })
 
+$('#shareapp').click(function(){
+    $('#appshare').toggle();
+})
+
+$('#opt').click(function(){
+    $('#shareapp').toggle();
+})
+$('#ask').click(function(){
+    $('#appshare').toggle();
+})

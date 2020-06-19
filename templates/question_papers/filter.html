@@ -1,3 +1,4 @@
+{% extends 'question_papers/qp.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -6,12 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{%static 'question_papers/qp.css'%}">
 
 </head>
 
 <body>
-{% if filter %}
+    {% block nav %}
+
+    {% if filter %}
     <div class="colleges">
         {% for title in filter %}
         {% ifchanged course %}
@@ -37,28 +39,75 @@
         {% endfor %}
         <div class="paper">
             {% for prepaper in filter %}
-            <table>
-                <tr>
-                    <td>
-                        <h1>{{prepaper.examination}} : </h1>
-                    </td>
-                    <!-- <td><a href="{{prepaper.paper.url}}" target="_blank">Open</a></td> -->
-                    <td><a href="{{prepaper.paper.url}}" download> download </a></td>
-                </tr>
-                <tr>
-                    <td colspan="3"><iframe src="{{prepaper.paper.url}}" frameborder="0"></iframe></td>
-                </tr>
-                <td colspan="3">
-                    <center>Provided by{{prepaper.provider}}
-                </td>
-                </center>
-            </table>
-            {% endfor %}
+            <div class="paper">
+                <div id="row">
+                    <a href="{{prepaper.paper.url}}" target="_blank">
+                        <h1 id="paper">{{prepaper.examination}} : </h1>
+                    </a>
+                    <div class="icons">
+                        <!-- <td><a href="{{prepaper.paper.url}}" target="_blank">Open</a></td> -->
+                        <a href="{{prepaper.paper.url}}" download class="fa fa-download link"" aria-hidden=" true">
+                            <p></p>
+                        </a>
+                        <i class="fa fa-share link" aria-hidden="true" id="share">
+                            <p></p>
+                        </i>
+                    </div>
+                </div>
+                </div>
+                <div id="papershare">
+                    <a class="social" href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}   , {
+            {prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper" target="_blank"><img
+                            src="{%static 'question_papers/images/facebook.png'%}" alt="#">
+                        share on
+                        facebook</a>
+                    <a class="social" href="https://api.whatsapp.com/send?text={{request.build_absolute_uri}}   ,{{prepaper.
+            course}} {{prepaper.university}} {{prepaper.examination}} Question Paper" target="_blank"><img
+                            src="{%static 'question_papers/images/whatsapp.jpg'%}" alt="#">
+                        share on
+                        whatsapp</a>
+                    <a class="social" href="https://twitter.com/intent/tweet?text={{request.build_absolute_uri}}    ,{
+            {prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper" target="_blank"><img
+                            src="{%static 'question_papers/images/twitter.jpg'%}" alt="#">
+                        share on
+                        twitter</a>
+                    <a class="social" href="mailto:?subject=Question Paper from QP&body={{request.build_absolute_uri}}   ,{
+            {prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper," target="_blank"><img
+                            src="{%static 'question_papers/images/mail.jpg'%}" alt="#"> share
+                        on mail</a>
+                    <a class="social" href="https://t.me/share/url?text=%s&url={{request.build_absolute_uri}}  ,{{prepaper.
+            course}} {{prepaper.university}} {{prepaper.examination}} Question Paper," target="_blank"><img
+                            src="{%static 'question_papers/images/telegram.jpg'%}" alt="#">
+                        share on
+                        telegram</a>
+                    <a class="social" href="https://www.linkedin.com/shareArticle?mini=true&title=Question Paper from QP&url=
+            {{request.build_absolute_uri}}  ,{{prepaper.course}} {{prepaper.university}} {
+            {prepaper.examination}} Question Paper," target="_blank"><img
+                            src="{%static 'question_papers/images/linkedin.jpg'%}" alt="#">
+                        share on
+                        linkedin</a>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="errors">
+            <p>Filter does not match </p><br>
+            <p>MAKE SURE_</p><br>
+            <li>You selected all correct relate options
+            </li><br>
+<button>
+    <a href="../">Goback</a>
+
+</button>
         </div>
-    {% else %}
-        <p>Filter does not match</p>
-    {% endif %}
+                {% endif %}
+
+                </div>
+        </div>
     </div>
+
+
+    {% endblock nav %}
 
 </body>
 

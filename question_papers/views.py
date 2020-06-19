@@ -66,7 +66,8 @@ def provider(request):
     form=ProviderForm(request.GET)
     form = ProviderForm(request.POST or None ,request.FILES )
     if form.is_valid():
-        form.save()
+        # form.save()
+        Provider.objects.create(**form.cleaned_data)
         messages.success(request, 'Thank you, we will check and update it soon .')
         form=ProviderForm()
         

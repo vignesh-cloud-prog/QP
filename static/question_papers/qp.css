@@ -10,9 +10,10 @@ a{
 #navbar
  {
     display: flex;
-    background-color: rgba(44, 34, 34, 0.651);
+    background-color: rgb(218, 211, 211);
     padding: 10px;
     width: auto;
+    justify-content: center;
 }
 #navbar h1{
     color: black;
@@ -47,29 +48,25 @@ font-family: 'Caladea', serif;
     font-size: 25px;
     font-weight: lighter;
     justify-content: flex-end;
-width: 30%;
+    width: 30%;
 
 
 
 }
 #rightnav i{
-    padding-top: 6px;
+    margin-top: 6px;
     padding-left: 1.1rem;
     font-size: 32px;
-    height: 32px;
-
-    justify-content: space-between;
-    
+    height: 35px;
 }
 #rightnav input{
     overflow: hidden;
     border-radius: 8px;
     font-size: 25px;
-    height: 34px;
-    overflow: hidden;
-padding: 2px;
+    height: 35px;
 border: none;
 border-radius: 8px 0 0 8px;
+margin-top: 6px;
 
 
 }
@@ -78,12 +75,12 @@ border-radius: 8px 0 0 8px;
   
 }
 .fa-search{
-    padding-right: 1rem;
-    font-size: 23px;
-    cursor: pointer;
     height: 32px;
     background-color: white;
     border-radius: 0 8px 8px 0;
+    margin: 0;
+    padding-top: 0;
+    padding-right:  4px;
 }
 #blue{
 color: rgb(80, 68, 68);
@@ -154,7 +151,7 @@ float: right;
     position: absolute;
     left:0.5rem;
     right: 2rem;
-    width: 13rem;
+    width: 12.3rem;
     border-radius: 8px;
     padding: 0;
     height: 2.5rem;
@@ -286,12 +283,6 @@ center {
 }
 
 /* footer section */
-/* footer{ */
-    /* display: flex; */
-    /* width: 100%; */
-    /* align-items: center; */
-    /* justify-content: center; */
-/* } */
 .center{
     background-color: rgb(58, 48, 48);
     display: flex;
@@ -304,7 +295,7 @@ margin: auto;
 padding: 1rem 5rem;
 border-radius: 8px;
 flex-wrap: wrap;
-margin: 4px 2px;
+margin: 2px auto;
 }
 .center p{
     text-align: center;
@@ -418,33 +409,61 @@ margin: 4px 2px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(76, 76, 156);
+    background-color: rgb(171, 171, 235);
     color: white;
     max-width: 90%;
     margin: auto;
     padding: 1rem 5rem;
     border-radius: 8px;
     flex-wrap: wrap;
-    margin: 4px 2px;
+    margin: auto;
 }
 .designer h1{
     color: rgb(65, 15, 112);
     font-family: 'Metal Mania', cursive;
+    font-size: 20px;
 }
 .designer p{
     display: inline;
     padding: 4px;
-    font-size: 20px;
+    font-size: 18px;
 }
 .designer a img{
-    border-radius: 30px;
+    border-radius: 8px;
     margin: 0px;
     padding: 0px;
     overflow: hidden;
-    height: 18px;
-    width: 18px;
+    height: 25px;
+    width: 25px;
 }
 .designer a{
     display: inline;
+}
+
+
+.options{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    background-color: white;
+    width: max-content;
+    font-size: 20px;
+    margin: auto;
+    justify-content: center;
+}
+
+.errors{
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    max-height: 80%;
+    margin: 40px auto;
+    justify-content: center;
+    background: white;
+    border-radius: 3px;
+    padding: 16px 8px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
 }
 
