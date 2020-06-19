@@ -44,5 +44,5 @@ $('#opt').click(function(){
     $('#shareapp').toggle();
 })
 $('#ask').click(function(){
-    $('#appshare').toggle();
+    $('#provideshare').toggle();
 })
