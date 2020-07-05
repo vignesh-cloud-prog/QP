@@ -30,36 +30,33 @@ def yea():
 def colleges(request):
     allqp=Question_papers.objects.order_by('college').distinct('college')
     context={'allqp' : allqp,'Select':'Select Your Current Education : ','coll':coll,'uni':uni,'co':co,'subj':subj,'yea':yea}
-    return render(request,'question_papers/qp.html',context)
+    return render(request,'question_papers/colleges.html',context)
 
 def college(request,college):
     college=Question_papers.objects.filter(college=college).order_by('university').distinct('university')
     college={'college' : college,'coll':coll,'uni':uni,'co':co,'subj':subj,'yea':yea}
-    print(college)
-    return render(request,'question_papers/qp.html',college)
+    return render(request,'question_papers/universities.html',college)
 
 def university(request,college,university):
     university=Question_papers.objects.filter(university=university,college=college).order_by('course').distinct('course')
     university={'university' : university,'coll':coll,'uni':uni,'co':co,'subj':subj,'yea':yea}
-    print(university)
-    return render(request,'question_papers/qp.html',university)
+    return render(request,'question_papers/courses.html',university)
 
 def course(request,college,university,course):
     course=Question_papers.objects.filter(course=course, university=university).order_by('year').distinct('year')
     course={'course' : course,'coll':coll,'uni':uni,'co':co,'subj':subj,'yea':yea}
-    print(course)
-    return render(request,'question_papers/qp.html',course)
+    return render(request,'question_papers/classes.html',course)
 
  
 def year(request,college,university,course,year):
     year=Question_papers.objects.filter(course=course,university=university).order_by('subject').distinct('subject')
     year={'year':year,'coll':coll,'uni':uni,'co':co,'subj':subj,'yea':yea}
-    return render(request,'question_papers/qp.html',year)
+    return render(request,'question_papers/subjects.html',year)
 
 def question_papers(request,college,university,course,year,subject):
     papers=Question_papers.objects.filter(subject=subject,university=university)
     papers={'paper':papers}
-    return render(request,'question_papers/qp.html',papers)
+    return render(request,'question_papers/papers.html',papers)
 
 
 def provider(request):
@@ -81,15 +78,12 @@ def provider(request):
 
 def filter(request):
     college=request.POST.get('college')
-    print(college)
     university=request.POST.get('university')
-    print(university)
     course=request.POST.get('course')
     year=request.POST.get('year')
     subject=request.POST.get('subject')
     filter=Question_papers.objects.filter(college=college,year=year,course=course, subject=subject,university=university)
     filter={'filter':filter}
-    print(filter)
     return render(request,'question_papers/filter.html',filter)
 
 
@@ -123,7 +117,6 @@ def pushed(request):
         date=request.POST['date']
         id=request.POST['id']
         emailid=request.POST['email']
-        # paper=request.POST['paper']
         push=Question_papers(provider=provider,college=college,university=university,course=course,year=year,subject=subject,examination=examination,paper=paper)
         push.save()
 
@@ -141,11 +134,16 @@ def pushed(request):
 
         return render(request,'question_papers/push.html',)
 
-    def text(
-
-    ):
-        
-        return render('question_papers/share.html',text)
+def search(request):
+    query=request.GET['query']
+    query=query.lower()
+    print(query)
+    query=query.replace(" ","_")
+    print(query)
+    result=Question_papers.objects.filter(slug__icontains=query)
+    result={'results':result}
+    print(result)
+    return render(request,'question_papers/search.html',result)
 
 
 

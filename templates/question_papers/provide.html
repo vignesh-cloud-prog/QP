@@ -46,27 +46,27 @@
         {% load static %}
         <div id="provideshare" style="display: none;">
             <a class="social"
-                href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}&text=Please provide the Question Paper by filling this form"
+                href="https://www.facebook.com/sharer/sharer.php?u=https://questionpaper.herokuapp.com/provider/&text=Please provide the Question Paper by filling this form"
                 target="_blank"><img src="{%static 'question_papers/images/facebook.png'%}" alt="#"> Ask through Facebook</a>
             <a class="social"
-                href="https://api.whatsapp.com/send?text={{request.build_absolute_uri}}  Please provide the Question Paper by filling this form"
+                href="https://api.whatsapp.com/send?text=https://questionpaper.herokuapp.com/provider/  Please provide the Question Paper by filling this form"
                 target="_blank"><img src="{%static 'question_papers/images/whatsapp.jpg'%}" alt="#">
                 Ask through
                 whatsapp</a>
-            <a class="social" href="https://twitter.com/intent/tweet?text={{request.build_absolute_uri}} ,Please provide the Question Paper by filling this form" target="_blank"><img
+            <a class="social" href="https://twitter.com/intent/tweet?text=https://questionpaper.herokuapp.com/provider/ ,Please provide the Question Paper by filling this form" target="_blank"><img
                     src="{%static 'question_papers/images/twitter.jpg'%}" alt="#">
                 Ask through
                 twitter</a>
-            <a class="social" href="mailto:?subject=Provide Question Paper&body=Please provide the Question Paper by filling this form ,{{request.build_absolute_uri}}" target="_blank"><img
+            <a class="social" href="mailto:?subject=Provide Question Paper&body=Please provide the Question Paper by filling this form ,https://questionpaper.herokuapp.com/provider/" target="_blank"><img
                     src="{%static 'question_papers/images/mail.jpg'%}" alt="#"> Ask
                 through mail</a>
             <a class="social"
-                href="https://t.me/share/url?text=Please provide the Question Paper by filling this form&url={{request.build_absolute_uri}}"
+                href="https://t.me/share/url?text=Please provide the Question Paper by filling this form&url=https://questionpaper.herokuapp.com/provider/"
                 target="_blank"><img src="{%static 'question_papers/images/telegram.jpg'%}" alt="#">
                 Ask through
                 telegram</a>
             <a class="social" href="https://www.linkedin.com/shareArticle?mini=true&title=Question Paper from QP&url=
-{{request.build_absolute_uri}}&text=Please provide the Question Paper by filling this form" target="_blank"><img
+            https://questionpaper.herokuapp.com/provider/&text=Please provide the Question Paper by filling this form" target="_blank"><img
                     src="{%static 'question_papers/images/linkedin.jpg'%}" alt="#">
                 Ask through
                 linkedin</a>

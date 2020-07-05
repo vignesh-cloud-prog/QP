@@ -1,44 +1,96 @@
-{% extends 'base.html' %}
+{% include 'question_papers/navigation.html'  %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}Search Results {% endblock title  %}
-{% block blogactive  %} active {% endblock blogactive %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search</title>
+    <style>
+        h2{
+            margin: 20px 10px;
+            margin-top: 35px;
 
-{% block body %} 
-<div class="container my-3">
-<h4>Search Results :</h4>
+        }
+        .result{
+            display: block;
+            border: 2px solid black;
+            width: max-content;
+            margin: 8px auto ;
+            border-radius: 8px;
+        }
+        .title{
+            display: flex;
+            justify-content: center;
+            margin: 12px;
+            
+            padding: 4px;
+        }
+        .title p{
+            margin: 4px;
+            padding: 10px;
+            background-color: rgb(109, 109, 218);
+            color: white;
+            border-radius: 8px;
+            border: 2px solid rgb(20, 20, 116);
+        }
+        .title a{
+            display: block;
+            padding: 0.4rem 2rem;
+            border-radius: 8px;
+            font-size: 1.3rem;
+            margin: 4px;
+            color: black;
+            background-color: rgb(179, 155, 155);
+        }
+        @media only screen and (min-width:1024px){
+            .result{
+                display: inline-block;
+                margin: 20px;
+            }
+            
+        }
+    </style>
+</head>
 
-{% if allPosts|length == 0  %}
-  Your search - <b>{{query}} </b>- did not match any documents.<br>
-  Suggessions:<br>
-  <ul>
-    <li>Try different keywords</li>
-    <li>Make sure that all words are spelled correctly</li>
-    <li>Try more general keywords</li>
-    <li>Try fewer keywords</li>
-  </ul> 
+<body>
+    {% if results %}
+    <h2>Search Results :-</h2>
+    {% for result in results %}
+    <div class="result">
+        <div id="1" class="title">
+            <p>{{result.course| upper}}</p>
+            <p>{{result.university| title}}</p>
+        </div>
+        <div id="2" class="title">
+            <p>{{result.year| title}}</p>
+            <p>{{result.subject| title}}</p>
+        </div>
+        <div id="3" class="title">
+            <a href="{{result.paper.url}}"> view</a>
+            <a href="{{result.paper.url}}" download>download</a>
+        </div>
+    </div>
+    {% endfor %}
+ {% else %}
+             <div class="errors">
+            <p>No, search Results </p><br>
+            <p>Suggestions :-</p><br>
+            <li>Search by single keyword</li><br>
+            <li>Make sure the spelling is correct</li><br>
+            <li>Search for specific subject, course, year, university, etc</li><br>
+            <li>Try more Related keywords</li><br>
+
+<button>
+    <a href="../">Goback</a>
+
+</button>
+        </div>
 
 {% endif %}
 
-{% for post in allPosts%}
+</body>
 
-    <div class="col-md-12">
-      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary">Article by {{post.author}} </strong>
-          <h3 class="mb-0"> {{post.title}} </h3>
-          <div class="mb-1 text-muted"> {{post.timesamp}}  </div>
-          <p class="card-text mb-auto"> {{post.content | truncatechars:300}} </p>
-          <a href="/blog/{{post.slug}}"  role="button" class="btn btn-primary">Continue reading</a>
-        </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="300" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-        </div>
-      </div>
-    </div>
-      
-  {% endfor %}
-
-  
-  
-
-  {% endblock body %}
+</html>
+{% include 'question_papers/footers.html'  %}

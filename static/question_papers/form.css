@@ -37,7 +37,7 @@ label {
     align-items: center;
     font-family: 'Average Sans', sans-serif;
 }
-button {
+.container button {
     padding: 6px 20px;
     border: 2px solid white;
     background-color: rgb(94, 94, 216);

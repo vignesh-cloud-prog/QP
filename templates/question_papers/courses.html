@@ -1,0 +1,65 @@
+{% include 'question_papers/navigation.html'  %}
+{% load static %}
+{% load to_space %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>    
+        {% for title in university %}
+    {% ifchanged college %}
+        {{title.course}}_{{title.university}}_question_papers
+        
+    {% endifchanged %}
+    {% endfor %}
+    </title>
+</head>
+<body>
+    <div class="colleges">
+        <p>Welcome to QP World</p>
+    {% for uni in university %}
+{% ifchanged college %}
+<div class="titles">
+    <h1>{{uni.college| to_space | title}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
+    </h1>
+    <h1>{{uni.university| to_space | title}}{% if uni.university == 'manglore_university' %}
+        <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
+        {% elif uni.university == 'kuvempu_university'%}
+        <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
+        {% else %}
+        <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
+        {% endif %} </h1>
+</div>
+{% endifchanged %}
+<div class="college">
+    <a href="{{uni.course}}">
+        <img src="{%static 'question_papers/images/course.png' %}" alt="#">
+        <h4>{{uni.course| upper}}</h4>
+    </a>
+</div>
+{% endfor %}
+    </div>
+</body>
+</html>
+{% include 'question_papers/footers.html'  %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

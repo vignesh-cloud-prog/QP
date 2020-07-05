@@ -10,6 +10,7 @@ a{
 #navbar
  {
     display: flex;
+    align-items: center;
     background-color: rgb(218, 211, 211);
     padding: 10px;
     width: auto;
@@ -26,7 +27,7 @@ a{
 
 }
 #navitems{
-    width: 65%;
+    width: 45%;
 padding-right: 3rem;
 margin-bottom: 0;
 padding-top: 8px;
@@ -47,40 +48,58 @@ font-family: 'Caladea', serif;
     color: rgb(56, 47, 47);
     font-size: 25px;
     font-weight: lighter;
+    align-items: center;
     justify-content: flex-end;
-    width: 30%;
+    width: 50%;
 
 
 
 }
-#rightnav i{
+.itag{
     margin-top: 6px;
     padding-left: 1.1rem;
     font-size: 32px;
     height: 35px;
 }
+.search{
+    background-color: white;
+    border-radius: 13px;
+    padding: 4px;
+    display: inline-block;
+}
+.search input{
+    max-width: 90%;
+    font-size: 2rem;
+    height: 40px;
+    display: inline-block;
+}
+
+.search button {
+    font-size: 30px;
+    display: inline;
+    max-width: 10%;
+    background-color: white;
+    border: none;
+    margin: 0;
+    padding: 2px;
+}
+.search button i{
+    font-size: 30px;
+}
 #rightnav input{
     overflow: hidden;
     border-radius: 8px;
-    font-size: 25px;
-    height: 35px;
-border: none;
-border-radius: 8px 0 0 8px;
-margin-top: 6px;
+    /* font-size: 25px; */
+    /* height: 35px; */
+    border: none;
+
+
 
 
 }
 #rightnav a{
     color: rgbrgb(58, 53, 53);
   
-}
-.fa-search{
-    height: 32px;
-    background-color: white;
-    border-radius: 0 8px 8px 0;
-    margin: 0;
-    padding-top: 0;
-    padding-right:  4px;
 }
 #blue{
 color: rgb(80, 68, 68);
@@ -91,23 +110,25 @@ color: rgb(80, 68, 68);
 
 @media only screen and (max-width:1024px){
     #navbar{
-        display: inline-block;
-        width: 100%;
-        overflow: hidden;
-        padding: 10px 0;
+        margin: 0;
+        padding: 4px 2px;
+        border-radius: 4px;
+        
+    
     }
     #navbar h1{
-        display: inline-block;
+        /* display: inline-block; */
         width: 20%;
         margin: 0.2rem;
         text-align: left;
         padding-left: 0.5rem;
+        color: red;
         
     }
     #navitems{
         position: absolute;
         overflow: hidden;
-        top: 4rem;
+        top: 3.2rem;
         left: 0;
         width: 100%;
         background-color: rgb(34, 32, 32); 
@@ -122,51 +143,38 @@ color: rgb(80, 68, 68);
     }
 
 #rightnav{
+    
     width: 75%;
-        position: absolute;
-        top: 0.7rem;
-        right: 0.2rem; 
-        overflow: hidden;
-        padding-right: 10px;
-float: right;
+    justify-content: center;
+    top: 0.7rem;
+    right: 0.2rem; 
+    overflow: hidden;
+   
+    float: right;
     }
 #blue{
     display: none;
 }
-#rightnav i{
-    padding-left: 10px;
+.search{
+    padding: 0 4px;
+}
+.search input{
+    width: 80%;
 
-}
-#rightnav i{
-    padding-right: 0.1rem;
+} 
+.fa-search{
+    font-size: 30px;
 }
 
-#type{
-    display: none;
-    position: absolute;
-    padding: 0;
-    
-}
-#rightnav input{
-    position: absolute;
-    left:0.5rem;
-    right: 2rem;
-    width: 13rem;
-    border-radius: 8px;
-    padding: 0;
-    height: 2.5rem;
+
+
+
    
 
 }
-.fa-search{
-    background:none;
-    margin: 0; 
-    padding-right: 0.2rem;
-}
 
 
-}
-    /* End of navigation */
+   /* End of navigation */
 /* filter section */
 #filter{
     display: none;
@@ -208,6 +216,13 @@ float: right;
 
 
 }
+
+
+
+
+
+
+
 /* End of Filter section
  */
 
@@ -466,4 +481,6 @@ margin: 2px auto;
     padding: 16px 8px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .4);
 }
+
+
 

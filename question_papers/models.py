@@ -12,10 +12,15 @@ class Question_papers(models.Model):
     subject= models.CharField(max_length=100)
     examination=models.CharField(max_length=100)
     paper = models.FileField(upload_to='preqps')
+    slug=models.CharField(max_length=400 , blank=True)
     
     def __str__(self):
         return  self.college + ' , ' + self.course +' , '+self.year + ' - '+ self.subject 
 
+    def save(self, *args, **kwargs):
+        self.slug=self.course+"_" + self.subject +"_" +self.year+"_" +self.examination+"_" + self.university
+        self.slug=self.slug.lower()
+        super(Question_papers,self).save(*args, **kwargs)
 
 class Provider(models.Model):
     name=models.CharField(max_length=20)
@@ -28,6 +33,7 @@ class Provider(models.Model):
     papertitle=models.CharField(max_length=100)
     doc = models.FileField(upload_to='provider')
     provide_date=models.DateTimeField(default=datetime.now)
+    
     
     def __str__(self):
         return  self.name + ' , ' + self.level +' , '+self.board + ' - '+ self.sub    

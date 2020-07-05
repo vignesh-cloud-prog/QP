@@ -23,7 +23,7 @@
         <p><label for="id_name">Name:</label> <input type="text" name="name" maxlength="20" required id="id_name"></p>
 <p><label for="id_email">Email:</label> <input type="email" name="email" maxlength="20" required id="id_email"></p>
 <p><label for="id_phone">Phone:</label> <input type="number" name="phone" step="1" required id="id_phone"></p>
-<p><label for="id_issues">Issues:</label> <textarea name="issues" cols="40" rows="10" required id="id_issues">
+<p><label for="id_issues">Describe Your Issues:</label> <textarea name="issues" cols="40" rows="10" required id="id_issues">
 </textarea></p>
         <input type="submit" value="Submit"/>
     </form>
