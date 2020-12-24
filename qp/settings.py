@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2bzp&z&ou_i-dw^b-wy6cv+m##8!6rdcll9+%p0b-ar1gc^f+9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['qpworld.herokuapp.com','127.0.0.1','questionpaper.herokuapp.com']
 
@@ -88,23 +88,12 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'vigneshnu77',
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': '',
     }
 }
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
-
-# DATABASES = {
-    # 'default': {
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'dco3tlj8ufeibp',
-        # 'USER': 'dwcvmeytgugktw',
-        # 'PASSWORD': '163569ecd965b13fd6f0edb0c72aef6b6b7da46ff195cfd5fcd6651663aad03d',
-        # 'HOST': 'ec2-18-213-176-229.computer-1.amazonaws.com',
-        # 'PORT': '5432',
-    # }
-# }
 
 # DATABASES = {
     # 'default': {
@@ -159,7 +148,7 @@ EMAIL_HOST_PASSWORD='vigneshqpweb'
 # STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),

@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="{%static 'question_papers/form.css'%}">
     <link rel="stylesheet" href="{%static 'question_papers/qp.css'%}">
     <link rel="stylesheet" href="{%static 'question_papers/all.css'%}">
-    <script data-ad-client="ca-pub-9645636288208408" async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="shortcut icon" href="{%static 'question_papers/images/favicon.png'%}" type="image/x-icon">
+    <!-- <script data-ad-client="ca-pub-9645636288208408" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
 </head>
 
 <body>
@@ -34,53 +34,53 @@
             </form>
 
             <i id="blue" class="fas fa-filter itag" "></i>
-            <i class=" fas fa-ellipsis-v itag" id="opt"></i>
+            <i class=" fas fa-ellipsis-v itag " id="opt "></i>
 
         </div>
-        <div class="options">
+        <div class="options ">
 
-            <a class="fa fa-share-alt" aria-hidden="true" style="display: none; margin: 4px; font-size: 25px;"
-                id="shareapp"> Share App</a>
+            <a class="fa fa-share-alt " aria-hidden="true " style="display: none; margin: 4px; font-size: 25px; "
+                id="shareapp "> Share App</a>
 
-            {% include "question_papers/share.html" %}
+            {% include "question_papers/share.html " %}
         </div>
     </div>
     <!-- End of Navigation -->
     <div id="filter">
-        <form method="POST" action="{% url 'filter'%}">{% csrf_token %}
-            <h1><a href="#" class="fas fa-filter"> Filter</h1></a>
+        <form method="POST " action="{% url 'filter'%} ">{% csrf_token %}
+            <h1><a href="# " class="fas fa-filter "> Filter</h1></a>
 
-            <label for="college">College : </label>
-            <select name="college" id="college">
+            <label for="college ">College : </label>
+            <select name="college " id="college ">
                 {% for 1 in coll %}
-                <option value="{{1.college}}" name="college">{{1.college}}</option>
+                <option value="{{1.college}} " name="college ">{{1.college}}</option>
                 {% endfor %}
             </select>
-            <label for="university">University : </label>
-            <select name="university" id="university">
+            <label for="university ">University : </label>
+            <select name="university " id="university ">
                 {% for 2 in uni %}
-                <option value="{{2.university}}" name="university">{{2.university}}</option>
+                <option value="{{2.university}} " name="university ">{{2.university}}</option>
                 {% endfor %}
             </select>
-            <label for="course">Course : </label>
-            <select name="course" id="course">
+            <label for="course ">Course : </label>
+            <select name="course " id="course ">
                 {% for 3 in co %}
-                <option value="{{3.course}}" name="course">{{3.course}}</option>
+                <option value="{{3.course}} " name="course ">{{3.course}}</option>
                 {% endfor %}
             </select>
-            <label for="year">Year : </label>
-            <select name="year" id="year">
+            <label for="year ">Year : </label>
+            <select name="year " id="year ">
                 {% for 4 in yea %}
-                <option value="{{4.year}}" name="year">{{4.year}}</option>
+                <option value="{{4.year}} " name="year ">{{4.year}}</option>
                 {% endfor %}
             </select>
-            <label for="subject">Subject : </label>
-            <select name="subject" id="subject">
+            <label for="subject ">Subject : </label>
+            <select name="subject " id="subject ">
                 {% for 5 in subj %}
-                <option value="{{5.subject}}" name="subject">{{5.subject}}</option>
+                <option value="{{5.subject}} " name="subject ">{{5.subject}}</option>
                 {% endfor %}
             </select>
-            <button type="submit">Get</button>
+            <button type="submit ">Get</button>
         </form>
     </div>
 

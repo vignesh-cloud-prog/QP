@@ -11,19 +11,7 @@
 
 <body>
     {% block nav %}
-    {% if messages %}
-<div class="content">
-    <div class="header">
-        <h2>Thank You!</h2>
-    </div>
-    <label for="click" class="fas fa-check"></label>
-    {% for message in messages %}
-    <p>{{ message }}</p>
-    {% endfor %}
-    <div class="line"></div>
-    <label for="click" class="close-btn" onclick="this.parentElement.style.display='none';">Close</label>
-</div>
-{% endif %}
+
     <div class="container">
         <h3>Contact QP Admin</h3>
         <div class="form">
@@ -34,7 +22,19 @@
         </form>    
     </div>
     {% endblock nav %}
-
+    {% if messages %}
+    <div class="content messages">
+        <div class="header">
+            <h2>Thank You!</h2>
+        </div>
+        <label for="click" class="fas fa-check"></label>
+        {% for message in messages %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+        <div class="line"></div>
+        <label for="click" class="close-btn" onclick="this.parentElement.style.display='none';">Close</label>
+    </div>
+    {% endif %}
 </body>
 
 </html>

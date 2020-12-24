@@ -131,6 +131,8 @@ def pushed(request):
             fail_silently=True,
             
         )
+        
+
 
         return render(request,'question_papers/push.html',)
 
