@@ -22,6 +22,25 @@ class Question_papers(models.Model):
         self.slug=self.slug.lower()
         super(Question_papers,self).save(*args, **kwargs)
 
+
+class Board_Question_papers(models.Model):
+    provider=models.CharField(max_length=20)
+    school = models.CharField(max_length=100)
+    board=models.CharField(max_length=100)
+    year = models.CharField(max_length=100)
+    subject= models.CharField(max_length=100)
+    examination=models.CharField(max_length=100)
+    paper = models.FileField(upload_to='preqps')
+    slug=models.CharField(max_length=400 , blank=True)
+    
+    def __str__(self):
+        return  self.college + ' ,  '+self.year + ' - '+ self.subject 
+
+    def save(self, *args, **kwargs):
+        self.slug=self.subject +"_" +self.year+"_" +self.examination+"_" + self.board
+        self.slug=self.slug.lower()
+        super(Question_papers,self).save(*args, **kwargs)
+        
 class Provider(models.Model):
     name=models.CharField(max_length=20)
     email=models.EmailField(max_length=100)

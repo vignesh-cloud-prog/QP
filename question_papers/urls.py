@@ -33,4 +33,10 @@ urlpatterns = [
         path('<str:college>/<str:university>/<str:course>/<str:year>/', views.year, name='year'),
         path('<str:college>/<str:university>/<str:course>/<str:year>/<str:subject>/', views.question_papers, name='question_papers'),
         
+        # path('board/<str:board_type>/', views.college, name='college'),
+        # path('board/<str:board_type>/<str:board_name>/', views.university, name='university'),
+        # path('board/<str:board_type>/<str:board_name>/', views.course, name='course'),
+        # path('board/<str:board_type>/<str:board_name>/<str:year>/', views.year, name='year'),
+        # path('board/<str:board_type>/<str:board_name>/<str:year>/<str:subject>/', views.question_papers, name='question_papers'),
+        
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

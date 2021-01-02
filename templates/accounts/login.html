@@ -1,0 +1,89 @@
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+
+        {% if messages %}
+        {% for mess in messages %}
+        <div class="alert alert-{{mess.tags}}" role="alert">
+            {{mess}}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+        {% if otp %}
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom display">
+                    <h3 class="float-left">Verify Your Email</h3>
+
+                </legend>
+                <input type="hidden" name="usr" value="{{usr.username}}">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">OTP</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter Your OTP" aria-label="OTP"
+                        aria-describedby="basic-addon1" name='otp'>
+                </div>
+
+            </fieldset>
+            <div class="form-grounp">
+                <button class="btn mainbtn" type="submit">Verify</button>
+                <small class="float-right text-muted"><i><a href="#" class="text-dark"
+                            onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')"><i id="resendOTPmess">Resend</i>
+                            OTP</a></small>
+
+            </div>
+
+        </form>
+        {% else %}
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom display">
+                    <h3 class="float-left">Login</h3>
+
+                </legend>
+                <label for="username">Username</label>
+                <input type="text" name="username">
+                <label for="password"></label>
+                <input type="password" name="password" id="password">
+            </fieldset>
+            <div class="form-grounp">
+                <button class="btn mainbtn" type="submit">Log In</button>
+                <small class="float-right text-muted"><a href="#" class="text-dark"> Forgotten
+                        Password?</a></small>
+
+            </div>
+
+        </form>
+        {% endif %}
+        <br>
+    </div>
+    <div class="col-md">
+    </div>
+</div>
+
+<script>
+    function ReSendOTP(username, mess_id) {
+	
+	mess = document.getElementById(mess_id);
+	mess.innerText = "Sending...";
+	$.ajax({
+		type: 'GET',
+		url: "{% url 'resend_otp' %}",
+		data: {usr:username},
+		success: function(data){
+			mess.innerText = data;
+
+		}
+	})
+}
+</script>

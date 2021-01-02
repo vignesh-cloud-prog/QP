@@ -41,10 +41,16 @@ INSTALLED_APPS = [
 
     # own apps
     'question_papers.apps.QuestionPapersConfig',
+    'examination.apps.ExaminationConfig',
 
     # Thirdparty apps
+     'ckeditor',
+     'ckeditor_uploader'
 
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_BASEPATH = "/my_static/ckeditor/ckeditor/"
 
 MIDDLEWARE = [
     # 'whitenoise.middleware.WhiteNoiseMiddleware',
