@@ -26,6 +26,8 @@ urlpatterns = [
     path('push/pushed', views.pushed, name='pushed'),
     path('contact/', views.issues, name='contact'),
     path('filter', views.filter, name='filter'),
+    path('filter_first_option', views.filter_first_option, name='filter_first_option'),
+
     path('', views.colleges, name='home'),
         path('<str:college>/', views.college, name='college'),
         path('<str:college>/<str:university>/', views.university, name='university'),

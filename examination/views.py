@@ -2,7 +2,7 @@ import random
 from django.http import HttpResponse
 
 from django.contrib.auth.models import User
-from .models import UserOTP
+from .models import UserOTP,Profile
 from django.core.mail import send_mail
 from django.shortcuts import render,redirect
 # from django.contrib.auth.forms import UserCreationForm
@@ -16,7 +16,19 @@ def logoutUser(request):
     logout(request)
     return redirect("login")
 
-def signup(request):
+def signup(request,*args,**kwargs):
+	code=str(kwargs.get('ref_code'))
+	try:
+		profile=Profile.objects.get(code=code)
+		request.session['ref_profile']=profile.id
+		print('profile.id ',profile.id)
+		print('id',profile.id)
+	except:
+		pass
+	print(request.session.get_expiry_date())
+	
+	profil_id=request.session.get('ref_profile')
+
 	if request.method == 'POST':
 		get_otp = request.POST.get('otp') #213243 #None
 
@@ -34,7 +46,14 @@ def signup(request):
 
 		form = CreateUserForm(request.POST)
 		if form.is_valid():
-			form.save()
+			instance=form.save()
+			if profil_id is not None:
+				recomended_by_profile=Profile.objects.get(id=profil_id)
+				registered_user=User.objects.get(id=instance.id)
+				registered_profile=Profile.objects.get(user=registered_user)
+				registered_profile.recomended_by=recomended_by_profile.user
+				registered_profile.save()
+
 			username = form.cleaned_data.get('username')
 			email = form.cleaned_data.get('email')
 			name = form.cleaned_data.get('name')

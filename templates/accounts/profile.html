@@ -1,1 +1,33 @@
+{% load static %}
+<link rel="stylesheet" href="{%static 'question_papers/cropper_min.css'%}">
 <h1>Profile</h1>
+ 
+<!-- <div class="profile">
+<img src="{{request.user.profile.pic.url}}" alt="photo">
+<p>{{request.user.username}}</p>
+<p>{{request.user.profile.college}}</p>
+<p>{{request.user.profile.bio}}</p>
+</div> -->
+<!-- <div class="edit_profile">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="image" name="pic">
+        <img src="{{request.user.profile.pic.url}}" alt="photo">
+
+        <input type="text" name="username" value="{{request.user.username}}" >{{request.user.username}}
+        <input type="text" name="college" value="{{request.user.profile.college}}">
+        <input type="text" name="bio" value="{{request.user.profile.bio}}">
+    </form>
+</div> -->
+
+<img src="{{request.user.profile.pic.url}}" id="croppr"/>
+<script src="{%static 'question_papers/cropper_min.js'%}"></script>
+<script>
+    var croppr = new Croppr('#croppr', {
+        // options
+      });
+
+    var value = croppr.getValue();
+    console.log(value);
+
+</script>

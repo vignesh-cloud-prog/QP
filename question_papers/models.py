@@ -1,10 +1,13 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 class Question_papers(models.Model):
-    provider=models.CharField(max_length=20)
+    provider=models.ForeignKey(User, on_delete=models.SET_DEFAULT,default="user",blank=True,null=True)
+    PAPER_CHOICES=[('board','Board'),('university','University')]
+    paper_type=models.CharField(max_length=12,choices=PAPER_CHOICES,blank=True,null=True)
     college = models.CharField(max_length=100)
     university=models.CharField(max_length=100)
     course = models.CharField(max_length=100)
@@ -22,29 +25,11 @@ class Question_papers(models.Model):
         self.slug=self.slug.lower()
         super(Question_papers,self).save(*args, **kwargs)
 
-
-class Board_Question_papers(models.Model):
-    provider=models.CharField(max_length=20)
-    school = models.CharField(max_length=100)
-    board=models.CharField(max_length=100)
-    year = models.CharField(max_length=100)
-    subject= models.CharField(max_length=100)
-    examination=models.CharField(max_length=100)
-    paper = models.FileField(upload_to='preqps')
-    slug=models.CharField(max_length=400 , blank=True)
-    
-    def __str__(self):
-        return  self.college + ' ,  '+self.year + ' - '+ self.subject 
-
-    def save(self, *args, **kwargs):
-        self.slug=self.subject +"_" +self.year+"_" +self.examination+"_" + self.board
-        self.slug=self.slug.lower()
-        super(Question_papers,self).save(*args, **kwargs)
         
 class Provider(models.Model):
-    name=models.CharField(max_length=20)
-    email=models.EmailField(max_length=100)
-    level = models.CharField(max_length=100)
+    name=models.ForeignKey(User, on_delete=models.SET_DEFAULT,default="user",blank=True,null=True)
+    PAPER_CHOICES=[('board','Board'),('university','University')]
+    paper_type=models.CharField(max_length=12,choices=PAPER_CHOICES,blank=True,null=True) 
     board=models.CharField(max_length=100)
     claass = models.CharField(max_length=100)
     sem = models.CharField(max_length=100)

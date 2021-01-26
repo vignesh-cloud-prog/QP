@@ -25,7 +25,16 @@
                 onchange="changeThickness()">
             color : <input type="color" name="color" id="color" onchange="changeColor()">
         </form>
-    </div>
 
+
+
+    </div>
+ <hr>
+    <br>
+    <form>
+        {{ form.media }}
+        {{ form.as_p }}
+        <input type="submit"/>
+    </form>
 </body>
 </html>

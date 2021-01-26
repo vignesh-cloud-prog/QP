@@ -1,89 +1,166 @@
+{% load static %}
+<link rel="stylesheet" href="{%static 'question_papers/form.css'%}">
+<link rel="stylesheet" href="{%static 'question_papers/messages.css'%}">
 
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+    body{
+        background: cadetblue url("{%static 'question_papers/images/background1.jpg'%}");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
 
-<div class="row">
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4">
+    .container {
+        opacity: 25;
+        display: flex;
+        flex-direction: column;
+        max-width: 320px;
+        max-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        
+        
+    }
+    .login_form{
+        padding: 1rem;
+        border: 2px solid black;
+        background: rgba(50, 87, 156, 0.486);
 
-        {% if messages %}
-        {% for mess in messages %}
-        <div class="alert alert-{{mess.tags}}" role="alert">
-            {{mess}}
+    }
+    .login_head h1{
+        margin: 4px;
+        font-size: 24px;
+    }
+
+    #desc {
+        margin-top: 0.5rem;
+        text-indent: 40px;
+    }
+
+    .login_body input {
+        border-radius: 8px;
+        padding: 5px;
+        margin: 5px 0;
+    }
+
+    .login_footer {
+        padding: 1rem 0;
+        margin: 0;
+    }
+    .login_footer button{
+        border: none;
+        background-color: rgb(90, 90, 218);
+    }
+    .login_footer button:hover{
+        background-color: blue;
+
+    }
+
+    .login_footer hr {
+        margin: 0.5rem 0;
+    }
+
+    .login_footer small {
+        margin: 4px;
+    }
+
+    .login_footer a {
+        color: rgb(32, 32, 85);
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<body>
+    
+    {% if messages %}
+    {% for message in messages %}
+    <div class="{{ message.tags }}"  id="msg_box" >
+        <div class="first_row">
+            <p id="msg_title">Message :</p>
+            <img onclick="this.parentElement.parentElement.style.display='none';" src="{%static 'question_papers/images/close.svg'%}" alt="close">
         </div>
-        {% endfor %}
-        {% endif %}
-
-
-        {% if otp %}
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom display">
-                    <h3 class="float-left">Verify Your Email</h3>
-
-                </legend>
-                <input type="hidden" name="usr" value="{{usr.username}}">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">OTP</span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Enter Your OTP" aria-label="OTP"
-                        aria-describedby="basic-addon1" name='otp'>
-                </div>
-
-            </fieldset>
-            <div class="form-grounp">
-                <button class="btn mainbtn" type="submit">Verify</button>
-                <small class="float-right text-muted"><i><a href="#" class="text-dark"
-                            onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')"><i id="resendOTPmess">Resend</i>
-                            OTP</a></small>
-
-            </div>
-
-        </form>
-        {% else %}
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom display">
-                    <h3 class="float-left">Login</h3>
-
-                </legend>
-                <label for="username">Username</label>
-                <input type="text" name="username">
-                <label for="password"></label>
-                <input type="password" name="password" id="password">
-            </fieldset>
-            <div class="form-grounp">
-                <button class="btn mainbtn" type="submit">Log In</button>
-                <small class="float-right text-muted"><a href="#" class="text-dark"> Forgotten
-                        Password?</a></small>
-
-            </div>
-
-        </form>
-        {% endif %}
-        <br>
+        
+        
+        <p id="msg_body">{{ message }}</p>
+        
+        {% comment %} <label for="click" class="msg_close_btn" onclick="this.parentElement.style.display='none';">Done</label> {% endcomment %}
     </div>
-    <div class="col-md">
+    {% endfor %} 
+    {% endif %}
+
+{% if otp %}
+<div class="container">
+    
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom display">
+                <h3 class="float-left">Verify Your Email</h3>
+
+            </legend>
+            <input type="hidden" name="usr" value="{{usr.username}}">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">OTP</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Enter Your OTP" aria-label="OTP"
+                    aria-describedby="basic-addon1" name='otp'>
+            </div>
+
+        </fieldset>
+        <div class="form-grounp">
+            <button class="btn mainbtn" type="submit">Verify</button>
+            <small class="float-right text-muted"><i><a href="#" class="text-dark"
+                        onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')"><i id="resendOTPmess">Resend</i>
+                        OTP</a></small>
+
+        </div>
+
+    </form>
+</div>
+{% else %}
+<div class="container login_form">
+    <div class="login_head container">
+        <h1>QP Web</h1>
+        <p id="desc">A platform to get your academics question papers and also give to some one like us.</p>
+    </div>
+    <hr width="90%">
+    <div class="login_body">
+        <form method="POST">
+            {% csrf_token %}
+
+            <h3>Login</h3>
+
+
+            <label for="username">Username</label>
+            <input type="text" name="username">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+    </div>
+    <div class="login_footer container">
+        <button type="submit">Log In</button>
+        </form>
+        {% endif %}
+        <hr width="90%">
+        <small><a href="{% url 'password_reset'%}" class="text-dark"> Forgotten
+                Password?</a></small>
+        <small> New to QPWeb - <a href="{% url 'signup'%}">SignUp</a> </small>
     </div>
 </div>
 
+</body>
 <script>
     function ReSendOTP(username, mess_id) {
-	
-	mess = document.getElementById(mess_id);
-	mess.innerText = "Sending...";
-	$.ajax({
-		type: 'GET',
-		url: "{% url 'resend_otp' %}",
-		data: {usr:username},
-		success: function(data){
-			mess.innerText = data;
 
-		}
-	})
-}
+        mess = document.getElementById(mess_id);
+        mess.innerText = "Sending...";
+        $.ajax({
+            type: 'GET',
+            url: "{% url 'resend_otp' %}",
+            data: { usr: username },
+            success: function (data) {
+                mess.innerText = data;
+
+            }
+        })
+    }
 </script>

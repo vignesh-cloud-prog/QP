@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('register/', views.signup,name="signup"),
+    path('register/<str:ref_code>', views.signup,name="signup_with_ref"),
     path('profile/', views.profile,name="profile"),
     path('login/', views.login_view,name="login"),
     path('logout/', views.logoutUser,name="logout"),

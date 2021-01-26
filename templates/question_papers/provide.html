@@ -28,20 +28,6 @@
         <button id="btn" type="submit" value="Submit" />Provide</button>
         </form>
 
-
-        {% if messages %}
-        <div class="content messages">
-            <div class="header">
-                <h2>Thank You!</h2>
-            </div>
-            <label for="click" class="fas fa-check"></label>
-            {% for message in messages %}
-            <p class="{{ message.tags }}">{{ message }}</p>
-            {% endfor %}
-            <div class="line"></div>
-            <label for="click" class="close-btn" onclick="this.parentElement.style.display='none';">Close</label>
-        </div>
-        {% endif %}
         <button style="background-color: palevioletred;" id="ask">Ask your friend</button>
         {% load static %}
         <div id="provideshare" style="display: none;">

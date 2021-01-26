@@ -1,83 +1,108 @@
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+{% extends 'base.html' %}
 {% load static %}
-        <div class="row">
-            <div class="col-md-4">
+
+{% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% if messages %}
+{% for message in messages %}
+<div class="{{ message.tags }}" id="msg_box">
+    <div class="first_row">
+        <p id="msg_title">Message :</p>
+        <img onclick="this.parentElement.parentElement.style.display='none';"
+            src="{%static 'question_papers/images/close.svg'%}" alt="close">
+    </div>
+
+
+    <p id="msg_body">{{ message }}</p>
+
+    {% comment %} <label for="click" class="msg_close_btn"
+        onclick="this.parentElement.style.display='none';">Done</label> {% endcomment %}
+</div>
+{% endfor %}
+{% endif %}
+
+{% if otp %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="container">
+        <legend class="">
+            <h3 class="">Verify Your Email</h3>
+        </legend>
+        <input type="hidden" name="usr" value="{{usr.username}}">
+        <div class="">
+            <div class="">
+                <span class="" id="basic-addon1">OTP</span>
             </div>
-            <div class="col-md-4">
-              {% if messages %}
-                          {% for mess in messages %}
-                          <div class="alert alert-{{mess.tags}}" role="alert">
-                            {{mess}}
-                          </div>
-                          {% endfor %}
-                        {% endif %} 
-                <br>
+            <input type="text" class="" placeholder="Enter Your OTP" aria-label="OTP" aria-describedby="basic-addon1"
+                name='otp'>
+        </div>
 
-                       {% if otp %}
-                          <form method="POST">
-                            {% csrf_token %}
-                            <fieldset class="form-group">
-                                <legend class="border-bottom display">
-                                    <h3 class="float-left">Verify Your Email</h3>
+    </div>
+    <div class="">
+        <button class="" type="submit">Verify</button>
 
-                                <!-- <img src="{% static 'main/img/logo.png' %}" class="logo float-right pt-1" width="25"> -->
-                                </legend>
-                                <input type="hidden" name="usr" value="{{usr.username}}">
-                                <div class="input-group mb-3">
-                                  <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">OTP</span>
-                                  </div>
-                                  <input type="text" class="form-control" placeholder="Enter Your OTP" aria-label="OTP" aria-describedby="basic-addon1" name = 'otp'>
-                                </div>
-                                
-                            </fieldset>
-                            <div class="form-grounp">
-                                <button class="btn mainbtn" type="submit">Verify</button>
-                                <small class="float-right text-muted"><i><a href="#" class="text-dark" 
-                                  onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')"><i id="resendOTPmess">Resend</i> OTP</a></small>
+        <small class=""><i><a href="#" class="" onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')"><i
+                        id="resendOTPmess">Resend</i>
+                    OTP</a></small>
 
-                            </div>
+    </div>
 
-                        </form>
-                       {% else %}
-                        <form method="POST">
-                            {% csrf_token %}
-                            <fieldset class="form-group">
-                                <legend class="border-bottom display">
-                                    <h3 class="float-left">Register Now</h3>
+</form>
+{% else %}
+<div class="container register_form">
+    <div class="login_head">
+        <h1>QP Web</h1>
+        <p id="desc">A platform to get your academics question papers and also give to some one like us.</p>
+    </div>
+    <hr width="90%">
+    <h1 class="title">Register Now</h1>
+    <form method="POST">
+        {% csrf_token %}
 
-                                <!-- <img src="{% static 'main/img/logo.png' %}" class="logo float-right pt-1" width="25"> -->
-                                </legend>
+        {% for field in form %}
 
-                                {{ form.as_p }}
-                            </fieldset>
-                            <div class="form-grounp">
-                                <button class="btn mainbtn" type="submit">Sign Up</button>
-                                <small class="float-right text-muted">Already have a Account ?<a href="{% url 'login' %}" class="text-dark"> Login</a></small>
+        <div class="field">
+            <div class="lable_title">{{field.label_tag}}</div>
+            <div class="input_data">
+                {% if field.errors %}
+                <div class="input_error"> {{field.errors}} </div>
+                {% endif %}
+                <div class="input_tag">{{field}} </div>
+                {% if field.help_text %}
+                <div class="help_text">{{field.help_text|safe}} </div>
+                {% endif %}
+            </div>
+        </div>
 
-                            </div>
+        {% endfor %}
 
-                        </form>
-                        {% endif %}
-               <br>
-           </div>
-           <div class="col-md-4">
-           </div>
-       </div>
+        <button class="btn" type="submit">Next</button>
+    </form>
+    <hr width="90%">
+    <div class="">
+        <small class="">Already have an account ?<a href="{% url 'login' %}">Login</a>
+        </small>
+    </div>
 
-       <script>function ReSendOTP(username, mess_id) {
-	
+    {% endif %}
+    <br>
+</div>
+
+
+<script>function ReSendOTP(username, mess_id) {
+
         mess = document.getElementById(mess_id);
         mess.innerText = "Sending...";
         $.ajax({
             type: 'GET',
             url: "{% url 'resend_otp' %}",
-            data: {usr:username},
-            success: function(data){
+            data: { usr: username },
+            success: function (data) {
                 mess.innerText = data;
-    
+
             }
         })
     }</script>
+
+
+{% endblock body %}
