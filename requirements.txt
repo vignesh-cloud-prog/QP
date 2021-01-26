@@ -15,7 +15,6 @@ chardet==4.0.0
 cryptography==3.3.1
 defusedxml==0.6.0
 django-allauth==0.44.0
-django-ckeditor==6.0.0
 django-js-asset==1.2.2
 django-rest-auth==0.9.5
 djangorestframework==3.12.2
