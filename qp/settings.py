@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -150,7 +150,7 @@ EMAIL_HOST_PASSWORD='vigneshqpweb'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE ='whitenoise.storage.Compre/ssedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
