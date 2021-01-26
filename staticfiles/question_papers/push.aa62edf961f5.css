@@ -1,0 +1,82 @@
+*{
+    box-sizing: border-box;
+}
+#id{
+    display: none;
+}
+input[type=text], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+label{
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+button[type=submit]{
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+   align-self: flex-end;
+   
+}
+button[type=submit]:hover{
+    background-color: #45a049;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+.col-25{
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+.col-75{
+    float: right;
+    width: 75%;
+    clear: both;
+}
+.row{
+    display: flex;
+    align-items: center;
+    
+}
+.row::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.file{
+    text-decoration: none;
+    color:white;
+    background-color: blue ;
+    border-radius: 8px;
+    padding: 4px 8px;
+    margin: 4px 8px;
+}
+.files{
+    display: flex;
+    align-items: center;
+}
+@media screen and (max-width:600px){
+    .col-25, .col-75, button[type=submit]{
+        width:100%;
+        margin-top: 0;
+
+    }
+    .row{
+        flex-direction: column;
+    }
+    .files{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
