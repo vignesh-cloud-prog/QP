@@ -1,14 +1,13 @@
-// filter section
 let selector_university = document.getElementById("university");
 let selector_course = document.getElementById("course");
 let selector_year = document.getElementById("year");
 let selector_subject = document.getElementById("subject");
 
-let select_first = document.getElementById("college");
-let select_second = document.getElementById("university");
-let select_third = document.getElementById("course");
-let select_four = document.getElementById("year");
-let select_college = document.getElementById("college");
+let select_first=document.getElementById("college");
+let select_second=document.getElementById("university");
+let select_third=document.getElementById("course");
+let select_four=document.getElementById("year");
+let select_college=document.getElementById("college");
 
 let university;
 let college;
@@ -18,8 +17,10 @@ let subject;
 let year;
 let examination;
 
+let options=`<option>--select--</option>`
+
+
 function get_filter_first_option() {
-  let options = `<option>--select--</option>`;
   console.log("You have changed the filter");
   console.log("value " + select_first.value);
   const value = select_first.value;
@@ -55,10 +56,11 @@ function get_filter_first_option() {
         console.log(`year: ${year}`);
         console.log(`examination: ${examination}`);
 
-        let option = ` <option value="${college}" name="${college}">${college}</option>`;
-        options += option;
+        let option = ` <option value="${college}" name="${college}">${college}</option>`
+        options+=Option
+        
       }
-      select_college.innerHTML = options;
+      select_college.innerHTML=options
     } else {
       console.log("Some error occured");
     }
@@ -70,7 +72,6 @@ function get_filter_first_option() {
 }
 
 function sel_First_Func() {
-  let options = `<option>--select--</option>`;
   console.log("You have changed the filter");
   console.log("value " + select_first.value);
   const value = select_first.value;
@@ -106,10 +107,13 @@ function sel_First_Func() {
         console.log(`year: ${year}`);
         console.log(`examination: ${examination}`);
 
-        let option = ` <option value="${university}" name="${university}">${university}</option>`;
-        options += option;
+        let option = document.createElement("option");
+        option.text = university;
+        option.setAttribute("name","university");
+                option.value = university;
+        selector_university.appendChild(option);
+        university = "";
       }
-      selector_university.innerHTML = options;
     } else {
       console.log("Some error occured");
     }
@@ -121,7 +125,6 @@ function sel_First_Func() {
 }
 
 function sel_Sec_Func() {
-  let options = `<option>--select--</option>`;
   console.log("You have changed the filter");
   console.log("value " + select_first.value);
   const value1 = select_first.value;
@@ -129,7 +132,7 @@ function sel_Sec_Func() {
 
   // Instantiate an xhr object
   const xhr = new XMLHttpRequest();
-  url = `http://127.0.0.1:8000/json-${value1}/${value2}`.replace(" ", "");
+  url = `http://127.0.0.1:8000/json-${value1}/${value2}`.replace(" ","");
   console.log(url);
   // Open the object
   xhr.open("GET", url, true);
@@ -158,10 +161,13 @@ function sel_Sec_Func() {
         console.log(`year: ${year}`);
         console.log(`examination: ${examination}`);
 
-        let option = ` <option value="${course}" name="${course}">${course}</option>`;
-        options += option;
+        let option = document.createElement("option");
+        option.text = course;
+        option.setAttribute("name","course"); 
+        option.value = course;
+        selector_course.appendChild(option);
+        course = "";
       }
-      selector_course.innerHTML = options;
     } else {
       console.log("Some error occured");
     }
@@ -173,7 +179,6 @@ function sel_Sec_Func() {
 }
 
 function sel_Third_Func() {
-  let options = `<option>--select--</option>`;
   console.log("You have changed the filter");
   console.log("value " + select_first.value);
   const value1 = select_first.value;
@@ -211,10 +216,13 @@ function sel_Third_Func() {
         console.log(`year: ${year}`);
         console.log(`examination: ${examination}`);
 
-        let option = ` <option value="${year}" name="${year}">${year}</option>`;
-        options += option;
+        let option = document.createElement("option");
+        option.text = year;
+        option.setAttribute("name","year");
+        option.value=year
+        selector_year.appendChild(option);
+        year = "";
       }
-      selector_year.innerHTML = options;
     } else {
       console.log("Some error occured");
     }
@@ -226,7 +234,6 @@ function sel_Third_Func() {
 }
 
 function sel_Four_Func() {
-  let options = `<option>--select--</option>`;
   console.log("You have changed the filter");
   console.log("value " + select_first.value);
   const value1 = select_first.value;
@@ -236,10 +243,7 @@ function sel_Four_Func() {
 
   // Instantiate an xhr object
   const xhr = new XMLHttpRequest();
-  url = `http://127.0.0.1:8000/json-${value1}/${value2}/${value3}/${value4}`.replace(
-    " ",
-    ""
-  );
+  url = `http://127.0.0.1:8000/json-${value1}/${value2}/${value3}/${value4}`.replace(" ","");
   console.log(url);
   // Open the object
   xhr.open("GET", url, true);
@@ -268,10 +272,13 @@ function sel_Four_Func() {
         console.log(`year: ${year}`);
         console.log(`examination: ${examination}`);
 
-        let option = ` <option value="${subject}" name="${subject}">${subject}</option>`;
-        options += option;
+        let option = document.createElement("option");
+        option.text = subject;
+        option.setAttribute("name","subject")
+        option.value = subject;
+        selector_subject.appendChild(option);
+        subject = "";
       }
-      selector_subject.innerHTML = options;
     } else {
       console.log("Some error occured");
     }
@@ -303,7 +310,7 @@ function sel_Four_Func() {
 //             <h1>${subject}<img src="{%static 'question_papers/images/subject.jpg'%}" alt="#"></h1>
 //         </div>
 //         <div class="paper">
-
+           
 //             <div class="paper">
 //                 <div id="row">
 //                     <a href="{{${paper}.url}}" target="_blank">
@@ -320,52 +327,8 @@ function sel_Four_Func() {
 //                     </div>
 //                 </div>
 //                 </div>
-
+                
 //             `;
 
 //   result.innerHTML = AfterFilter;
 // }
-
-// end of filter section
-
-filter_open = document.getElementById("filter-btn");
-filter_items = document.getElementById("filter_items");
-
-close_filterItems = document.getElementById("close_filterItems");
-// select_university=document.getElementById("university")
-
-// select_first=document.getElementById("college")
-
-let user_menu = document.getElementById("user_menu");
-let user = document.getElementById("user");
-function open_filter() {
-  console.log("clicked filter button");
-  get_filter_first_option();
-  filter_items.style.display = "flex";
-}
-function close_filter() {
-  console.log("clicked close filter button");
-  filter_items.style.display = "none";
-}
-
-document.getElementById("user").addEventListener("click", () => {
-  user_menu.style.display = "flex";
-  user.classList.add("user_absolute");
-});
-document.getElementById("close_menu").addEventListener("click", () => {
-  user.classList.remove("user_absolute");
-  user_menu.style.display = "none";
-});
-
-
-navitems=document.getElementById("navitems");
-function display_menu(){
-  
-  navitems.style.display="flex";
-}
-
-
-setTimeout(() => {
-  msg_box=document.getElementById("msg_box");
-  msg_box.style.display='none'
-}, 10000);

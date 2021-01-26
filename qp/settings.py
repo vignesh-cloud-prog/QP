@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2bzp&z&ou_i-dw^b-wy6cv+m##8!6rdcll9+%p0b-ar1gc^f+9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['qpworld.herokuapp.com','127.0.0.1','questionpaper.herokuapp.com']
 
@@ -148,7 +148,7 @@ EMAIL_HOST_PASSWORD='vigneshqpweb'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
