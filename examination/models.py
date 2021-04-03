@@ -38,6 +38,6 @@ class Profile(models.Model):
 			code=generate_ref_code()
 			self.code=code
 		super().save(*args,**kwargs)
-class Practice(models.Model):
-	student=models.ForeignKey(User, on_delete=models.CASCADE)
-	content = models.TextField()
+# class Practice(models.Model):
+# 	student=models.ForeignKey(User, on_delete=models.CASCADE)
+# 	content = models.TextField()
