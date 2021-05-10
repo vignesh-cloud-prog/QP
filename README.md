@@ -30,7 +30,7 @@ _move to the main directory_
   `.\QP_Env\Scripts\activate`\
   _for Linux/Mac Users_
   `source QP_Env/bin/activate`
-  * Install ll the requirements 
+  * Install all the requirements 
   ```pip install -r requirements.txt```
  
   
