@@ -1,5 +1,5 @@
 import random
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 
 from django.contrib.auth.models import User
 from .models import UserOTP,Profile
@@ -85,7 +85,7 @@ def signup(request,*args,**kwargs):
 
 	return render(request, 'accounts/register.html', {'form':form})
 
-def resend_otp(request):
+def resend_otp(request,*args,**kwargs):
 	if request.method == "GET":
 		get_usr = request.GET['usr']
 		if User.objects.filter(username = get_usr).exists() and not User.objects.get(username = get_usr).is_active:
@@ -159,10 +159,19 @@ def login_view(request):
 	return render(request, 'accounts/login.html', context)
 
 def profile(request):
-    context={}
-    return render(request, 'accounts/profile.html', context)
-
-def test_view(request):
+	if request.method=='POST':
+		uid=request.user.id
+		username=request.POST['username']
+		bio=request.POST['bio']
+		college=request.POST['college']
+		pic=request.POST['pic']
+		profileData=Profile(user=uid,pic=pic,bio=bio,college=college)
+		userData=User(id=uid,username=username)
+		profileData.save()
+		userData.save()
+		return JsonResponse({"result":"Succesfully updated your profile"})
 	context={}
-	return render(request,'practice/sheet.html',context)
+	return render(request, 'accounts/profile.html', context)
+
+
 

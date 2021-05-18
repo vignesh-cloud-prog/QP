@@ -1,61 +1,53 @@
-{% include 'question_papers/navigation.html'  %}
+{% extends 'base.html' %}
 {% load static %}
 {% load to_space %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>    
-    {% for title in college %}
+
+{% block title %}
+
+{% for title in college %}
 {% ifchanged college %}
-    {{title.college}}_question_papers
-    
+{{title.college}}_question_papers
+
 {% endifchanged %}
 {% endfor %}
-</title>
-</head>
-<body>
-    <div class="colleges">
-        <p>Welcome to QP World</p>
+{% endblock title %}
+
+
+{% block navigation %}
+{% include 'question_papers/navigation.html' %}
+{% endblock navigation %}
+
+{% block body %}
+<div class="colleges">
+    <p>Welcome to QP World</p>
     {% for clg in college %}
-{% ifchanged college %}
-<div class="titles">
-    <h1>{{clg.college| title}}<img src="{%static 'question_papers/images/college.png'%}" alt="#">
-    </h1>
-</div>
-{% endifchanged %}
-<div class="college">
-    <a href=" {{clg.university}}">
-        {% if clg.university == 'manglore_university' %}
-        <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
-        {% elif clg.university == 'kuvempu_university'%}
-        <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
-        {% else %}
-        <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
-        {% endif %}
-        <h4>{{clg.university| to_space |title}}</h4> </a>
-</div>
-{% endfor %}
+    {% ifchanged college %}
+    <div class="titles">
+        <h1>{{clg.college| title}}<img src="{%static 'question_papers/images/college.png'%}" alt="#">
+        </h1>
     </div>
-</body>
-</html>
-{% include 'question_papers/footers.html'  %}
+    {% endifchanged %}
+    <div class="college">
+        {% if clg.paper_type == 'board' %}
+        <a href=" {{clg.university}}/board">
+            {% elif clg.paper_type == 'university'%}
+            <a href="{{clg.university}}">
+                {% endif %}
 
+                {% if clg.university == 'manglore_university' %}
+                <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
+                {% elif clg.university == 'kuvempu_university'%}
+                <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
+                {% else %}
+                <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
+                {% endif %}
+                <h4>{{clg.university| to_space |title}}</h4>
+            </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{% block footer %}
+{% include 'question_papers/footers.html' %}
+{% endblock footer %}

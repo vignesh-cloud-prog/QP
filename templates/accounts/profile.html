@@ -1,33 +1,51 @@
-{% load static %}
-<link rel="stylesheet" href="{%static 'question_papers/cropper_min.css'%}">
-<h1>Profile</h1>
  
-<!-- <div class="profile">
-<img src="{{request.user.profile.pic.url}}" alt="photo">
-<p>{{request.user.username}}</p>
-<p>{{request.user.profile.college}}</p>
-<p>{{request.user.profile.bio}}</p>
-</div> -->
-<!-- <div class="edit_profile">
-    <form action="" method="POST">
-        {% csrf_token %}
-        <input type="image" name="pic">
-        <img src="{{request.user.profile.pic.url}}" alt="photo">
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{request.user.username}}'s Profile'
+{% endblock title %}
+{% block navigation %}
+{% include 'question_papers/navigation.html' %}
+{% endblock navigation %}
 
-        <input type="text" name="username" value="{{request.user.username}}" >{{request.user.username}}
-        <input type="text" name="college" value="{{request.user.profile.college}}">
-        <input type="text" name="bio" value="{{request.user.profile.bio}}">
-    </form>
-</div> -->
+{% block body %}
+<head>
+    <link rel="stylesheet" href="{%static 'question_papers/profile.css'%}"/>
+    <script src="{%static 'question_papers/account_details.js'%}"></script>
 
-<img src="{{request.user.profile.pic.url}}" id="croppr"/>
-<script src="{%static 'question_papers/cropper_min.js'%}"></script>
-<script>
-    var croppr = new Croppr('#croppr', {
-        // options
-      });
+</head>
+<div id="outerbox">
+<div class="profile">
+    <header>
+        <h1>Profile</h1>
+        <button id="edit_profile" onclick="edit_profile()">Edit <img id="edit_icon" src="{%static 'question_papers/images/pensil.png'%}" alt=""> </button>
 
-    var value = croppr.getValue();
-    console.log(value);
+    </header>
+    <img id="pic"  src="{{request.user.profile.pic.url}}" alt="photo">
+    
+<input type="file" id="profile_photo_input" name="pic" accept="image/*">
 
-</script>
+<p style="display: none;">{{request.user.id}}</p>
+
+<fieldset>
+    <legend>Name</legend>
+    <p class="editable" id="username">{{request.user.username}}</p>
+</fieldset>
+<fieldset>
+    <legend>Bio</legend>
+    <p class="editable" id="userbio">{{request.user.profile.bio}}</p>
+</fieldset>
+
+<fieldset>
+    <legend>College</legend>
+    <p class="editable" id="usercollege">{{request.user.profile.college}}</p>
+</fieldset>
+<p class="userlinks" id="papers">Papers provided by you</p>
+
+<p class="userlinks" id="refs"> People reffered by you</p>
+<p >Created: {{request.user.profile.updated}}</p>
+<p>Updated: {{request.user.profile.created}}</p>
+</div>
+
+
+</div>
+{% endblock body %}

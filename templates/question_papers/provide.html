@@ -1,24 +1,14 @@
-{% include 'question_papers/navigation.html'  %}
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}question_papers-Providers_form
+{% endblock title %}
+{% block navigation %}
+{% include 'question_papers/navigation.html' %}
+{% endblock navigation %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .fas{
-            display: none;
-    }
-        
-    </style>
-    <title>Provide</title>
-</head>
-
-<body>
-    {% block nav %}
+{% block body %}
     
-
+{% if request.user.is_authenticated %}
     <div class="container">
         <h3>Provide Question Papers</h3>
         <div class="form">
@@ -58,7 +48,20 @@
                 linkedin</a>
         </div>
     </div>
-    {% endblock nav %}
+    {% else %}
+    Please Login
+    we appreciate your contribution
+    we are going to save your contribytion
+    You can we all the papers that you provided in your profile page.
+
+<a href="{% url 'login'%}"><button>Login</button></a>
+<a href="{% url 'signup'%}"><button>Signup</button></a>
+
+    
+    {% endif %}
+    {% endblock body %}
 </body>
 </html>
-{% include 'question_papers/footers.html'  %}
+{% block footer %}
+{% include 'question_papers/footers.html' %}
+{% endblock footer %}

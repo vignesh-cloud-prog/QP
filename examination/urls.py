@@ -20,7 +20,7 @@ from django.urls import path, include
 from examination import views
 
 urlpatterns = [
-    path('practice/', views.test_view, name='test_view'),
+    # path('practice/', views.test_view, name='test_view'),
     # path('search/', views.search, name='search'),
     
         

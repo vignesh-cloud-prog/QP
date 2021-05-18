@@ -13,9 +13,9 @@ class UserOTP(models.Model):
 
 class Profile(models.Model):
 	user=models.OneToOneField(User,on_delete=models.CASCADE)
-	pic=models.ImageField(upload_to="profile_pics")
+	pic=models.ImageField(upload_to="profile_pics",blank=True)
 	bio=models.TextField(blank=True)
-	college=models.CharField(max_length=200, blank=True,null=True)
+	college=models.CharField(max_length=200,blank=True,null=True )
 	code=models.CharField(max_length=12,blank=True)
 	recomended_by=models.ForeignKey(User,on_delete=models.CASCADE,blank=True,null=True,related_name='ref_by')
 	updated=models.DateTimeField(auto_now=True)
@@ -39,5 +39,4 @@ class Profile(models.Model):
 			self.code=code
 		super().save(*args,**kwargs)
 # class Practice(models.Model):
-# 	student=models.ForeignKey(User, on_delete=models.CASCADE)
-# 	content = models.TextField()
+# 	pass

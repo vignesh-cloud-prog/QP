@@ -99,6 +99,8 @@ a {
 }
 #user{
   margin-left: -1rem;
+  width: 24px;
+  border-radius: 50%;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -554,4 +556,13 @@ padding: 1rem;
   border-radius: 3px;
   padding: 16px 8px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
+}
+
+
+/* Ensure the size of the image fit the container perfectly */
+#image {
+  display: block;
+
+  /* This rule is very important, please don't ignore this */
+  max-width: 100%;
 }

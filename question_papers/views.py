@@ -72,8 +72,18 @@ def provider(request):
     form=ProviderForm(request.GET)
     form = ProviderForm(request.POST or None ,request.FILES )
     if form.is_valid():
-        # form.save()
-        Provider.objects.create(**form.cleaned_data)
+       
+        name=request.user
+        print(name)
+        paper_type=form.cleaned_data.get("paper_type") 
+        board=form.cleaned_data.get("board") 
+        claass = form.cleaned_data.get("claass") 
+        sem = form.cleaned_data.get("sem") 
+        sub= form.cleaned_data.get("sub") 
+        papertitle=form.cleaned_data.get("papertitle") 
+        doc = form.cleaned_data.get("doc") 
+        provide=Provider(paper_type=paper_type,name=name,board=board,claass=claass,sem=sem,sub=sub,papertitle=papertitle,doc=doc)
+        provide.save()
         messages.success(request, 'Thank you, we will check and update it soon .')
         form=ProviderForm()
         
@@ -85,7 +95,7 @@ def provider(request):
     )
 
 
-def filter(request):
+def filters(request):
     college=request.POST.get('college')
     university=request.POST.get('university')
     course=request.POST.get('course')

@@ -68,10 +68,10 @@
                     alt="Filter">
             </div>
         </div>
-        {% if request.user.is_authenticated %}
-        <img id="user" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
+       {% if request.user.is_authenticated %}
+        <img id="user" src="{{request.user.profile.pic.url}}" alt="You">
         {% else %}
-<a href="{% url 'login'%}">Login</a>
+        <a href="{% url 'login'%}">Login</a>
         {% endif %}
         <div id="user_menu">
             <div id="close_menu">

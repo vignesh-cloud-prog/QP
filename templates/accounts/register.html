@@ -1,25 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}QP-Web-Signup
+{% endblock title %}
+{% block styles %}
 
+{% endblock styles %}
+{% block navigation %}
+{% include 'question_papers/navigation.html' %}
+{% endblock navigation %}
 {% block body %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-{% if messages %}
-{% for message in messages %}
-<div class="{{ message.tags }}" id="msg_box">
-    <div class="first_row">
-        <p id="msg_title">Message :</p>
-        <img onclick="this.parentElement.parentElement.style.display='none';"
-            src="{%static 'question_papers/images/close.svg'%}" alt="close">
-    </div>
 
-
-    <p id="msg_body">{{ message }}</p>
-
-    {% comment %} <label for="click" class="msg_close_btn"
-        onclick="this.parentElement.style.display='none';">Done</label> {% endcomment %}
-</div>
-{% endfor %}
-{% endif %}
 
 {% if otp %}
 <form method="POST">
@@ -106,3 +97,7 @@
 
 
 {% endblock body %}
+
+{% block footer %}
+{% include 'question_papers/footers.html' %}
+{% endblock footer %}

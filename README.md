@@ -46,5 +46,9 @@ _move to the main directory_
   ```python manage.py migrate```
   
 * Running the server
-```python manage.py runserver```
+```python manage.py runserver --settings MultipleSettings.development```
+
+* Visit website here http://127.0.0.1:8000/
+
+
 
