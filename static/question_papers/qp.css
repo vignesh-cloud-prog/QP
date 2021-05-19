@@ -137,16 +137,19 @@ a {
    top: 0;
     z-index: 4;
     width: 100vw;
-    
-    background: rgb(108, 108, 145);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
+    background: white;
   }
   #navitems a{
     color: black;
   }
+  #navitems a:hover{
+    color: teal;
+  }
 
   #user_menu_head{
     display: flex;
-    background: rgb(53, 53, 168);
+    background: whitesmoke;
     justify-content: space-between;
     box-sizing: border-box;
     align-items: center;
@@ -226,6 +229,7 @@ a {
   right: 10px;
   padding: 8px;
   background-color: whitesmoke;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
 }
 #close_menu{
   width: 2rem;
@@ -237,7 +241,7 @@ a {
   flex-direction: column;
   align-items:flex-start;
   justify-content: space-between;
-  background: whitesmoke;
+  background: white;
 
 }
 .user_absolute{
@@ -246,7 +250,7 @@ a {
   right:8vh;
   top: 10vh;
 }
-.menu_options button{
+.menu_options p{
   margin: 8px;
 }
 #greet{

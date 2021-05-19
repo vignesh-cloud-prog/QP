@@ -75,11 +75,13 @@ h3 {
     text-indent: 40px;
 }
 .title{
-    margin: 4px;
+    margin:8px 4px;
     font-size: 28px;
 }
 .register_form{
-    background-color: rgb(216, 212, 212);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
+    background: white;
+    max-width: 90%;
 }
 .field{
     display: flex;

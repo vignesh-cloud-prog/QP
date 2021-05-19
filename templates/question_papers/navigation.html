@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="{%static 'question_papers/qp.css'%}">
     <link rel="stylesheet" href="{%static 'question_papers/all.css'%}">
     <link rel="shortcut icon" href="{%static 'question_papers/images/favicon.png'%}" type="image/x-icon">
-    <script data-ad-client="ca-pub-9645636288208408" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script data-ad-client="ca-pub-9645636288208408" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 
 </head>
@@ -18,18 +19,20 @@
 <body>
     {% if messages %}
     {% for message in messages %}
-    <div class="{{ message.tags }}"  id="msg_box" >
+    <div class="{{ message.tags }}" id="msg_box">
         <div class="first_row">
             <p id="msg_title">Message :</p>
-            <img onclick="this.parentElement.parentElement.style.display='none';" src="{%static 'question_papers/images/close.svg'%}" alt="close">
+            <img onclick="this.parentElement.parentElement.style.display='none';"
+                src="{%static 'question_papers/images/close.svg'%}" alt="close">
         </div>
-        
-        
+
+
         <p id="msg_body">{{ message }}</p>
-        
-        {% comment %} <label for="click" class="msg_close_btn" onclick="this.parentElement.style.display='none';">Done</label> {% endcomment %}
+
+        {% comment %} <label for="click" class="msg_close_btn"
+            onclick="this.parentElement.style.display='none';">Done</label> {% endcomment %}
     </div>
-    {% endfor %} 
+    {% endfor %}
     {% endif %}
 
 
@@ -37,15 +40,17 @@
     <div id="navbar">
         <div id="brand" class="flex">
             <img id="menu" onclick="display_menu()" src="{%static 'question_papers/images/menu.png'%}" alt="menu">
-            <a href="/"><h1>QP Web</h1></a> 
+            <a href="/">
+                <h1>QP Web</h1>
+            </a>
 
         </div>
         <div id="navitems">
             <div id="user_menu_head">
                 <h6> Menu</h6>
                 <div>
-                    <img onclick="this.parentElement.parentElement.parentElement.style.display='none';" id="close_filterItems" src="{%static 'question_papers/images/close.svg'%}"
-                    alt="close">
+                    <img onclick="this.parentElement.parentElement.parentElement.style.display='none';"
+                        id="close_filterItems" src="{%static 'question_papers/images/close.svg'%}" alt="close">
                 </div>
             </div>
             <a href="/">Home</a>
@@ -68,7 +73,7 @@
                     alt="Filter">
             </div>
         </div>
-       {% if request.user.is_authenticated %}
+        {% if request.user.is_authenticated %}
         <img id="user" src="{{request.user.profile.pic.url}}" alt="You">
         {% else %}
         <a href="{% url 'login'%}">Login</a>
@@ -82,16 +87,16 @@
                 {% if request.user.is_authenticated %}
 
                 <p id="call">Hii {{request.user.username}}</p>
-                <p id="greet">Good morning <br>have a great day</p>
-                <hr>
-                <button>View Profile</button>
-                <hr>
+                <p id="greet">Good morning <br>have a great day</p><br>
+
+                <hr width="100%"><br>
+                <p>View Profile</p>
                 <p>Reffer friend</p>
                 {% endif %}
 
                 {% if request.user.is_authenticated %}
                 <hr>
-                <a href="{% url 'logout'%}">Logout</a>
+                <p> <a href="{% url 'logout'%}">Logout</a></p>
                 {% endif %}
 
                 {% include "question_papers/share.html" %}
@@ -113,7 +118,7 @@
                 <label for="college ">College : </label>
                 <select name="college" id="college" onchange="sel_First_Func()">
                     <option>--select--</option>
-                    
+
                 </select>
             </div>
             <div class="filter_item">
@@ -122,7 +127,7 @@
                 <select name="university" id="university" onchange="sel_Sec_Func()">
 
                     <option>--select--</option>
-                    
+
 
                 </select>
             </div>
@@ -130,7 +135,7 @@
                 <label for="course ">Course : </label>
                 <select name="course" id="course" onchange="sel_Third_Func()">
                     <option>--select--</option>
-                   
+
                 </select>
             </div>
 
@@ -139,7 +144,7 @@
                 <label for="year ">Year : </label>
                 <select name="year" id="year" onchange="sel_Four_Func()">
                     <option>--select--</option>
-                  
+
                 </select>
             </div>
             <div class="filter_item">
@@ -147,7 +152,7 @@
                 <label for="subject ">Subject : </label>
                 <select name="subject" id="subject">
                     <option>--select--</option>
-                    
+
                 </select>
             </div>
             <button type="submit ">Get</button>

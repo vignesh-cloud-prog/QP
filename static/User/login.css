@@ -1,10 +1,5 @@
-body{
-    background: cadetblue url("{%static 'question_papers/images/background1.jpg'%}");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
 
-.container {
+.login_container {
     opacity: 25;
     display: flex;
     flex-direction: column;
@@ -17,9 +12,8 @@ body{
 }
 .login_form{
     padding: 1rem;
-    border: 2px solid black;
-    background: rgba(50, 87, 156, 0.486);
-
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
+    background: white;
 }
 .login_head h1{
     margin: 4px;

@@ -15,7 +15,7 @@
 {% if otp %}
 <form method="POST">
     {% csrf_token %}
-    <div class="container">
+    <div class="container register_form">
         <legend class="">
             <h3 class="">Verify Your Email</h3>
         </legend>
@@ -70,6 +70,7 @@
         <button class="btn" type="submit">Next</button>
     </form>
     <hr width="90%">
+    <br>
     <div class="">
         <small class="">Already have an account ?<a href="{% url 'login' %}">Login</a>
         </small>
