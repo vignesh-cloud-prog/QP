@@ -1,11 +1,12 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,redirect
 from .models import Question_papers,Issues,Provider
 from django.http import request,HttpRequest
 from django.contrib import messages
 from django.core.mail import send_mail
 from .forms import ProviderForm,issueForm
 from django.core import serializers
-
+from examination.models import Profile
+from django.contrib.auth.models import User
 # Create your views here.
 
 def filter_first_option(request):
@@ -16,7 +17,6 @@ def filter_first_option(request):
 def colleges(request):
     allqp=Question_papers.objects.order_by('college').distinct('college')
     context={'allqp' : allqp,'Select':'Select Your Current Education : '}
-    print(allqp)
     return render(request,'question_papers/colleges.html',context)
 
 def college(request,college):
@@ -166,7 +166,39 @@ def search(request):
     print(result)
     return render(request,'question_papers/search.html',result)
 
+def profile_settings(request):
+    if request.method=="POST" or None or request.FILES:
 
+        user_id=request.POST.get('user_id')
+        name=request.POST.get('full_name')
+        pic=request.FILES.get('pic')
+        bio=request.POST.get('bio')
+        college=request.POST.get('college')
+        try:
+            if name is "" or bio is  "" or college == "":
+                messages.warning(request, 'Values can not be null.')
+                return render(request,'accounts/profile_edit.html')
+
+            userObj=User.objects.get(id=user_id)
+            print(userObj)
+            userObj.first_name=name
+            userObj.save()
+            
+            profileObj=Profile.objects.get(user=request.user)
+        
+            profileObj.college=college
+            if pic is not None:
+                profileObj.pic=pic
+            profileObj.bio=bio
+            profileObj.save()
+            messages.success(request, 'Your profile updated successfully.')
+
+            return redirect("profile")
+        except Exception as e:
+            messages.error(request,f"Profile not updated successfully\n {e}")
+            return render(request,'accounts/profile_edit.html')
+
+    return render(request,'accounts/profile_edit.html')
 
     
 

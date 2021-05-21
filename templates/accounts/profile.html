@@ -1,4 +1,3 @@
- 
 {% extends 'base.html' %}
 {% load static %}
 {% block title %} {{request.user.username}}'s Profile'
@@ -8,44 +7,59 @@
 {% endblock navigation %}
 
 {% block body %}
-<head>
-    <link rel="stylesheet" href="{%static 'question_papers/profile.css'%}"/>
-    <script src="{%static 'question_papers/account_details.js'%}"></script>
 
+<head>
+    <link rel="stylesheet" href="{%static 'question_papers/profile.css'%}" />
+    <script src="{%static 'question_papers/profile.js'%}"></script>
 </head>
 <div id="outerbox">
-<div class="profile">
-    <header>
-        <h1>Profile</h1>
-        <button id="edit_profile" onclick="edit_profile()">Edit <img id="edit_icon" src="{%static 'question_papers/images/pensil.png'%}" alt=""> </button>
+    <div class="profile">
+        <div class="info">
+            <h1>Profile</h1>
+            <a href="{% url 'update_profile'%}"> <button id="edit_profile">Edit <img id="edit_icon"
+                        src="{%static 'question_papers/images/pensil.png'%}" alt=""> </button></a>
 
-    </header>
-    <img id="pic"  src="{{request.user.profile.pic.url}}" alt="photo">
-    
-<input type="file" id="profile_photo_input" name="pic" accept="image/*">
 
-<p style="display: none;">{{request.user.id}}</p>
+            {% if request.user.profile.pic %}
 
-<fieldset>
-    <legend>Name</legend>
-    <p class="editable" id="username">{{request.user.username}}</p>
-</fieldset>
-<fieldset>
-    <legend>Bio</legend>
-    <p class="editable" id="userbio">{{request.user.profile.bio}}</p>
-</fieldset>
+            <img id="pic" src="{{request.user.profile.pic.url}}" alt="You">
 
-<fieldset>
-    <legend>College</legend>
-    <p class="editable" id="usercollege">{{request.user.profile.college}}</p>
-</fieldset>
-<p class="userlinks" id="papers">Papers provided by you</p>
+            {% else %}
+            <img id="pic" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
 
-<p class="userlinks" id="refs"> People reffered by you</p>
-<p >Created: {{request.user.profile.updated}}</p>
-<p>Updated: {{request.user.profile.created}}</p>
+            {% endif %}
+
+            <p style="display: none;">{{request.user.id}}</p>
+
+
+            <p id="username">{{request.user.first_name}}</p>
+
+            <p id="userbio">{{request.user.profile.bio}}</p>
+
+            <p id="usercollege">{{request.user.profile.college}}</p>
+
+
+            <p>Joined: {{request.user.profile.updated}}</p>
+
+        </div>
+        <div class="activity">
+            <p class="userlinks" id="papers">Papers provided by you</p>
+            {% for items in my_papers %}
+            {{items.board}}
+            {{items.claass}}
+            <br>
+            {% endfor %}
+            <p class="userlinks" id="refs"> People reffered by you</p>
+            {% for people in my_papers %}
+            {{people.name.first_name}}
+            {{people.name}}
+            <br>
+            {% endfor %}
+            
+        </div>
+    </div>
+
+
 </div>
 
-
-</div>
 {% endblock body %}

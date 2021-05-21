@@ -12,7 +12,7 @@ class UserOTP(models.Model):
 
 
 class Profile(models.Model):
-	user=models.OneToOneField(User,on_delete=models.CASCADE)
+	user=models.OneToOneField(User,related_name="profile", on_delete=models.CASCADE)
 	pic=models.ImageField(upload_to="profile_pics",blank=True)
 	bio=models.TextField(blank=True)
 	college=models.CharField(max_length=200,blank=True,null=True )

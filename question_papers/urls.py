@@ -20,6 +20,8 @@ from django.urls import path, include
 from question_papers import views
 
 urlpatterns = [
+
+    path('profile/update', views.profile_settings, name='update_profile'),
     path('provider/', views.provider, name='provider'),
     path('search/', views.search, name='search'),
     path('push/', views.push, name='push'),

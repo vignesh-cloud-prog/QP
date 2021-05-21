@@ -8,7 +8,7 @@ from django.shortcuts import render,redirect
 # from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-
+from question_papers.models import Provider
 from .forms import CreateUserForm
 # Create your views here.
 
@@ -159,18 +159,15 @@ def login_view(request):
 	return render(request, 'accounts/login.html', context)
 
 def profile(request):
-	if request.method=='POST':
-		uid=request.user.id
-		username=request.POST['username']
-		bio=request.POST['bio']
-		college=request.POST['college']
-		pic=request.POST['pic']
-		profileData=Profile(user=uid,pic=pic,bio=bio,college=college)
-		userData=User(id=uid,username=username)
-		profileData.save()
-		userData.save()
-		return JsonResponse({"result":"Succesfully updated your profile"})
-	context={}
+	my_papers=Provider.objects.filter(name=request.user)
+	my_recs=request.user.profile.get_recomended_profiles()
+	print("get request\n")
+	print(my_papers,my_recs)
+	context={
+	"my_papers":my_papers,
+	"my_recs":my_recs,
+	}
+
 	return render(request, 'accounts/profile.html', context)
 
 

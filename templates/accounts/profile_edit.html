@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{request.user.username}}'s Profile'
+{% endblock title %}
+{% block navigation %}
+{% include 'question_papers/navigation.html' %}
+{% endblock navigation %}
+
+{% block body %}
+
+<head>
+    <link rel="stylesheet" href="{%static 'question_papers/profile.css'%}" />
+    <script src="{%static 'question_papers/account_details.js'%}"></script>
+</head>
+<div id="outerbox">
+    <div class="profile">
+        <header>
+            <h1>Profile</h1>
+
+        </header>
+        {% if request.user.profile.pic %}
+
+        <img id="pic" src="{{request.user.profile.pic.url}}" alt="You">
+
+        {% else %}
+        <img id="pic" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
+
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <input type="number" name="user_id" value="{{request.user.id}}" style="display: none;">
+
+            <input type="file" id="profile_photo_input" value="{{request.user.profile.pic.url}}" name="pic" accept="image/*">
+
+            <p style="display: none;">{{request.user.id}}</p>
+
+            <fieldset>
+                <legend>Name</legend>
+                <input type="text" name="full_name" value="{{request.user.first_name}}">
+            </fieldset>
+            <fieldset>
+                <legend>Bio</legend>
+                <input type="text" name="bio" value="{{request.user.profile.bio}}">
+            </fieldset>
+
+            <fieldset>
+                <legend>College</legend>
+                <input type="text" name="college" value="{{request.user.profile.college}}">
+            </fieldset>
+
+            <button type="submit">Update</button>
+        </form>
+
+    </div>
+
+
+</div>
+
+{% endblock body %}

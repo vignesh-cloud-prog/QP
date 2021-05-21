@@ -34,7 +34,8 @@ _move to the main directory_
   ```pip install -r requirements.txt```
  
   
-* Setting up database
+* Setting up database<br>
+  You need to create a database named qp using pgAdmin or command and update credentials in settings.py
   * Creating super user(optional)
   ```python manage.py createsuperuser```
   _go through the process_

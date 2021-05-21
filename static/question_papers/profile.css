@@ -70,10 +70,9 @@
     padding-top: 2px;
 
 }
-
-#profile_photo_input{
-    display: none;
-    font-size: 1rem;
-
-   
+#profile_photo_input > input{
+visibility: hidden;
+}
+input[type=file]{
+    background: blue ;
 }

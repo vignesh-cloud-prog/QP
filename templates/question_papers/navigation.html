@@ -74,7 +74,14 @@
             </div>
         </div>
         {% if request.user.is_authenticated %}
+        {% if request.user.profile.pic %}
+
         <img id="user" src="{{request.user.profile.pic.url}}" alt="You">
+        
+        {% else %}
+        <img id="user" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
+     
+        {% endif %}
         {% else %}
         <a href="{% url 'login'%}">Login</a>
         {% endif %}
@@ -90,7 +97,7 @@
                 <p id="greet">Good morning <br>have a great day</p><br>
 
                 <hr width="100%"><br>
-                <p>View Profile</p>
+                <p><a href="{% url 'profile'%}">View Profile</a></p>
                 <p>Reffer friend</p>
                 {% endif %}
 
