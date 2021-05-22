@@ -18,35 +18,8 @@
         <button id="btn" type="submit" value="Submit" />Provide</button>
         </form>
 
-        <button style="background-color: palevioletred;" id="ask">Ask your friend</button>
-        {% load static %}
-        <div id="provideshare" style="display: none;">
-            <a class="social"
-                href="https://www.facebook.com/sharer/sharer.php?u=https://questionpaper.herokuapp.com/provider/&text=Please provide the Question Paper by filling this form"
-                target="_blank"><img src="{%static 'question_papers/images/facebook.png'%}" alt="#"> Ask through Facebook</a>
-            <a class="social"
-                href="https://api.whatsapp.com/send?text=https://questionpaper.herokuapp.com/provider/  Please provide the Question Paper by filling this form"
-                target="_blank"><img src="{%static 'question_papers/images/whatsapp.jpg'%}" alt="#">
-                Ask through
-                whatsapp</a>
-            <a class="social" href="https://twitter.com/intent/tweet?text=https://questionpaper.herokuapp.com/provider/ ,Please provide the Question Paper by filling this form" target="_blank"><img
-                    src="{%static 'question_papers/images/twitter.jpg'%}" alt="#">
-                Ask through
-                twitter</a>
-            <a class="social" href="mailto:?subject=Provide Question Paper&body=Please provide the Question Paper by filling this form ,https://questionpaper.herokuapp.com/provider/" target="_blank"><img
-                    src="{%static 'question_papers/images/mail.jpg'%}" alt="#"> Ask
-                through mail</a>
-            <a class="social"
-                href="https://t.me/share/url?text=Please provide the Question Paper by filling this form&url=https://questionpaper.herokuapp.com/provider/"
-                target="_blank"><img src="{%static 'question_papers/images/telegram.jpg'%}" alt="#">
-                Ask through
-                telegram</a>
-            <a class="social" href="https://www.linkedin.com/shareArticle?mini=true&title=Question Paper from QP&url=
-            https://questionpaper.herokuapp.com/provider/&text=Please provide the Question Paper by filling this form" target="_blank"><img
-                    src="{%static 'question_papers/images/linkedin.jpg'%}" alt="#">
-                Ask through
-                linkedin</a>
-        </div>
+        <button style="background-color: palevioletred;" id="ask" onclick="sharefunc('http:&#47;&#47;127.0.0.1:8000&#47;provide&#47;','Hello, Can you provide question papers through QP Web. Help others 😊')">Ask your friend</button>
+       
     </div>
     {% else %}
     Please Login

@@ -1,40 +1,35 @@
 {% load static %}
-<div id="appshare" style="display: none;">
-    <a class="social"
-        href="https://www.facebook.com/sharer/sharer.php?u=https://questionpaper.herokuapp.com/"
- 
-        target="_blank"><img src="{%static 'question_papers/images/facebook.png'%}" alt="#"> Share on Facebook</a>
-    <a class="social"
-        href="https://api.whatsapp.com/send?text=https://questionpaper.herokuapp.com/ Awesome app to share question papers
-  "
-        target="_blank"><img src="{%static 'question_papers/images/whatsapp.jpg'%}" alt="#"> 
-share on
-        whatsapp</a>
-    <a class="social"
-        href="https://twitter.com/intent/tweet?text=https://questionpaper.herokuapp.com/ ,
-        Awesome app to share question papers"
-        target="_blank"><img src="{%static 'question_papers/images/twitter.jpg'%}" alt="#"> 
-share on
-        twitter</a>
-    <a class="social"
-        href="mailto:?subject=Question Paper from QP&body=https://questionpaper.herokuapp.com/,
- Question Paper,"
-        target="_blank"><img src="{%static 'question_papers/images/mail.jpg'%}" alt="#"> share 
-on mail</a>
-    <a class="social"
-        href="https://t.me/share/url?text=%s&url=https://questionpaper.herokuapp.com/ ,
-        Awesome app to share question papers,"
-        target="_blank"><img src="{%static 'question_papers/images/telegram.jpg'%}" alt="#"> 
-share on
-        telegram</a>
-    <a class="social"
-        href="https://www.linkedin.com/shareArticle?mini=true&title=Question Paper from QP&url=
+<div id="appshare">
+    <div id="heading">
+        <p id="title">Share</p>
+        <img onclick="this.parentElement.parentElement.style.display='none';" id="close_share"
+            src="{%static 'question_papers/images/close.svg'%}" alt="close">
+    </div>
+
+
+    <img id="logo" src="{%static 'question_papers/images/twitter.jpg'%}"" alt=" logo">
+    <img id="logo" src="{%static 'question_papers/images/twitter.jpg'%}"" alt=" logo">
+
+    <div id="info">
+        <p>QP Web</p>
+        <p id="link_text">https://questionpaper.herokuapp.com/</p>
+    </div>
+
+    <hr width="100%" id="hr">
+
+    <a class="social" id="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://questionpaper.herokuapp.com/"
+        target="_blank"><img src="{%static 'question_papers/images/facebook.png'%}" alt="#"> Facebook</a>
+
+    <a class="social" id="whatsapp" href="https://api.whatsapp.com/send?text=https://questionpaper.herokuapp.com/ Awesome app to share question papers
+  " target="_blank"><img src="{%static 'question_papers/images/whatsapp.jpg'%}" alt="#"> Whatsapp</a>
+    <a class="social" id="twitter" href="https://twitter.com/intent/tweet?text=https://questionpaper.herokuapp.com/ ,
+        Awesome app to share question papers" target="_blank"><img src="{%static 'question_papers/images/twitter.jpg'%}" alt="#">Twitter</a>
+    <a class="social" id="mail" href="mailto:?subject=Question Paper from QP&body=https://questionpaper.herokuapp.com/,
+ Question Paper," target="_blank"><img src="{%static 'question_papers/images/mail.jpg'%}" alt="#">Mail</a>
+    <a class="social" id="telegram" href="https://t.me/share/url?text=%s&url=https://questionpaper.herokuapp.com/ ,
+        Awesome app to share question papers," target="_blank"><img src="{%static 'question_papers/images/telegram.jpg'%}" alt="#">Telegram</a>
+    <a class="social" id="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&title=Question Paper from QP&url=
 https://questionpaper.herokuapp.com/,
-Awesome app to share question papers,"
-        target="_blank"><img src="{%static 'question_papers/images/linkedin.jpg'%}" alt="#"> 
-share on
-        linkedin</a>
+Awesome app to share question papers," target="_blank"><img src="{%static 'question_papers/images/linkedin.jpg'%}" alt="#">linkedin</a>
 
-        </div>
-
-        
+</div>

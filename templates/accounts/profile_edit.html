@@ -30,7 +30,7 @@
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <input type="number" name="user_id" value="{{request.user.id}}" style="display: none;">
 
-            <input type="file" id="profile_photo_input" value="{{request.user.profile.pic.url}}" name="pic" accept="image/*">
+            <input type="file" id="profile_photo_input" name="pic" accept="image/*">
 
             <p style="display: none;">{{request.user.id}}</p>
 

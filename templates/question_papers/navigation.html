@@ -93,20 +93,18 @@
             <div class="menu_options">
                 {% if request.user.is_authenticated %}
 
-                <p id="call">Hii {{request.user.username}}</p>
+                <p id="call">Hii {{request.user.first_name}}</p>
                 <p id="greet">Good morning <br>have a great day</p><br>
 
                 <hr width="100%"><br>
                 <p><a href="{% url 'profile'%}">View Profile</a></p>
-                <p>Reffer friend</p>
+                <p><a href="#" onclick="sharefunc('http:&#47;&#47;127.0.0.1:8000&#47;register&#47;{{request.user.profile.code}}','Hey, join QP Web the great website to share question papers')">Reffer friend</a> </p>
                 {% endif %}
 
                 {% if request.user.is_authenticated %}
                 <hr>
                 <p> <a href="{% url 'logout'%}">Logout</a></p>
                 {% endif %}
-
-                {% include "question_papers/share.html" %}
             </div>
         </div>
     </div>

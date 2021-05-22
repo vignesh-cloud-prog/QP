@@ -1,46 +1,23 @@
-const provideShare = document.getElementById("ask").addEventListener("click", sharefunc())
-const appShare = document.getElementById("appShare").addEventListener('click', sharefunc("app"))
-const paperShare = document.getElementById("paperShare").addEventListener('click', sharefunc)("paper")
 
+function sharefunc(link,message) {
+    document.getElementById("close_menu").click();
+    // profile.style.display="none";
+    share=document.getElementById("appshare");
+    share.style.display="grid";
 
-function sharefunc() {
-    let share = document.getElementById("share")
-    var link
-    var text
-    // if (arg == "provider") {
-    //     link = "http://questionpaper.herokuapp.com"
-    //     text = "Share your questionpaper using the following link"
-        
-    // }
-    console.log('clicked share');
-    share.innerHTML = `
-    <div id="appshare">
-        <a class="social" href="https://www.facebook.com/sharer/sharer.php?u= ${link}"
-            target="_blank"><img src="{%static 'question_papers/images/facebook.png'%}" alt="#"> Share on Facebook</a>
-        <a class="social" href="https://api.whatsapp.com/send?text= ${text} ${link}
-      " target="_blank"><img src="{%static 'question_papers/images/whatsapp.jpg'%}" alt="#">
-            share on
-            whatsapp</a>
-        <a class="social" href="https://twitter.com/intent/tweet?text=https://questionpaper.herokuapp.com/ ,
-            Awesome app to share question papers" target="_blank"><img
-                src="{%static 'question_papers/images/twitter.jpg'%}" alt="#">
-            share on
-            twitter</a>
-        <a class="social" href="mailto:?subject=Question Paper from QP&body=https://questionpaper.herokuapp.com/,
-     Question Paper," target="_blank"><img src="{%static 'question_papers/images/mail.jpg'%}" alt="#"> share
-            on mail</a>
-        <a class="social" href="https://t.me/share/url?text=%s&url=https://questionpaper.herokuapp.com/ ,
-            Awesome app to share question papers," target="_blank"><img
-                src="{%static 'question_papers/images/telegram.jpg'%}" alt="#">
-            share on
-            telegram</a>
-        <a class="social" href="https://www.linkedin.com/shareArticle?mini=true&title=Question Paper from QP&url=
-    https://questionpaper.herokuapp.com/,
-    Awesome app to share question papers," target="_blank"><img src="{%static 'question_papers/images/linkedin.jpg'%}"
-                alt="#">
-            share on
-            linkedin</a>
+    let facebook_url=`https://www.facebook.com/sharer/sharer.php?u=${link}`;
+    let whatsapp_url=`https://api.whatsapp.com/send?text=${link}  ${message}`;
+    let twitter_url=`https://twitter.com/intent/tweet?text=${link} , ${message}`;
+    let mail_url=`mailto:?subject=QP Web Info QP&body=${link} , ${message}`;
+    let telegram_url=`https://t.me/share/url?text=${link}&url=${message}`;
+    let linkedlin_url=`https://www.linkedin.com/shareArticle?mini=true&title=${message}&url=${link}`
 
-    </div>`
+    document.getElementById("facebook").href=facebook_url;
+    document.getElementById("whatsapp").href=whatsapp_url;
+    document.getElementById("mail").href=mail_url;
+    document.getElementById("twitter").href=twitter_url;
+    document.getElementById("telegram").href=telegram_url;
+    document.getElementById("linkedin").href=linkedlin_url;
+    document.getElementById("link_text").innerText=link;
 
 }

@@ -480,20 +480,86 @@ padding: 1rem;
   border-radius: 0.5rem;
 }
 
-#papershare {
+
+/* Share functionality css   */
+#appshare{
   display: none;
-  margin: 2px 8px;
-  align-self: flex-end;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 'heading heading heading'
+  'logo info info'
+  'hr hr hr';
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
+  background: white;
+  padding: 1rem;
+  
+}
+#heading{
+  grid-area: heading;
+  display: flex;
+  justify-content: space-between;
+}
+#title{
+   text-align: left;
+   margin: 8px 1.5rem;
+   margin-bottom: 14px;
+   font-size: 1.5rem;
+}
+#close_share{
+  width: 30px;
+  height: 30px;
+  margin: 8px 1.5rem;
+}
+#logo{
+  grid-area: logo;
+  height: 55px;
+  width: 55px;
+  justify-self:end;
+  margin: 0 18px;
+}
+#info{
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  word-wrap: break-word;
+  max-width: 90%;
+  word-break: break-all;
+}
+#hr{
+  grid-area: hr;
+  margin: 12px 0;
 }
 
 .social img {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
 }
 
 .social {
-  display: block;
-  margin: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+  
+  
+}
+
+@media only screen and (min-width: 1024px) {
+  #appshare{
+    position: absolute;
+  top: 4vh;
+  right: 2vw;
+  max-width: 500px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  #appshare{
+    position: absolute;
+  bottom: 2vh;
+  margin:0 8px;
+  }
 }
 
 .designer {

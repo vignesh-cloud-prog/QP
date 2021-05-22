@@ -1,21 +1,18 @@
-{% include 'question_papers/navigation.html'  %}
+{% extends 'base.html' %}
 {% load static %}
 {% load to_space %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>    
-        {% for titles in paper %}
-    {% ifchanged college %}
-        {{titles.course}}_{{titles.year}}_{{titles.subject}}_question_papers
-        
-    {% endifchanged %}
-    {% endfor %}
-</title>
-</head>
-<body>
+{% block title %} 
+{% for titles in paper %}
+{% ifchanged college %}
+{{titles.course}}_{{titles.year}}_{{titles.subject}}_question_papers
+{% endifchanged %}
+{% endfor %}
+{% endblock title %}
+{% block navigation %}
+{% include 'question_papers/navigation.html' %}
+{% endblock navigation %}
+
+{% block body %}
     <div class="colleges">
         <p>Welcome to QP World</p>
     {% for title in paper %}
@@ -51,45 +48,13 @@
             <a href="{{prepaper.paper.url}}" download class="link">
                 <img src="{%static 'question_papers/images/download.png'%}" alt="Download">
             </a>
-            <i class="link" id="share">
+            <i class="link" id="share" onclick="sharefunc( 'http:&#47;&#47;127.0.0.1:8000{{prepaper.paper.url}}' ,'see this question paper from QP Web')">
                 <img src="{%static 'question_papers/images/share.png'%}" alt="Share">
             </i>
         </div>
         <!-- <td colspan="3"><iframe src="{{prepaper.paper.url}}" frameborder="0"></iframe></td> -->
     </div>
-    <div id="papershare">
-        <a class="social"
-            href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}   , {
-{prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper"
-            target="_blank"><img src="{%static 'question_papers/images/facebook.png'%}" alt="#"> share on
-            facebook</a>
-        <a class="social"
-            href="https://api.whatsapp.com/send?text={{request.build_absolute_uri}}   {{prepaper.course}} {
-{prepaper.university}} {{prepaper.examination}} Question Paper"
-            target="_blank"><img src="{%static 'question_papers/images/whatsapp.jpg'%}" alt="#"> share on
-            whatsapp</a>
-        <a class="social"
-            href="https://twitter.com/intent/tweet?text={{request.build_absolute_uri}}    ,{{prepaper.
-course}} {{prepaper.university}} {{prepaper.examination}} Question Paper"
-            target="_blank"><img src="{%static 'question_papers/images/twitter.jpg'%}" alt="#"> share on
-            twitter</a>
-        <a class="social"
-            href="mailto:?subject=Question Paper from QP&body={{request.build_absolute_uri}}   ,{{prepaper.
-course}} {{prepaper.university}} {{prepaper.examination}} Question Paper,"
-            target="_blank"><img src="{%static 'question_papers/images/mail.jpg'%}" alt="#"> share on mail</
-a>
-        <a class="social"
-            href="https://t.me/share/url?text=%s&url={{request.build_absolute_uri}}  ,{{prepaper.course}} {
-{prepaper.university}} {{prepaper.examination}} Question Paper,"
-            target="_blank"><img src="{%static 'question_papers/images/telegram.jpg'%}" alt="#"> share on
-            telegram</a>
-        <a class="social"
-            href="https://www.linkedin.com/shareArticle?mini=true&title=Question Paper from QP&url={
-{request.build_absolute_uri}}  ,{{prepaper.course}} {{prepaper.university}} {{prepaper.
-examination}} Question Paper,"
-            target="_blank"><img src="{%static 'question_papers/images/linkedin.jpg'%}" alt="#"> share on
-            linkedin</a>
-    </div>
+   
     <p>
         {% if prepare.provider != 'None' %}
         
@@ -102,6 +67,8 @@ examination}} Question Paper,"
 </div>
 {% endfor %}
     </div>
-</body>
-</html>
-{% include 'question_papers/footers.html'  %}
+    {% endblock body %}
+
+    {% block footer %}
+    {% include 'question_papers/footers.html' %}
+    {% endblock footer %}

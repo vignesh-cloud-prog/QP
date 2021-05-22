@@ -367,7 +367,9 @@ function display_menu(){
 
 setTimeout(() => {
   msg_box=document.getElementById("msg_box");
+  if (msg_box){
   msg_box.style.display='none'
+  }
 }, 10000);
 
 
