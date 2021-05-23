@@ -1,21 +1,15 @@
 {% extends 'base.html' %}
+
 {% load static %}
 {% load to_space %}
 
 {% block title %}
-
 {% for title in college %}
 {% ifchanged college %}
 {{title.college}}_question_papers
-
 {% endifchanged %}
 {% endfor %}
 {% endblock title %}
-
-
-{% block navigation %}
-{% include 'question_papers/navigation.html' %}
-{% endblock navigation %}
 
 {% block body %}
 <div class="colleges">
@@ -47,7 +41,3 @@
     {% endfor %}
 </div>
 {% endblock body %}
-
-{% block footer %}
-{% include 'question_papers/footers.html' %}
-{% endblock footer %}

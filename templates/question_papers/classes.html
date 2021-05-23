@@ -1,21 +1,19 @@
 {% extends 'base.html' %}
+
 {% load static %}
 {% load to_space %}
+
 {% block title %}
 {% for title in course %} {% ifchanged college %}
 {{title.course}}_{{title.university}}_{{title.year}}_question_papers
 {% endifchanged %} {% endfor %}
 {% endblock title %}
 
-{% block navigation %}
-{% include 'question_papers/navigation.html' %}
-{% endblock navigation %}
-
 {% block body %}
 <div class="colleges">
   <p>Welcome to QP World</p>
   {% for cour in course %}
- 
+
   {% ifchanged course %}
   <div class="titles">
     <h1>
@@ -47,7 +45,3 @@
 </div>
 
 {% endblock body %}
-
-{% block footer %}
-{% include 'question_papers/footers.html' %}
-{% endblock footer %}

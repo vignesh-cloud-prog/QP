@@ -2,15 +2,9 @@
 {% load static %}
 {% block title %}QP-Web-Signup
 {% endblock title %}
-{% block styles %}
 
-{% endblock styles %}
-{% block navigation %}
-{% include 'question_papers/navigation.html' %}
-{% endblock navigation %}
 {% block body %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 
 {% if otp %}
 <form method="POST">
@@ -96,9 +90,4 @@
         })
     }</script>
 
-
 {% endblock body %}
-
-{% block footer %}
-{% include 'question_papers/footers.html' %}
-{% endblock footer %}

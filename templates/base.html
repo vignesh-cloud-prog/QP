@@ -7,36 +7,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QP Web | {% block title %} {% endblock title %}</title>
-  
+
   <link rel="stylesheet" href="{%static 'question_papers/form.css'%}" />
   <link rel="stylesheet" href="{%static 'question_papers/qp.css'%}" />
   <link rel="stylesheet" href="{%static 'question_papers/messages.css'%}" />
-  {% block styles %}
-  {% endblock styles %}
-
-  <!-- <link rel="stylesheet" href="{%static 'question_papers/all.css'%}"> -->
-  <!-- <script data-ad-client="ca-pub-9645636288208408" async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
-</head>
-
-<body>
-  {% block navigation %} {% endblock navigation %}
-  {% block body %}
-  {% endblock body %}
-
+  <link rel="shortcut icon" href="{%static 'question_papers/images/favicon.png'%}" type="image/x-icon">
+  <!-- Google fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Caladea:wght@700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Average+Sans&display=swap" rel="stylesheet" />
-  <script src="{%static 'question_papers/jquery3.4.1 .min.js'%}"></script>
-{% block share %}
-{% include  'question_papers/share.html' %}
-{% endblock share %}
-  {% block footer %} {% endblock footer %}
+  {% block styles %}
+  {% endblock styles %}
+</head>
+
+<body>
+  {% block navigation %}
+  {% include 'question_papers/navigation.html' %}
+  {% endblock navigation %}
+
+  {% block body %}
+  {% endblock body %}
+
+
+
+  {% block share %}
+  {% include 'question_papers/share.html' %}
+  {% endblock share %}
+  {% block footer %}
+  {% include 'question_papers/footers.html' %}
+  {% endblock footer %}
   <script src="{%static 'question_papers/qp.js'%}"></script>
   <script src="{%static 'question_papers/filter.js'%}"></script>
   <script src="{%static 'question_papers/share.js'%}"></script>
+  <script src="{%static 'question_papers/jquery3.4.1 .min.js'%}"></script>
+  {% block scripts_tag %}
+  {% endblock scripts_tag %}
 </body>
 
 </html>

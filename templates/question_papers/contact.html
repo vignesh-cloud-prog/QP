@@ -1,29 +1,17 @@
-{% include 'question_papers/navigation.html'  %}
+{% extends 'base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}Contact
+{% endblock title %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-</head>
-
-<body>
-    {% block nav %}
-
-    <div class="container">
-        <h3>Contact QP Admin</h3>
-        <div class="form">
-            <form method="POST" enctype="multipart/form-data">{% csrf_token %}
-                {{form.as_p}}
-        </div>
-        <button id="btn" type="submit" value="Submit" />Submit</button>
-        </form>    
+{% block body %}
+<div class="container">
+    <h3>Contact QP Admin</h3>
+    <div class="form">
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            {{form.as_p}}
     </div>
-    {% endblock nav %}
-    
-</body>
-
-</html>
-{% include 'question_papers/footers.html'  %}
+    <button id="btn" type="submit" value="Submit" />Submit</button>
+    </form>
+</div>
+{% endblock body %}

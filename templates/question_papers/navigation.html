@@ -1,172 +1,150 @@
 {% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'question_papers/form.css'%}">
-    <link rel="stylesheet" href="{%static 'question_papers/qp.css'%}">
-    <link rel="stylesheet" href="{%static 'question_papers/all.css'%}">
-    <link rel="shortcut icon" href="{%static 'question_papers/images/favicon.png'%}" type="image/x-icon">
-    <script data-ad-client="ca-pub-9645636288208408" async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-</head>
-
-<body>
-    {% if messages %}
-    {% for message in messages %}
-    <div class="{{ message.tags }}" id="msg_box">
-        <div class="first_row">
-            <p id="msg_title">Message :</p>
-            <img onclick="this.parentElement.parentElement.style.display='none';"
-                src="{%static 'question_papers/images/close.svg'%}" alt="close">
-        </div>
-
-
-        <p id="msg_body">{{ message }}</p>
-
-        {% comment %} <label for="click" class="msg_close_btn"
-            onclick="this.parentElement.style.display='none';">Done</label> {% endcomment %}
+{% if messages %}
+{% for message in messages %}
+<div class="{{ message.tags }}" id="msg_box">
+    <div class="first_row">
+        <p id="msg_title">Message :</p>
+        <img onclick="this.parentElement.parentElement.style.display='none';"
+            src="{%static 'question_papers/images/close.svg'%}" alt="close">
     </div>
-    {% endfor %}
+
+
+    <p id="msg_body">{{ message }}</p>
+
+    {% comment %} <label for="click" class="msg_close_btn"
+        onclick="this.parentElement.style.display='none';">Done</label> {% endcomment %}
+</div>
+{% endfor %}
+{% endif %}
+
+
+<!-- Navigation -->
+<div id="navbar">
+    <div id="brand" class="flex">
+        <img id="menu" onclick="display_menu()" src="{%static 'question_papers/images/menu.png'%}" alt="menu">
+        <a href="/">
+            <h1>QP Web</h1>
+        </a>
+
+    </div>
+    <div id="navitems">
+        <div id="user_menu_head">
+            <h6> Menu</h6>
+            <div>
+                <img onclick="this.parentElement.parentElement.parentElement.style.display='none';"
+                    id="close_filterItems" src="{%static 'question_papers/images/close.svg'%}" alt="close">
+            </div>
+        </div>
+        <a href="/">Home</a>
+        <a href="{% url 'provider'%}">Provide</a>
+        <a href="{% url 'contact'%}">Contact</a>
+        <a href="#"> About</a>
+    </div>
+    <div id="rightnav">
+        <div class="explore flex">
+            <div class="search">
+                <form class="flex" action="{% url 'search'%}">
+                    <input type="text" placeholder="search here" id="search_input" name="query">
+                    <button type="submit" id="search_btn"><img src="{%static 'question_papers/images/search.png'%}"
+                            alt="Search"></button>
+
+                </form>
+            </div>
+
+            <img onclick="open_filter()" id="filter-btn" src="{%static 'question_papers/images/filter.png'%}"
+                alt="Filter">
+        </div>
+    </div>
+    {% if request.user.is_authenticated %}
+    {% if request.user.profile.pic %}
+
+    <img id="user" src="{{request.user.profile.pic.url}}" alt="You">
+
+    {% else %}
+    <img id="user" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
+
     {% endif %}
-
-
-    <!-- Navigation -->
-    <div id="navbar">
-        <div id="brand" class="flex">
-            <img id="menu" onclick="display_menu()" src="{%static 'question_papers/images/menu.png'%}" alt="menu">
-            <a href="/">
-                <h1>QP Web</h1>
-            </a>
+    {% else %}
+    <a href="{% url 'login'%}">Login</a>
+    {% endif %}
+    <div id="user_menu">
+        <div id="close_menu">
+            <img src="{%static 'question_papers/images/close.svg'%}" alt="close">
 
         </div>
-        <div id="navitems">
-            <div id="user_menu_head">
-                <h6> Menu</h6>
-                <div>
-                    <img onclick="this.parentElement.parentElement.parentElement.style.display='none';"
-                        id="close_filterItems" src="{%static 'question_papers/images/close.svg'%}" alt="close">
-                </div>
-            </div>
-            <a href="/">Home</a>
-            <a href="{% url 'provider'%}">Provide</a>
-            <a href="{% url 'contact'%}">Contact</a>
-            <a href="#"> About</a>
-        </div>
-        <div id="rightnav">
-            <div class="explore flex">
-                <div class="search">
-                    <form class="flex" action="{% url 'search'%}">
-                        <input type="text" placeholder="search here" id="search_input" name="query">
-                        <button type="submit" id="search_btn"><img src="{%static 'question_papers/images/search.png'%}"
-                                alt="Search"></button>
+        <div class="menu_options">
+            {% if request.user.is_authenticated %}
 
-                    </form>
-                </div>
+            <p id="call">Hii {{request.user.first_name}}</p>
+            <p id="greet">Good morning <br>have a great day</p><br>
 
-                <img onclick="open_filter()" id="filter-btn" src="{%static 'question_papers/images/filter.png'%}"
-                    alt="Filter">
-            </div>
-        </div>
-        {% if request.user.is_authenticated %}
-        {% if request.user.profile.pic %}
+            <hr width="100%"><br>
+            <p><a href="{% url 'profile'%}">View Profile</a></p>
+            <p><a href="#"
+                    onclick="sharefunc('http:&#47;&#47;127.0.0.1:8000&#47;register&#47;{{request.user.profile.code}}','Hey, join QP Web the great website to share question papers')">Reffer
+                    friend</a> </p>
+            {% endif %}
 
-        <img id="user" src="{{request.user.profile.pic.url}}" alt="You">
-        
-        {% else %}
-        <img id="user" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
-     
-        {% endif %}
-        {% else %}
-        <a href="{% url 'login'%}">Login</a>
-        {% endif %}
-        <div id="user_menu">
-            <div id="close_menu">
-                <img src="{%static 'question_papers/images/close.svg'%}" alt="close">
-
-            </div>
-            <div class="menu_options">
-                {% if request.user.is_authenticated %}
-
-                <p id="call">Hii {{request.user.first_name}}</p>
-                <p id="greet">Good morning <br>have a great day</p><br>
-
-                <hr width="100%"><br>
-                <p><a href="{% url 'profile'%}">View Profile</a></p>
-                <p><a href="#" onclick="sharefunc('http:&#47;&#47;127.0.0.1:8000&#47;register&#47;{{request.user.profile.code}}','Hey, join QP Web the great website to share question papers')">Reffer friend</a> </p>
-                {% endif %}
-
-                {% if request.user.is_authenticated %}
-                <hr>
-                <p> <a href="{% url 'logout'%}">Logout</a></p>
-                {% endif %}
-            </div>
+            {% if request.user.is_authenticated %}
+            <hr>
+            <p> <a href="{% url 'logout'%}">Logout</a></p>
+            {% endif %}
         </div>
     </div>
-    <div id="mobileNav"></div>
-    <!-- End of Navigation -->
+</div>
+<div id="mobileNav"></div>
+<!-- End of Navigation -->
 
-    <!-- Filter items -->
-    <div id="filter_items">
-        <form method="POST" action="{% url 'filter'%} ">{% csrf_token %}
-            <header>
-                <p class="flex"><img src="{%static 'question_papers/images/filter.png'%}" alt="Filter"> Filter</p>
-                <img onclick="close_filter()" id="close_filterItems" src="{%static 'question_papers/images/close.svg'%}"
-                    alt="close">
-            </header>
-            <div class="filter_item">
-                <label for="college ">College : </label>
-                <select name="college" id="college" onchange="sel_First_Func()">
-                    <option>--select--</option>
+<!-- Filter items -->
+<div id="filter_items">
+    <form method="POST" action="{% url 'filter'%} ">{% csrf_token %}
+        <header>
+            <p class="flex"><img src="{%static 'question_papers/images/filter.png'%}" alt="Filter"> Filter</p>
+            <img onclick="close_filter()" id="close_filterItems" src="{%static 'question_papers/images/close.svg'%}"
+                alt="close">
+        </header>
+        <p style="margin-bottom: 12px;">Important! - Please follow top down approach</p>
+        <div class="filter_item">
+            <label for="college ">College : </label>
+            <select name="college" id="college" onchange="sel_First_Func()">
+                <option>--select--</option>
 
-                </select>
-            </div>
-            <div class="filter_item">
+            </select>
+        </div>
+        <div class="filter_item">
 
-                <label for="university ">University : </label>
-                <select name="university" id="university" onchange="sel_Sec_Func()">
+            <label for="university ">University : </label>
+            <select name="university" id="university" onchange="sel_Sec_Func()">
 
-                    <option>--select--</option>
+                <option>--select--</option>
 
 
-                </select>
-            </div>
-            <div class="filter_item">
-                <label for="course ">Course : </label>
-                <select name="course" id="course" onchange="sel_Third_Func()">
-                    <option>--select--</option>
+            </select>
+        </div>
+        <div class="filter_item">
+            <label for="course ">Course : </label>
+            <select name="course" id="course" onchange="sel_Third_Func()">
+                <option>--select--</option>
 
-                </select>
-            </div>
+            </select>
+        </div>
 
-            <div class="filter_item">
+        <div class="filter_item">
 
-                <label for="year ">Year : </label>
-                <select name="year" id="year" onchange="sel_Four_Func()">
-                    <option>--select--</option>
+            <label for="year ">Year : </label>
+            <select name="year" id="year" onchange="sel_Four_Func()">
+                <option>--select--</option>
 
-                </select>
-            </div>
-            <div class="filter_item">
+            </select>
+        </div>
+        <div class="filter_item">
 
-                <label for="subject ">Subject : </label>
-                <select name="subject" id="subject">
-                    <option>--select--</option>
+            <label for="subject ">Subject : </label>
+            <select name="subject" id="subject">
+                <option>--select--</option>
 
-                </select>
-            </div>
-            <button type="submit ">Get</button>
-        </form>
-    </div>
-
-    <script src="{%static 'question_papers/qp.js'%}"></script>
-    <script src="{%static 'question_papers/filter.js'%}"></script>
-
-</body>
-
-</html>
+            </select>
+        </div>
+        <button type="submit ">Get</button>
+    </form>
+</div>

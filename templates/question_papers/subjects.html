@@ -1,53 +1,47 @@
-{% include 'question_papers/navigation.html'  %}
+{% extends 'base.html' %}
+
 {% load static %}
 {% load to_space %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>    
-        {% for title in year %}
-    {% ifchanged college %}
-        {{title.course}}_{{title.university}}_{{title.year}}_question_papers
-        
-    {% endifchanged %}
-    {% endfor %}
-    </title>
-</head>
-<body>
-    <div class="colleges">
-        <p>Welcome to QP World</p>
-    {% for titles in year %}
+
+{% block title %}
+{% for title in year %}
 {% ifchanged college %}
-<div class="titles">
-    <h1>{{titles.college| to_space |title}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
-    </h1>
-    <h1>{{titles.university| to_space |title}}
-        {% if titles.university == 'manglore_university' %}
-        <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
-        {% elif titles.university == 'kuvempu_university'%}
-        <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
-        {% else %}
-        <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
-        {% endif %}
-    </h1>
-    <h1>{{titles.course|upper}} <img src="{%static 'question_papers/images/course.png'%}" alt="#">
-    </h1>
-    <h1>{{titles.year| to_space |title}} <img src="{%static 'question_papers/images/year.png'%}" alt="#">
-    </h1>
-</div>
+{{title.course}}_{{title.university}}_{{title.year}}_question_papers
 {% endifchanged %}
 {% endfor %}
-{% for years in year %}
-<div class="college">
-    <a href="{{years.subject}}">
-        <img src="{%static 'question_papers/images/subject.jpg'%}" alt="#">
-        <h4>{{years.subject| to_space |title}}</h4>
-    </a>
+{% endblock title %}
+
+{% block body %}
+<div class="colleges">
+    <p>Welcome to QP World</p>
+    {% for titles in year %}
+    {% ifchanged college %}
+    <div class="titles">
+        <h1>{{titles.college| to_space |title}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
+        </h1>
+        <h1>{{titles.university| to_space |title}}
+            {% if titles.university == 'manglore_university' %}
+            <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
+            {% elif titles.university == 'kuvempu_university'%}
+            <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
+            {% else %}
+            <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
+            {% endif %}
+        </h1>
+        <h1>{{titles.course|upper}} <img src="{%static 'question_papers/images/course.png'%}" alt="#">
+        </h1>
+        <h1>{{titles.year| to_space |title}} <img src="{%static 'question_papers/images/year.png'%}" alt="#">
+        </h1>
     </div>
-{% endfor %}
+    {% endifchanged %}
+    {% endfor %}
+    {% for years in year %}
+    <div class="college">
+        <a href="{{years.subject}}">
+            <img src="{%static 'question_papers/images/subject.jpg'%}" alt="#">
+            <h4>{{years.subject| to_space |title}}</h4>
+        </a>
     </div>
-</body>
-</html>
-{% include 'question_papers/footers.html'  %}
+    {% endfor %}
+</div>
+{% endblock body %}

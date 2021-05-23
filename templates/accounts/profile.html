@@ -1,17 +1,14 @@
 {% extends 'base.html' %}
+
 {% load static %}
 {% block title %} {{request.user.username}}'s Profile'
 {% endblock title %}
-{% block navigation %}
-{% include 'question_papers/navigation.html' %}
-{% endblock navigation %}
+
+{% block styles %}
+<link rel="stylesheet" href="{%static 'question_papers/profile.css'%}" />
+{% endblock styles %}
 
 {% block body %}
-
-<head>
-    <link rel="stylesheet" href="{%static 'question_papers/profile.css'%}" />
-    <script src="{%static 'question_papers/profile.js'%}"></script>
-</head>
 <div id="outerbox">
     <div class="profile">
         <div class="info">
@@ -55,11 +52,13 @@
             {{people.name}}
             <br>
             {% endfor %}
-            
+
         </div>
     </div>
-
 
 </div>
 
 {% endblock body %}
+{% block scripts_tag %}
+<script src="{%static 'question_papers/profile.js'%}"></script>
+{% endblock scripts_tag %}

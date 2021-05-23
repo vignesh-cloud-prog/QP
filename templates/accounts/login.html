@@ -5,10 +5,6 @@
 {% block styles %}
 <link rel="stylesheet" href="{%static 'User/login.css'%}">
 {% endblock styles %}
-{% block navigation %}
-{% include 'question_papers/navigation.html' %}
-{% endblock navigation %}
-
 
 {% block body %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -73,12 +69,8 @@
 </div>
 
 {% endblock body %}
-
-{% block footer %}
-{% include 'question_papers/footers.html' %}
-{% endblock footer %}
 <script>
-     function ReSendOTP(username, mess_id) {
+    function ReSendOTP(username, mess_id) {
 
         mess = document.getElementById(mess_id);
         mess.innerText = "Sending...";
@@ -91,10 +83,10 @@
 
             }
         })
-       
-    
-    } 
 
-  
+
+    }
+
+
 
 </script>

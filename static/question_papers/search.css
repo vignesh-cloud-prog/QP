@@ -1,0 +1,43 @@
+h2{
+    margin: 20px 10px;
+    margin-top: 35px;
+
+}
+.result{
+    display: block;
+    border: 2px solid black;
+    width: max-content;
+    margin: 8px auto ;
+    border-radius: 8px;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    margin: 12px;
+    
+    padding: 4px;
+}
+.title p{
+    margin: 4px;
+    padding: 10px;
+    background-color: rgb(109, 109, 218);
+    color: white;
+    border-radius: 8px;
+    border: 2px solid rgb(20, 20, 116);
+}
+.title a{
+    display: block;
+    padding: 0.4rem 2rem;
+    border-radius: 8px;
+    font-size: 1.3rem;
+    margin: 4px;
+    color: black;
+    background-color: rgb(179, 155, 155);
+}
+@media only screen and (min-width:1024px){
+    .result{
+        display: inline-block;
+        margin: 20px;
+    }
+    
+}

@@ -1,117 +1,69 @@
-{% include 'question_papers/navigation.html'  %}
+{% extends 'base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}filter
+{% endblock title %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>filter</title>
-
-</head>
-
-<body>
-    {% block nav %}
-    
-
-    {% if context %}
-    <div class="colleges">
-        {% for title in context %}
-        {% ifchanged course %}
-        <div class="titles">
-            <h1>{{title.college}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
-            </h1>
-            <h1>{{title.university}}{% if title.university == 'Mangolre University' %}
-                <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
-                {% elif title.university == 'Kuvempu University'%}
-                <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
-                {% else %}
-                <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
-                {% endif %} </h1>
-            <h1>{{title.course}} <img src="{%static 'question_papers/images/course.png'%}" alt="#">
-            </h1>
-            <a href="../">
-                <h1>{{title.year}} <img src="{%static 'question_papers/images/year.png'%}" alt="#">
-                </h1>
-            </a>
-            <h1>{{title.subject}}<img src="{%static 'question_papers/images/subject.jpg'%}" alt="#"></h1>
-        </div>
-        {% endifchanged %}
-        {% endfor %}
-        <div class="paper">
-            {% for prepaper in context %}
-            <div class="paper">
-                <div id="row">
-                    <a href="{{prepaper.paper.url}}" target="_blank">
-                        <h1 id="paper">{{prepaper.examination}} : </h1>
-                    </a>
-                    <div class="icons">
-                        <td><a href="{{prepaper.paper.url}}" target="_blank">Open</a></td>
-                        <a href="{{prepaper.paper.url}}" download>
-                            <img src="{%static 'question_papers/images/download.png'%}" alt="download">
-                        </a>
-                        <i id="share">
-                            <img src="{%static 'question_papers/images/share.png'%}" alt="share">
-                            <p></p>
-                        </i>
-                    </div>
-                </div>
-                </div>
-                <div id="papershare">
-                    <a class="social" href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}   , {
-            {prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper" target="_blank"><img
-                            src="{%static 'question_papers/images/facebook.png'%}" alt="#">
-                        share on
-                        facebook</a>
-                    <a class="social" href="https://api.whatsapp.com/send?text={{request.build_absolute_uri}}   ,{{prepaper.
-            course}} {{prepaper.university}} {{prepaper.examination}} Question Paper" target="_blank"><img
-                            src="{%static 'question_papers/images/whatsapp.jpg'%}" alt="#">
-                        share on
-                        whatsapp</a>
-                    <a class="social" href="https://twitter.com/intent/tweet?text={{request.build_absolute_uri}}    ,{
-            {prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper" target="_blank"><img
-                            src="{%static 'question_papers/images/twitter.jpg'%}" alt="#">
-                        share on
-                        twitter</a>
-                    <a class="social" href="mailto:?subject=Question Paper from QP&body={{request.build_absolute_uri}}   ,{
-            {prepaper.course}} {{prepaper.university}} {{prepaper.examination}} Question Paper," target="_blank"><img
-                            src="{%static 'question_papers/images/mail.jpg'%}" alt="#"> share
-                        on mail</a>
-                    <a class="social" href="https://t.me/share/url?text=%s&url={{request.build_absolute_uri}}  ,{{prepaper.
-            course}} {{prepaper.university}} {{prepaper.examination}} Question Paper," target="_blank"><img
-                            src="{%static 'question_papers/images/telegram.jpg'%}" alt="#">
-                        share on
-                        telegram</a>
-                    <a class="social" href="https://www.linkedin.com/shareArticle?mini=true&title=Question Paper from QP&url=
-            {{request.build_absolute_uri}}  ,{{prepaper.course}} {{prepaper.university}} {
-            {prepaper.examination}} Question Paper," target="_blank"><img
-                            src="{%static 'question_papers/images/linkedin.jpg'%}" alt="#">
-                        share on
-                        linkedin</a>
-                </div>
-                {% endfor %}
-            </div>
+{% block body %}
+{% if context %}
+<div class="colleges">
+    {% for title in context %}
+    {% ifchanged course %}
+    <div class="titles">
+        <h1>{{title.college}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
+        </h1>
+        <h1>{{title.university}}{% if title.university == 'Mangolre University' %}
+            <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
+            {% elif title.university == 'Kuvempu University'%}
+            <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
             {% else %}
-            <div class="errors">
-            <p>Filter does not match </p><br>
-            <p>MAKE SURE_</p><br>
-            <li>You selected all correct relate options
-            </li><br>
-<button>
-    <a href="../">Goback</a>
-
-</button>
-        </div>
-                {% endif %}
-
+            <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
+            {% endif %}
+        </h1>
+        <h1>{{title.course}} <img src="{%static 'question_papers/images/course.png'%}" alt="#">
+        </h1>
+        <a href="../">
+            <h1>{{title.year}} <img src="{%static 'question_papers/images/year.png'%}" alt="#">
+            </h1>
+        </a>
+        <h1>{{title.subject}}<img src="{%static 'question_papers/images/subject.jpg'%}" alt="#"></h1>
+    </div>
+    {% endifchanged %}
+    {% endfor %}
+    <div class="paper">
+        {% for prepaper in context %}
+        <div class="paper">
+            <div id="row">
+                <a href="{{prepaper.paper.url}}" target="_blank">
+                    <h1 id="paper">{{prepaper.examination}} : </h1>
+                </a>
+                <div class="icons">
+                    <td><a href="{{prepaper.paper.url}}" target="_blank">Open</a></td>
+                    <a href="{{prepaper.paper.url}}" download>
+                        <img src="{%static 'question_papers/images/download.png'%}" alt="download">
+                    </a>
+                    <i id="share">
+                        <img src="{%static 'question_papers/images/share.png'%}" alt="share">
+                        <p></p>
+                    </i>
                 </div>
+            </div>
         </div>
-    </div> 
 
-    <!-- <script src="{%static 'question_papers/filter.js'%}"></script> -->
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="errors">
+        <p>Filter does not match </p><br>
+        <p>MAKE SURE_</p><br>
+        <li>You selected all correct relate options
+        </li><br>
+        <button>
+            <a href="../">Goback</a>
 
-    {% endblock nav %}
+        </button>
+    </div>
+    {% endif %}
 
-</body>
-
-</html>
+</div>
+{% endblock body %}
