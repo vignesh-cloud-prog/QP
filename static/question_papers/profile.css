@@ -1,78 +1,49 @@
-.not_visible{
-    display: none;
-}
 #outerbox{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: max-content;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
+    border-radius: 2%;
+    margin: auto;
+    padding: 2rem;
+}
+#profile{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+#user_info{
+    width: max-content;
+    margin: auto;
+    border-right: 2px solid black;
+    padding: 2rem;
+    padding-right: 6rem;
+    margin: 20px;
 }
 #pic{
-    width: 120px;
-    height: 120px;
     border-radius: 50%;
-    margin-bottom: 8px;
 }
-.profile p
-{
-    display: block;
-}
-.profile{
-    margin: auto;
-    position: relative;
-    width: 90vw;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid black;
-    border-radius: 8px;
-    padding: 2rem;
-    margin: 1rem;
-}
-.profile fieldset{
-    width: 100%;
-    margin: 4px 0;
-
-}
-.profile fieldset p{
-    padding :8px;
-}
-.userlinks{
-    text-transform: uppercase;
-    font-size: 1rem;
-    color: blue;
-    font-weight: bold;
-    margin: 4px;
-    cursor: pointer;
-    align-self: flex-start;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.profile header{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 12px;
-}
-#edit_profile{
-    border-radius: 12px;
-    background-color: rgb(102, 102, 245);
- 
-    padding: 4px 10px;
-    
-}
-#edit_profile:hover{
-    background-color: blue;
+#edit_btn{
+    border-radius: 10%;
+    background-color: white;
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid rgb(95, 95, 95);
+    padding: 5px;
 }
 #edit_icon{
-    width: 15px;
-    padding-top: 2px;
+    height: 12px;
+    margin-bottom: -3px;
+    
+}
 
+#user_activity{
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2rem;
 }
-#profile_photo_input > input{
-visibility: hidden;
-}
-input[type=file]{
-    background: blue ;
+
+.userlinks{
+    text-transform: uppercase;
+    color: blue;
+    font-size: 1rem;
 }

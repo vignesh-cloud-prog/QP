@@ -10,24 +10,19 @@
 
 {% block body %}
 <div id="outerbox">
-    <div class="profile">
-        <div class="info">
-            <h1>Profile</h1>
-            <a href="{% url 'update_profile'%}"> <button id="edit_profile">Edit <img id="edit_icon"
-                        src="{%static 'question_papers/images/pensil.png'%}" alt=""> </button></a>
-
-
+    <h1>Profile</h1>
+    <div id="profile">
+        <div id="user_info">
             {% if request.user.profile.pic %}
-
             <img id="pic" src="{{request.user.profile.pic.url}}" alt="You">
 
             {% else %}
             <img id="pic" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
 
             {% endif %}
+            <a href="{% url 'update_profile'%}" id="edit_btn"> Update <img id="edit_icon" src="{%static 'question_papers/images/pensil.png'%}" alt=""/></a>
 
             <p style="display: none;">{{request.user.id}}</p>
-
 
             <p id="username">{{request.user.first_name}}</p>
 
@@ -35,24 +30,29 @@
 
             <p id="usercollege">{{request.user.profile.college}}</p>
 
+            <p id="join_date">Join date: {{request.user.profile.updated}}</p>
 
-            <p>Joined: {{request.user.profile.updated}}</p>
 
         </div>
-        <div class="activity">
-            <p class="userlinks" id="papers">Papers provided by you</p>
-            {% for items in my_papers %}
+        <div id="user_activity">
+            <p class="userlinks" id="papers_uploaded">Papers provided by you uploaded</p>
+            {% for paper in my_papers_uploaded %}
+            {{paper.university}}
+            {{paper.course}}
+            <br>
+            {% endfor %}
+            <p class="userlinks" id="papers_reviewing">Papers provided by you reviewing</p>
+            {% for items in my_papers_reviewing %}
             {{items.board}}
             {{items.claass}}
             <br>
             {% endfor %}
-            <p class="userlinks" id="refs"> People reffered by you</p>
-            {% for people in my_papers %}
-            {{people.name.first_name}}
-            {{people.name}}
+            <p class="userlinks" id="refs_by_me"> People reffered by you</p>
+            {% for people in my_recs %}
+            {{people.user.first_name}}
+            {{people.user.username}}
             <br>
             {% endfor %}
-
         </div>
     </div>
 
