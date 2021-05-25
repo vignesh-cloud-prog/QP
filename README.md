@@ -6,7 +6,7 @@ Users can easily signup by verifying their email through OTP and giving some bas
 
 Right now verifications of question papers done manually. Users will get the confirmation email about accepting therir question papers. To avoid multiple instance of same question papers some checks are to be made.
 
-This website is hosted at https://questionpaper.herokuapp.com/
+This website is hosted at https://qpweb.herokuapp.com/
 
 __*Setting up in your local system*__
 
