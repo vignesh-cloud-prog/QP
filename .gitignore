@@ -1,7 +1,6 @@
-qp/Lib/
-qp/Scripts/
+QP_Env
+*.pyc
+db.sqlite3
 qp/git.txt
-qp/pyvenv.cfg
-__pycache__/
 media/
 
