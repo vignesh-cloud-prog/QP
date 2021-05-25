@@ -10,10 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import django_heroku
-
 import os
 
-import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2bzp&z&ou_i-dw^b-wy6cv+m##8!6rdcll9+%p0b-ar1gc^f+9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['qpworld.herokuapp.com','127.0.0.1','questionpaper.herokuapp.com']
+ALLOWED_HOSTS = ['qpworld.herokuapp.com/','127.0.0.1','questionpaper.herokuapp.com']
 
 
 # Application definition
@@ -52,7 +50,7 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -96,16 +94,10 @@ DATABASES = {
         'PORT': '',
     }
 }
-
+import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
-# DATABASES = {
-    # 'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
-# }
 
 
 # Password validation
@@ -150,10 +142,11 @@ EMAIL_HOST_PASSWORD='vigneshqpweb'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-# STATICFILES_STORAGE ='whitenoise.storage.Compre/ssedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATIC_URL = '/static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
