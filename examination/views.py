@@ -10,11 +10,9 @@ from question_papers.models import Provider, Question_papers
 from .forms import CreateUserForm
 # Create your views here.
 
-
 def logoutUser(request):
     logout(request)
-    return redirect("login")
-
+    return redirect("home")
 
 def signup(request, *args, **kwargs):
     code = str(kwargs.get('ref_code'))
@@ -40,7 +38,8 @@ def signup(request, *args, **kwargs):
                 usr.save()
                 messages.success(
                     request, f'Account is Created For {usr.username}')
-                return redirect('login')
+                login(request, usr)
+                return redirect('update_profile')
             else:
                 messages.warning(request, f'You Entered a Wrong OTP')
                 return render(request, 'accounts/register.html', {'otp': True, 'usr': usr})
@@ -120,7 +119,7 @@ def login_view(request):
                 usr.is_active = True
                 usr.save()
                 login(request, usr)
-                return redirect('profile')
+                return redirect('update_profile')
             else:
                 messages.warning(request, f'You Entered a Wrong OTP')
                 return render(request, 'accounts/login.html', {'otp': True, 'usr': usr})

@@ -12,62 +12,52 @@
 
 <body>
     <h1>Push controller</h1>
-    {% for push in pushes %}
-    <form action="pushed" method="POST">{% csrf_token %}
-        <!-- <div class="titles"> -->
-        <!-- <h1 name="college">{{push.level}} -->
-        <!-- </h1> -->
-        <!-- <h1 name= "university">{{push.board}}</h1> -->
-        <!-- <h1 name="semister">{{push.sem}}  -->
-        <!-- </h1> -->
-        <!-- <a href="../"> -->
-        <!-- <h1 name="course">{{push.claass}} -->
-        <!-- </h1> -->
-        <!-- </a> -->
-        <!-- <h1 name="subject">{{push.sub}}</h1> -->
-        <!-- </div> -->
-        <!-- <div class="paper"> -->
-        <!-- <div id="row"> -->
-        <!-- <h1 name="year">{{push.papertitle}} : </h1> -->
-        <!-- <td><a href="{{prepaper.paper.url}}" target="_blank">Open</a></td> -->
-        <!-- <a name=paper href="{{push.doc.url}}" download> download </a> -->
-        <!-- <td colspan="3"><iframe src="{{prepaper.paper.url}}" frameborder="0"></iframe></td> -->
-        <!-- <a href="{{push.doc.url}}" target="_blank"> View </a> -->
-        <!-- </div> -->
-        <!-- <p> -->
+    {% for item in pushes %}
+    <form action="pushed" method="POST">
+    {% csrf_token %}
 
-        <!-- <center name="email">sent by {{push.email}}</center> -->
-        <!-- <center name= "date">sent by at {{push.provide_date}}</center> -->
-        <!-- </p> -->
         <div class="container">
-            <input id="id" type="text" name="id" value="{{push.id}}">
+            <input id="id" type="text" name="id" value="{{item.id}}">
             <div class="row">
                 <div class="col-25">
                     <label for="provider">Provider Name:</label>
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="pro" value="{{push.name}}">
+                    <input type="text" name="pro" value="{{item.name}}">
 
                 </div>
             </div>
+           
             <div class="row">
                 <div class="col-25">
                     <label for="pro-email">Provider e-mail :</label>
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="email" value="{{push.email}}">
+                    <input type="text" name="email" value="{{item.email}}">
 
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="provider">Paper Type:</label>
+
+                </div>
+                <div class="col-75">
+                    <input type="text" name="pro" value="{{item.paper_type}}">
+
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-25">
                     <label for="semister">Semister :</label>
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="semister" value="{{push.sem}}">
+                    <input type="text" name="semister" value="{{item.sem}}">
 
                 </div>
             </div>
@@ -77,7 +67,7 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="subject" value="{{push.sub}}">
+                    <input type="text" name="subject" value="{{item.sub}}">
 
                 </div>
             </div>
@@ -87,7 +77,7 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="course" value="{{push.claass}}">
+                    <input type="text" name="course" value="{{item.claass}}">
 
                 </div>
             </div>
@@ -97,7 +87,7 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="university" value="{{push.board}}">
+                    <input type="text" name="university" value="{{item.board}}">
 
                 </div>
             </div>
@@ -107,7 +97,7 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="college" value="{{push.level}}">
+                    <input type="text" name="college" value="{{item.level}}">
 
                 </div>
             </div>
@@ -117,7 +107,7 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="examination" value="{{push.papertitle}}">
+                    <input type="text" name="examination" value="{{item.papertitle}}">
 
                 </div>
             </div>
@@ -127,7 +117,7 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="date" value="{{push.provide_date}}">
+                    <input type="text" name="date" value="{{item.provide_date}}">
 
                 </div>
             </div>
@@ -136,8 +126,8 @@
                     <label for="upload">Upload file</label>
                 </div>
                 <div class="col-75 files" >
-                    <a class="file" href="{{push.doc.url}}">View file</a>
-                    <a class="file" download href="{{push.doc.url}}">Download file</a>
+                    <a class="file" href="{{item.doc.url}}">View file</a>
+                    <a class="file" download href="{{item.doc.url}}">Download file</a>
                     <input type="file" name="paper">
                 </div>
                 
