@@ -10,7 +10,7 @@ This website is hosted at https://qpweb.herokuapp.com/
 
 __*Setting up in your local system*__
 
-Prerequsits :
+Prerequisites:
 * Python-3 https://www.python.org/downloads/
 * Postgresql-12 https://www.postgresql.org/download/
 
