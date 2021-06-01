@@ -41,7 +41,11 @@ INSTALLED_APPS = [
 
     # own apps
     'question_papers.apps.QuestionPapersConfig',
-    'examination.apps.ExaminationConfig',
+    'profiles.apps.ProfilesConfig',
+    'users.apps.UsersConfig',
+    'contacts.apps.ContactsConfig',
+    'provides.apps.ProvidesConfig',
+    'provides_controller.apps.ProvidesControllerConfig',
 
     # Thirdparty apps
     

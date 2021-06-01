@@ -20,13 +20,7 @@ from django.urls import path, include
 from question_papers import views
 
 urlpatterns = [
-
-    path('profile/update', views.profile_settings, name='update_profile'),
-    path('provider/', views.provider, name='provider'),
     path('search/', views.search, name='search'),
-    path('push/', views.push, name='push'),
-    path('push/pushed', views.pushed, name='pushed'),
-    path('contact/', views.issues, name='contact'),
     path('filter', views.filters, name='filter'),
     path('filter_first_option', views.filter_first_option, name='filter_first_option'),
 
