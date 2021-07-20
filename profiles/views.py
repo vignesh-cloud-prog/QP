@@ -29,7 +29,7 @@ def profile_settings(request):
         bio = request.POST.get('bio')
         college = request.POST.get('college')
         try:
-            if name is "" or bio is "" or college == "":
+            if name == "" or bio == "" or college == "":
                 messages.warning(request, 'Values can not be null.')
                 return render(request, 'profiles/profile_edit.html')
 
