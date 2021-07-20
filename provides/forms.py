@@ -1,9 +1,9 @@
 from django.forms import ModelForm
-from .models import Provider
+from .models import Provide
 
-class ProviderForm(ModelForm):
+class ProvideForm(ModelForm):
     class Meta:
-        model = Provider
+        model = Provide
         fields = '__all__'
-        exclude = ['name','provide_date']
+        exclude = ['name','provide_date','id']
 

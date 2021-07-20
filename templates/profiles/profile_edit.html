@@ -10,24 +10,30 @@
 {% block body %}
 
 <div id="outerbox">
-    <div class="profile">
+    <div class="profile_update">
         <header>
             <h1>Profile</h1>
 
         </header>
+        <div id="photo">
         {% if request.user.profile.pic %}
 
-        <img id="pic" src="{{request.user.profile.pic.url}}" alt="You">
+        <img id="pic" class="img" src="{{request.user.profile.pic.url}}" alt="You">
 
         {% else %}
-        <img id="pic" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
+        <img id="pic" class="img" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
 
         {% endif %}
-
+        
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <p><label for="file" style="cursor: pointer;"><img id="img_input"
+            src="{%static 'question_papers/images/camera.png'%}" alt="change pic"></label></p>
+    </div>
             <input type="number" name="user_id" value="{{request.user.id}}" style="display: none;">
 
-            <input type="file" id="profile_photo_input" name="pic" accept="image/*">
+            <p><input type="file" accept="image/*" name="pic" id="file" onchange="loadFile(event)"
+                    style="display: none;"></p>
+            
 
             <p style="display: none;">{{request.user.id}}</p>
 
@@ -46,10 +52,19 @@
             </fieldset>
 
             <button type="submit">Update</button>
+
+
+
         </form>
 
     </div>
 </div>
+<script>
+    var loadFile = function (event) {
+        var image = document.getElementById('pic');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
 {% endblock body %}
 
 {% block scripts_tag %}

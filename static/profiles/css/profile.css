@@ -1,9 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 #outerbox{
-    width: max-content;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
-    border-radius: 2%;
+    width: 90%;
+    padding: 0.5rem;
     margin: auto;
-    padding: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
+    border-radius: 2%;   
+}
+#outerbox h1{
+    text-align: center;
+    margin: 0.5rem;
 }
 #profile{
     display: grid;
@@ -17,8 +27,18 @@
     padding-right: 6rem;
     margin: 20px;
 }
-#pic{
+#user_info p{
+    margin: 0.5rem;
+}
+.row-1{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+.img{
     border-radius: 50%;
+    max-width: 10rem;
+    max-height: 10rem;
 }
 #edit_btn{
     border-radius: 10%;
@@ -27,6 +47,7 @@
     text-align: center;
     border: 1px solid rgb(95, 95, 95);
     padding: 5px;
+    height: max-content;
 }
 #edit_icon{
     height: 12px;
@@ -46,4 +67,66 @@
     text-transform: uppercase;
     color: blue;
     font-size: 1rem;
+}
+
+.profile_update{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 600px;
+    margin: auto;
+}
+.profile_update form{
+    width: 90%;
+}
+.profile_update fieldset{
+    margin:  1rem 0;
+    width: 100%;
+    border-radius: 12px;
+    
+}
+.profile_update input[type=text]{
+    border: none;
+    margin: 0.5rem;
+}
+.profile_update input[type=text]:focus{
+    outline: none;
+}
+.profile_update button{
+    padding: 6px 20px;
+    border: 2px solid white;
+    background-color: rgb(94, 94, 216);
+    color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: auto;
+    display: block;
+}
+#photo{
+    position: relative;
+}
+#img_input{
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    
+}
+
+@media only screen and (max-width: 1024px){
+    #profile{
+        grid-template-columns: auto;
+        align-items: center;
+    }  
+    #user_info{
+        border: none;
+        border-bottom: 2px solid black;
+        padding: 1rem;
+        margin: auto;
+    } 
+    #user_activity{
+        margin: auto;
+    }
 }

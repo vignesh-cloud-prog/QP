@@ -3,11 +3,11 @@ from django.contrib import messages
 from .models import Profile
 from django.contrib.auth.models import User
 from question_papers.models import Question_paper
-from provides.models import Provider
+from provides.models import Provide
 
 # Create your views here.
 def profile_view(request):
-    my_papers_reviewing = Provider.objects.filter(name=request.user)
+    my_papers_reviewing = Provide.objects.filter(name=request.user)
     my_papers_uploaded = Question_paper.objects.filter(provider=request.user)
     print(my_papers_uploaded)
     my_recs = request.user.profile.get_recomended_profiles()

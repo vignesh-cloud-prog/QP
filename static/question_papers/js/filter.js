@@ -1,3 +1,4 @@
+
 let selector_university = document.getElementById("university");
 let selector_course = document.getElementById("course");
 let selector_year = document.getElementById("year");
@@ -9,6 +10,7 @@ let select_third = document.getElementById("course");
 let select_four = document.getElementById("year");
 let select_college = document.getElementById("college");
 
+
 let university;
 let college;
 let course;
@@ -17,9 +19,12 @@ let subject;
 let year;
 let examination;
 
+
+
 let options = `<option>--select--</option>`;
 
 function get_filter_first_option() {
+  console.log("host "+window.location.href);
   console.log("You have changed the filter");
   console.log("value " + select_first.value);
   const value = select_first.value;

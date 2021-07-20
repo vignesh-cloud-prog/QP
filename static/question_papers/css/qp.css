@@ -91,7 +91,6 @@ a {
 }
 
 .search button {
-    font-size: 30px;
     max-width: 10%;
     background-color: white;
     border: none;
@@ -99,7 +98,7 @@ a {
 }
 #user{
   margin-left: -1rem;
-  width: 24px;
+  width: 3rem;
   border-radius: 50%;
 }
 
@@ -116,8 +115,6 @@ a {
     justify-content: space-between;
     padding: 4px 12px;
     background-color: rgb(218, 211, 211);
-    margin: 4px;
-    border-radius: 8px;
     box-sizing: border-box;
   }
   #navbar h1 {
@@ -175,7 +172,6 @@ a {
     justify-content: center;
     /* border: 4px solid rgb(218, 211, 211); */
     border-radius: 24px;
-    margin-top: 8px;
     overflow: hidden;
   }
   .search{
@@ -413,7 +409,7 @@ padding: 1rem;
   .colleges {
     margin: 0.5rem;
     padding: 0.5rem;
-    margin-top: 3.5rem;
+    margin-top: 2rem;
   }
   .colleges p {
     font-size: 1.5rem;
@@ -549,8 +545,8 @@ padding: 1rem;
 @media only screen and (min-width: 1024px) {
   #appshare{
     position: absolute;
-  top: 4vh;
-  right: 2vw;
+  top: 12vh;
+  right: 1vw;
   max-width: 500px;
   }
 }

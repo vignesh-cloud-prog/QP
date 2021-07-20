@@ -13,15 +13,16 @@
     <h1>Profile</h1>
     <div id="profile">
         <div id="user_info">
+            <div class="row-1">
             {% if request.user.profile.pic %}
-            <img id="pic" src="{{request.user.profile.pic.url}}" alt="You">
+            <img id="pic" class="img" src="{{request.user.profile.pic.url}}" alt="You"/>
 
             {% else %}
-            <img id="pic" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
+            <img id="pic" class="img"src="{%static 'question_papers/images/user-circle.png'%}" alt="You"/>
 
             {% endif %}
             <a href="{% url 'update_profile'%}" id="edit_btn"> Update <img id="edit_icon" src="{%static 'question_papers/images/pensil.png'%}" alt=""/></a>
-
+        </div>
             <p style="display: none;">{{request.user.id}}</p>
 
             <p id="username">{{request.user.first_name}}</p>
