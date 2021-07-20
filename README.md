@@ -16,38 +16,59 @@ Prerequisites:
 
 Installation Guidelines
 * download the source code
-` git clone https://github.com/vignesh-cloud-prog/QP.git `
+```shell
+git clone https://github.com/vignesh-cloud-prog/QP.git 
+```
 
 _move to the main directory_
 
 * Creating virtual environment
   * Download python virtualenv module if you are not already installed
-  ```pip install virtualenv```
+  ```shell
+  pip install virtualenv
+  ```
   * Create virtual environment
-  ```virtualenv QP_Env```
+  ```shell
+  virtualenv QP_Env
+  ```
   * Activating the virtual environment<br>
   _for Windows users_
-  `.\QP_Env\Scripts\activate`\
+  ```shell
+  .\QP_Env\Scripts\activate
+  ```
+  \
   _for Linux/Mac Users_
-  `source QP_Env/bin/activate`
+  ```shell
+  source QP_Env/bin/activate
+  ```
   * Install all the requirements 
-  ```pip install -r requirements.txt```
+  ```shell
+  pip install -r requirements.txt
+  ```
  
   
 * Setting up database<br>
   You need to create a database named qp using pgAdmin or command and update credentials in settings.py
   * Creating super user(optional)
-  ```python manage.py createsuperuser```
+  ```shell
+  python manage.py createsuperuser
+  ```
   _go through the process_
   
   * Creating tables
-  ```python manage.py makemigrations```
+  ```shell
+  python manage.py makemigrations
+  ```
   
   * Writing tables to the db
-  ```python manage.py migrate```
+  ```shell
+  python manage.py migrate
+  ```
   
 * Running the server
-```python manage.py runserver --settings MultipleSettings.development```
+```shell
+python manage.py runserver --settings MultipleSettings.development
+```
 
 * Visit website here http://127.0.0.1:8000/
 
