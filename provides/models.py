@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Provide(models.Model):
-    name=models.ForeignKey(User, on_delete=models.SET_DEFAULT,default=1,blank=True)
+    provider=models.ForeignKey(User, on_delete=models.SET_DEFAULT,default=1,blank=True)
     # All fields used below are same as Question_paper model inter changebly used between universities and boards related items
-    PAPER_CHOICES=[('Board','Board'),('University','University')]
+    PAPER_CHOICES=[('board','board'),('university','university'),('competitive','competitive')]
     paper_type=models.CharField(max_length=12,choices=PAPER_CHOICES) 
     college = models.CharField(max_length=100)
     board=models.CharField(max_length=100)

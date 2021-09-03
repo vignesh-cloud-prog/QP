@@ -20,9 +20,9 @@ def filter_first_option(request):
 
 
 def colleges(request):
-    allqp = Question_paper.objects.order_by('college').distinct('college')
+    allqp = Question_paper.objects.distinct('education_type')
     context = {'allqp': allqp, 'Select': 'Select Your Current Education : '}
-    return render(request, 'question_papers/colleges.html', context)
+    return render(request, 'question_papers/allpapers.html', context)
 
 # this function returns distinct values for different universities and boards in college types
 
@@ -119,7 +119,7 @@ def search(request):
     query = request.GET['query']
     query = query.lower()
     query = query.replace(" ", "_")
-    result = Question_paper.objects.filter(slug__icontains=query)
+    result = Question_paper.objects.filter(complete_ref__icontains=query)
     result = {'results': result}
     return render(request, 'question_papers/search.html', result)
 

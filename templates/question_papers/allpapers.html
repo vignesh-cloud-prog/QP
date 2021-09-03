@@ -15,9 +15,9 @@
     {% for qp in allqp %}
     {% if qp.paper_type == 'board'%}
     <div class="college">
-        <a href="{{qp.college}}">
+        <a href="{{qp.education_type}}">
             <img src="{%static 'question_papers/images/college.png' %}" alt="#">
-            <h4>{{qp.college| title}}</h4>
+            <h4>{{qp.education_type| title}}</h4>
         </a>
     </div>
     {% endif %}
@@ -30,9 +30,9 @@
     {% for qp in allqp %}
     {% if qp.paper_type == 'university'%}
     <div class="college">
-        <a href="{{qp.college}}">
+        <a href="{{qp.education_type}}">
             <img src="{%static 'question_papers/images/college.png' %}" alt="#">
-            <h4>{{qp.college| title}}</h4>
+            <h4>{{qp.education_type| title}}</h4>
         </a>
     </div>
     {% endif %}
