@@ -17,11 +17,11 @@
     {% for uni in university %}
     {% ifchanged college %}
     <div class="titles">
-        <h1>{{uni.college| to_space | title}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
+        <h1>{{uni.governing_body| to_space | title}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
         </h1>
-        <h1>{{uni.university| to_space | title}}{% if uni.university == 'manglore_university' %}
+        <h1>{{uni.education_type| to_space | title}}{% if uni.university == 'manglore_university' %}
             <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
-            {% elif uni.university == 'kuvempu_university'%}
+            {% elif uni.education_type == 'kuvempu_university'%}
             <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
             {% else %}
             <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
@@ -30,9 +30,9 @@
     </div>
     {% endifchanged %}
     <div class="college">
-        <a href="{{uni.course}}">
+        <a href="{{uni.course_name}}">
             <img src="{%static 'question_papers/images/course.png' %}" alt="#">
-            <h4>{{uni.course| upper}}</h4>
+            <h4>{{uni.course_name| upper}}</h4>
         </a>
     </div>
     {% endfor %}

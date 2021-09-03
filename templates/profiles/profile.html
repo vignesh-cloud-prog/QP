@@ -38,8 +38,8 @@
         <div id="user_activity">
             <p class="userlinks" id="papers_uploaded">Papers provided by you uploaded</p>
             {% for paper in my_papers_uploaded %}
-            {{paper.university}}
-            {{paper.course}}
+            {{paper.governing_body}}
+            {{paper.course_name}}
             <br>
             {% endfor %}
             <p class="userlinks" id="papers_reviewing">Papers provided by you reviewing</p>

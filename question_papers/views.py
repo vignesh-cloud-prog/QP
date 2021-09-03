@@ -36,7 +36,7 @@ def college(request, college):
         return HttpResponse(qs_json, content_type='application/json')
 
     college = Question_paper.objects.filter(
-        college=college).order_by('university').distinct('university')
+        education_type=college).order_by('education_type').distinct('education_type')
     college = {'college': college}
     return render(request, 'question_papers/universities.html', college)
 
@@ -47,11 +47,11 @@ def university(request, college, university):
     if college.startswith("json"):
         college = college.split("-")[1]
         university = Question_paper.objects.filter(
-            university=university, college=college).order_by('course').distinct('course')
+            education_type=university, governing_body=college).order_by('course_name').distinct('course_name')
         qs_json = serializers.serialize('json', university)
         return HttpResponse(qs_json, content_type='application/json')
     university = Question_paper.objects.filter(
-        university=university, college=college).order_by('course').distinct('course')
+            governing_body=university, education_type=college).order_by('course_name').distinct('course_name')
     university = {'university': university}
     return render(request, 'question_papers/courses.html', university)
 
@@ -62,11 +62,11 @@ def course(request, college, university, course):
     if college.startswith("json"):
         college = college.split("-")[1]
         course = Question_paper.objects.filter(
-            course=course, university=university).order_by('year').distinct('year')
+            education_type=course, governing_body=university).order_by('period').distinct('period')
         qs_json = serializers.serialize('json', course)
         return HttpResponse(qs_json, content_type='application/json')
     course = Question_paper.objects.filter(
-        course=course, university=university).order_by('year').distinct('year')
+        course_name=course, governing_body=university).order_by('period').distinct('period')
     course = {'course': course}
     return render(request, 'question_papers/classes.html', course)
 
@@ -81,7 +81,7 @@ def year(request, college, university, course, year):
         qs_json = serializers.serialize('json', year)
         return HttpResponse(qs_json, content_type='application/json')
     year = Question_paper.objects.filter(
-        course=course, university=university).order_by('subject').distinct('subject')
+        course_name=course, governing_body=university).order_by('subject_name').distinct('subject_name')
     year = {'year': year}
     return render(request, 'question_papers/subjects.html', year)
 
@@ -90,7 +90,7 @@ def year(request, college, university, course, year):
 
 def question_papers(request, college, university, course, year, subject):
     papers = Question_paper.objects.filter(
-        subject=subject, university=university)
+        subject_name=subject, governing_body=university)
     papers = {'paper': papers}
     return render(request, 'question_papers/papers.html', papers)
 

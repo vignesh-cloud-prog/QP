@@ -17,25 +17,25 @@
     {% for clg in college %}
     {% ifchanged college %}
     <div class="titles">
-        <h1>{{clg.college| title}}<img src="{%static 'question_papers/images/college.png'%}" alt="#">
+        <h1>{{clg.education_type| title}}<img src="{%static 'question_papers/images/college.png'%}" alt="#">
         </h1>
     </div>
     {% endifchanged %}
     <div class="college">
         {% if clg.paper_type == 'board' %}
-        <a href=" {{clg.university}}/board">
+        <a href=" {{clg.governing_body}}/board">
             {% elif clg.paper_type == 'university'%}
-            <a href="{{clg.university}}">
+            <a href="{{clg.governing_body}}">
                 {% endif %}
 
-                {% if clg.university == 'manglore_university' %}
+                {% if clg.governing_body == 'manglore_university' %}
                 <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
-                {% elif clg.university == 'kuvempu_university'%}
+                {% elif clg.governing_body == 'kuvempu_university'%}
                 <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
                 {% else %}
                 <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
                 {% endif %}
-                <h4>{{clg.university| to_space |title}}</h4>
+                <h4>{{clg.governing_body| to_space |title}}</h4>
             </a>
     </div>
     {% endfor %}
