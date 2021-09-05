@@ -22,6 +22,7 @@ from question_papers import views
 urlpatterns = [
     path('search/', views.search, name='search'),
     path('filter', views.filters, name='filter'),
+    path('about', views.about, name='about'),
     path('filter_first_option', views.filter_first_option, name='filter_first_option'),
 
     path('', views.colleges, name='home'),

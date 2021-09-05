@@ -3,15 +3,23 @@
 {% load static %}
 {% load to_space %}
 
+{% comment %} Page title {% endcomment %}
 {% block title %}question_papers
 {% endblock title %}
+{% comment %} page description {% endcomment %}
+{% block description %} 
+{% for qp in allqp %}
+{{qp.education_type}}
+{% endfor %} question papers are available
+{% endblock description %}
 
+<!-- Main content -->
 {% block body %}
 <div class="colleges">
     <p>Welcome to QP World</p>
 
     <h1>Choose your board type : </h1>
-    
+
     {% for qp in allqp %}
     {% if qp.paper_type == 'board'%}
     <div class="college">
@@ -24,9 +32,9 @@
     {% empty %}
     Board papers are not uploaded till now!
     {% endfor %}
-    
+
     <h1>Choose your university course type :</h1>
-   
+
     {% for qp in allqp %}
     {% if qp.paper_type == 'university'%}
     <div class="college">

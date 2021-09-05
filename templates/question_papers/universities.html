@@ -3,13 +3,29 @@
 {% load static %}
 {% load to_space %}
 
+<!-- Page tite -->
+
 {% block title %}
 {% for title in college %}
 {% ifchanged college %}
-{{title.college}}_question_papers
+{{title.governing_body}}-question-papers
 {% endifchanged %}
 {% endfor %}
 {% endblock title %}
+
+<!-- Page description -->
+
+{% block description %}
+{% for description in college %}
+all
+{% ifchanged college %}
+
+{{description.governing_body}}
+{% endifchanged %}
+{% endfor %} question papers are available
+{% endblock description %}
+
+<!-- Main Content -->
 
 {% block body %}
 <div class="colleges">

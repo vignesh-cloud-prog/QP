@@ -9,13 +9,20 @@ def provider(request):
     if request.method=='POST':
         form = ProvideForm(request.POST or None, request.FILES)
         if form.is_valid():
-            provide=form.save()
-            print(provide)
-            provide.name = request.user
-            provide.save()
-            messages.success(
-                request, 'Thank you, we will check and update it soon .')
-            form = ProvideForm()
+            try:
+                provide=form.save()
+                print(provide)
+                provide.name = request.user
+                provide.save()
+                messages.success(
+                    request, 'Thank you, we will check and update it soon .')
+                form = ProvideForm()
+        
+            except:
+                messages.error(request,"something went wrong")
+        else:
+             messages.error(request,  form.errors)
+
 
     providers = {
         'form': ProvideForm

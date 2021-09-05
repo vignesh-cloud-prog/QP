@@ -5,16 +5,22 @@
 
 {% block title %}
 {% for title in course %} {% ifchanged college %}
-{{title.course}}_{{title.governing_body}}_{{title.period}}_question_papers
+{{title.course_name}}-{{title.governing_body}}-{{title.period}}-question-papers
 {% endifchanged %} {% endfor %}
 {% endblock title %}
+
+{% block description %} 
+{% for title in course %} {% ifchanged college %}
+{{title.course_name}}-{{title.governing_body}}-{{title.period}},
+{% endifchanged %} {% endfor %} question papers are available
+{% endblock description %}
 
 {% block body %}
 <div class="colleges">
   <p>Welcome to QP World</p>
   {% for cour in course %}
 
-  {% ifchanged course %}
+  {% ifchanged course_name %}
   <div class="titles">
     <h1>
       {{cour.education_type| to_space |title}}<img src="{%static 'question_papers/images/college.png' %}" alt="#" />

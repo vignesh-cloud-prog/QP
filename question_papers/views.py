@@ -123,6 +123,10 @@ def search(request):
     result = {'results': result}
     return render(request, 'question_papers/search.html', result)
 
+def about(request):
+
+    return render(request, 'question_papers/about.html')
+
 
 
 
