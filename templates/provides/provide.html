@@ -4,6 +4,10 @@
 {% block title %}question_papers-Providers_form
 {% endblock title %}
 
+{% block styles %}
+<link rel="stylesheet" href="{%static 'provides/css/provider_form.css'%}">
+{% endblock styles %}
+
 {% block body %}
 {% if request.user.is_authenticated %}
 <div class="container">
@@ -21,14 +25,20 @@
 
 </div>
 {% else %}
-Please Login
-we appreciate your contribution
-we are going to save your contribytion
-You can we all the papers that you provided in your profile page.
+<div class="provider_form_container">
+    <div>
+        <header>Please Login</header>
+        <main>we appreciate your contribution
+            we are going to save your contribytion
+            You can we all the papers that you provided in your profile page.</main>
+    </div>
 
-<a href="{% url 'login'%}"><button>Login</button></a>
-<a href="{% url 'signup'%}"><button>Signup</button></a>
+    <div>
+        <a  href="{% url 'login'%}"><button class="btn">Login</button></a>
+        <a href="{% url 'signup'%}"><button class="btn">Signup</button></a>
+    </div>
 
 
+</div>
 {% endif %}
 {% endblock body %}

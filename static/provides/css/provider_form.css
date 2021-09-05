@@ -1,0 +1,14 @@
+.provider_form_container{
+    padding: 1rem;
+    width: 80%;
+    max-width: 600px;
+    margin:2rem auto ;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
+    background: white;
+}
+.provider_form_container header{
+    font-weight: bold;
+}
+.provider_form_container main{
+    margin: 1rem 0;
+}
