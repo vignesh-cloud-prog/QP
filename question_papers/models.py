@@ -18,7 +18,7 @@ class Question_paper(models.Model):
     # year - It includes semister or years
     PERIOD_CHOICES=[
         ('first','first'),('second','second'),('third','third'),('fourth','fourth'),
-        ('fifth','fifth'),('sixth','sixth'),('seventh','seventh'),('eighth','eighth'),
+        ('fifth','fifth'),('sixth','sixth'),('seventh','seventh'),('eighth','eighth'),('none','none'),
     ]
     period=models.SlugField(max_length=12,choices=PERIOD_CHOICES,null=True,blank=True)
     # subject contains name of the subject

@@ -21,7 +21,7 @@ def provider(request):
             except:
                 messages.error(request,"something went wrong")
         else:
-             messages.error(request,  form.errors)
+             messages.warning(request,  form.errors)
 
 
     providers = {
