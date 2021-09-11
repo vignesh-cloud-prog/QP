@@ -4,4 +4,4 @@ register = template.Library()
 
 @register.filter
 def to_space(value):
-    return value.replace("_" , " ")
+    return value.replace("-" , " ")

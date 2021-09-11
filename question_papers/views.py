@@ -12,7 +12,8 @@ from django.contrib.auth.models import User
 
 
 def filter_first_option(request):
-    college = Question_paper.objects.order_by('college').distinct('college')
+    college = Question_paper.objects.order_by(
+        'education_type').distinct('education_type')
     qs_json = serializers.serialize('json', college)
     return HttpResponse(qs_json, content_type='application/json')
 
@@ -31,7 +32,7 @@ def college(request, college):
     if college.startswith("json"):
         college = college.split("-")[1]
         college = Question_paper.objects.filter(
-            college=college).order_by('university').distinct('university')
+            education_type=college).order_by('education_type').distinct('education_type')
         qs_json = serializers.serialize('json', college)
         return HttpResponse(qs_json, content_type='application/json')
 
@@ -47,11 +48,11 @@ def university(request, college, university):
     if college.startswith("json"):
         college = college.split("-")[1]
         university = Question_paper.objects.filter(
-            education_type=university, governing_body=college).order_by('course_name').distinct('course_name')
+        governing_body=university, education_type=college).order_by('course_name').distinct('course_name')
         qs_json = serializers.serialize('json', university)
         return HttpResponse(qs_json, content_type='application/json')
     university = Question_paper.objects.filter(
-            governing_body=university, education_type=college).order_by('course_name').distinct('course_name')
+        governing_body=university, education_type=college).order_by('course_name').distinct('course_name')
     university = {'university': university}
     return render(request, 'question_papers/courses.html', university)
 
@@ -62,7 +63,7 @@ def course(request, college, university, course):
     if college.startswith("json"):
         college = college.split("-")[1]
         course = Question_paper.objects.filter(
-            education_type=course, governing_body=university).order_by('period').distinct('period')
+        course_name=course, governing_body=university).order_by('period').distinct('period')
         qs_json = serializers.serialize('json', course)
         return HttpResponse(qs_json, content_type='application/json')
     course = Question_paper.objects.filter(
@@ -77,7 +78,7 @@ def year(request, college, university, course, year):
     if college.startswith("json"):
         college = college.split("-")[1]
         year = Question_paper.objects.filter(
-            course=course, university=university).order_by('subject').distinct('subject')
+        course_name=course, governing_body=university).order_by('subject_name').distinct('subject_name')
         qs_json = serializers.serialize('json', year)
         return HttpResponse(qs_json, content_type='application/json')
     year = Question_paper.objects.filter(
@@ -95,7 +96,6 @@ def question_papers(request, college, university, course, year, subject):
     return render(request, 'question_papers/papers.html', papers)
 
 
-
 # this function returns filtered elements to a html page
 
 
@@ -105,29 +105,24 @@ def filters(request):
     course = request.POST.get('course')
     year = request.POST.get('year')
     subject = request.POST.get('subject')
-    filter_obj = Question_paper.objects.filter(college=college).filter(year=year).filter(
-        course=course).filter(subject=subject).filter(university=university)
+    filter_obj = Question_paper.objects.filter(education_type=college).filter(period=year).filter(
+        course_name=course).filter(subject_name=subject).filter(governing_body=university)
     filter_obj = {'context': filter_obj}
     return render(request, 'question_papers/filter.html', filter_obj)
-
-
-
-
 
 
 def search(request):
     query = request.GET['query']
     query = query.lower()
-    query = query.replace(" ", "_")
+    query = query.replace(" ", "-")
     result = Question_paper.objects.filter(complete_ref__icontains=query)
     result = {'results': result}
     return render(request, 'question_papers/search.html', result)
 
+
 def about(request):
 
     return render(request, 'question_papers/about.html')
-
-
 
 
 # TWITTER_ENDPOINT = 'https://twitter.com/intent/tweet?text=%s'

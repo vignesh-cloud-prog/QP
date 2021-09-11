@@ -42,7 +42,7 @@ class Question_paper(models.Model):
         self.course_name=slugify(self.course_name)
         self.subject_name=slugify(self.subject_name)
         self.paper_title=slugify(self.paper_title)
-        self.complete_ref=f"{self.course_name}_{self.subject_name}_{self.paper_year}_{self.paper_title}_{self.governing_body}_{self.education_type}"
+        self.complete_ref=f"{self.governing_body}-{self.course_name}-{self.subject_name}-{self.paper_title}-{self.paper_year}-{self.education_type}"
         self.complete_ref=self.complete_ref.lower()
         super(Question_paper,self).save(*args, **kwargs)   
 

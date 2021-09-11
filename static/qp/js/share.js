@@ -1,6 +1,6 @@
 
 function sharefunc(link,message) {
-    let url=`${window.location.protocol}//${window.location.hostname}/${link}`
+    let url=`${window.location.origin}${link}`
     document.getElementById("close_menu").click();
     // profile.style.display="none";
     share=document.getElementById("appshare");
