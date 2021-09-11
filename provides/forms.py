@@ -5,7 +5,7 @@ class ProvideForm(forms.ModelForm):
     class Meta:
         model = Provide
         fields = '__all__'
-        exclude = ['provider','provided_date','id']
+        exclude = ['provider','provider_email','provided_date','id']
         labels={
             'doc':("Document"),
         }

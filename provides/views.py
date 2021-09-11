@@ -12,7 +12,8 @@ def provider(request):
             try:
                 provide=form.save()
                 print(provide)
-                provide.name = request.user
+                provide.provider = request.user
+                provide.provider_email = request.user.email
                 provide.save()
                 messages.success(
                     request, 'Thank you, we will check and update it soon .')

@@ -81,7 +81,7 @@
             <hr width="100%"><br>
             <p><a href="{% url 'profile'%}">View Profile</a></p>
             <p><a href="#"
-                    onclick="sharefunc('http:&#47;&#47;127.0.0.1:8000&#47;register&#47;{{request.user.profile.code}}','Hey, join QP Web the great website to share question papers')">Reffer
+                    onclick="sharefunc('register&#47;{{request.user.profile.code}}','Hey, join QP Web the great website to share question papers')">Reffer
                     friend</a> </p>
             {% endif %}
 

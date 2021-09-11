@@ -21,17 +21,22 @@ def pushed(request):
         college = request.POST['college']
         university = request.POST['university']
         course = request.POST['course']
-        if paper_type=="Board":
-            course=="Board"
+        print(paper_type)
+        if paper_type=="board":
+            course="board"
+        print(course)
         year = request.POST['semister']
         subject = request.POST['subject']
-        examination = request.POST['examination']
+        examination_year = request.POST['examination_year']
+      
+        examination_title = request.POST['examination_title']
         paper = request.POST['paper']
         date = request.POST['date']
+       
         pro_id = request.POST['id']
         emailid = request.POST['email']
-        push = Question_paper(provider=from_user, paper_type=paper_type, college=college, university=university,
-                               course=course, year=year, subject=subject, examination=examination, paper=paper)
+        push = Question_paper(provider=from_user, paper_type=paper_type, education_type=college, governing_body=university,
+                               course_name=course, period=year, subject_name=subject, paper_year=examination_year,paper_title=examination_title, paper_doc=paper)
         push.save()
 
         pull = Provide(id=pro_id)

@@ -7,6 +7,7 @@ from django.core.validators import FileExtensionValidator
 # Create your models here.
 class Provide(models.Model):
     provider=models.ForeignKey(User, on_delete=models.SET_DEFAULT,default=1,blank=True)
+    provider_email=models.EmailField()
     # All fields used below are same as Question_paper model inter changebly used between universities and boards related items
     PAPER_CHOICES=[('board','Board'),('university','University')]
     paper_type=models.CharField(max_length=100,choices=PAPER_CHOICES)
@@ -23,7 +24,7 @@ class Provide(models.Model):
     paper_year = models.DateField()
     paper_title=models.CharField(max_length=100)
     doc = models.FileField(upload_to='provider',validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
-    provided_date=models.DateTimeField(default=datetime.now)
+    provided_date=models.DateTimeField(auto_now_add=True,)
     
     
     def __str__(self):

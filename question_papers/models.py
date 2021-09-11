@@ -2,6 +2,8 @@ from django.db import models
 from datetime import datetime
 from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
+
 
 # It is suggested to replace all spaces with underscore for best results
 class Question_paper(models.Model):
@@ -14,7 +16,7 @@ class Question_paper(models.Model):
     # university field contains diffrent board/ universities (Ex: Mangalore University, CBSE)
     governing_body=models.SlugField(max_length=800 , null=True,blank=True)
     # course - includes all courses or streams in university and for boards it's by default "board"
-    course_name=models.SlugField(max_length=800 , null=True,blank=True)
+    course_name=models.SlugField(max_length=800,default="board")
     # year - It includes semister or years
     PERIOD_CHOICES=[
         ('first','first'),('second','second'),('third','third'),('fourth','fourth'),
@@ -24,7 +26,7 @@ class Question_paper(models.Model):
     # subject contains name of the subject
     subject_name= models.SlugField(max_length=100,null=True,blank=True)
     # examination holds exam info like examination year
-    paper_year = models.DateField(auto_now=False,auto_now_add=False)
+    paper_year = models.DateField()
     #examination
     paper_title=models.SlugField(max_length=100)
     paper_doc = models.FileField(upload_to='allqps',validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
@@ -36,6 +38,10 @@ class Question_paper(models.Model):
         return  f"{self.paper_type}  {self.education_type}  {self.course_name} {self.period} {self.subject_name} {self.paper_year}"
 
     def save(self, *args, **kwargs):
+        self.governing_body=slugify(self.governing_body)
+        self.course_name=slugify(self.course_name)
+        self.subject_name=slugify(self.subject_name)
+        self.paper_title=slugify(self.paper_title)
         self.complete_ref=f"{self.course_name}_{self.subject_name}_{self.paper_year}_{self.paper_title}_{self.governing_body}_{self.education_type}"
         self.complete_ref=self.complete_ref.lower()
         super(Question_paper,self).save(*args, **kwargs)   

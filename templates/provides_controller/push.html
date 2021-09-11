@@ -24,7 +24,7 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="pro" value="{{item.name}}">
+                    <input type="text" name="pro" value="{{item.provider}}">
 
                 </div>
             </div>
@@ -35,7 +35,7 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="email" value="{{item.email}}">
+                    <input type="email" name="email" value="{{item.provider_email}}">
 
                 </div>
             </div>
@@ -57,7 +57,7 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="semister" value="{{item.sem}}">
+                    <input type="text" name="semister" value="{{item.period}}">
 
                 </div>
             </div>
@@ -67,7 +67,7 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="subject" value="{{item.sub}}">
+                    <input type="text" name="subject" value="{{item.subject_name}}">
 
                 </div>
             </div>
@@ -77,7 +77,7 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="course" value="{{item.claass}}">
+                    <input type="text" name="course" value="{{item.course_name}}">
 
                 </div>
             </div>
@@ -87,7 +87,7 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="university" value="{{item.board}}">
+                    <input type="text" name="university" value="{{item.governing_body}}">
 
                 </div>
             </div>
@@ -97,17 +97,27 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="college" value="{{item.level}}">
+                    <input type="text" name="college" value="{{item.education_type}}">
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-25">
-                    <label for="examination">Examination year</label>
+                    <label for="examination_year">Examination year</label>
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="examination" value="{{item.papertitle}}">
+                    <input type="date"  name="examination_year" value="{{item.paper_year|date:'Y-m-d'}}">
+                    {{item.paper_year|date:'Y-m-d'}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="examination_title">Examination title</label>
+
+                </div>
+                <div class="col-75">
+                    <input type="text" name="examination_title" value="{{item.paper_title}}">
 
                 </div>
             </div>
@@ -117,7 +127,7 @@
 
                 </div>
                 <div class="col-75">
-                    <input type="text" name="date" value="{{item.provide_date}}">
+                    <input type="text" name="date" value="{{item.provided_date}}">
 
                 </div>
             </div>
