@@ -3,4 +3,5 @@ QP_Env
 db.sqlite3
 qp/git.txt
 media/
+.vscode/
 
