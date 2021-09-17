@@ -25,13 +25,13 @@ urlpatterns = [
     path('about', views.about, name='about'),
     path('filter_first_option', views.filter_first_option, name='filter_first_option'),
 
-    path('', views.colleges, name='home'),
         path('<str:college>/', views.college, name='college'),
         path('<str:college>/<str:university>/', views.university, name='university'),
         path('<str:college>/<str:university>/<str:course>/', views.course, name='course'),
         path('<str:college>/<str:university>/<str:course>/<str:year>/', views.year, name='year'),
         path('<str:college>/<str:university>/<str:course>/<str:year>/<str:subject>/', views.question_papers, name='question_papers'),
         
+    path('', views.colleges, name='home'),
         # path('board/<str:board_type>/', views.college, name='college'),
         # path('board/<str:board_type>/<str:board_name>/', views.university, name='university'),
         # path('board/<str:board_type>/<str:board_name>/', views.course, name='course'),

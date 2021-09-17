@@ -84,6 +84,7 @@
             url: "{% url 'resend_otp' %}",
             data: { usr: username },
             success: function (data) {
+                console.log(data);
                 mess.innerText = data;
 
             }

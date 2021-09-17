@@ -74,7 +74,7 @@ def signup(request, *args, **kwargs):
                 mess,
                 'qpcom80@gmail.com',
                 [usr.email],
-                fail_silently=True
+                # fail_silently=True
             )
 
             return render(request, 'users/register.html', {'otp': True, 'usr': usr})
@@ -86,6 +86,7 @@ def signup(request, *args, **kwargs):
 
 
 def resend_otp(request, *args, **kwargs):
+    print("function called")
     if request.method == "GET":
         get_usr = request.GET['usr']
         if User.objects.filter(username=get_usr).exists() and not User.objects.get(username=get_usr).is_active:
@@ -99,11 +100,13 @@ def resend_otp(request, *args, **kwargs):
                 mess,
                 'qpcom80@gmail.com',
                 [usr.email],
-                fail_silently=False
+                # fail_silently=False
             )
+            # messages.success(
+            #         request, f'{usr.username} your otp is sent to {user.email}')
             return HttpResponse("Resend")
 
-    return HttpResponse("Can't Send ")
+    return HttpResponse("Can't Send")
 
 
 def login_view(request):
