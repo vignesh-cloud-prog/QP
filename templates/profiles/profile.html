@@ -41,18 +41,24 @@
             {{paper.governing_body}}
             {{paper.course_name}}
             <br>
+            {% empty %}
+            No records found
             {% endfor %}
             <p class="userlinks" id="papers_reviewing">Papers provided by you reviewing</p>
             {% for items in my_papers_reviewing %}
             {{items.board}}
             {{items.claass}}
             <br>
+            {% empty %}
+            No records found
             {% endfor %}
             <p class="userlinks" id="refs_by_me"> People reffered by you</p>
             {% for people in my_recs %}
             {{people.user.first_name}}
             {{people.user.username}}
             <br>
+            {% empty %}
+            No records found
             {% endfor %}
         </div>
     </div>

@@ -1,5 +1,5 @@
 import random
-from django.http import HttpResponse
+from django.http import JsonResponse,HttpResponse
 from django.contrib.auth.models import User
 from .models import UserOTP
 from profiles.models import Profile
@@ -74,7 +74,7 @@ def signup(request, *args, **kwargs):
                 mess,
                 'qpcom80@gmail.com',
                 [usr.email],
-                # fail_silently=True
+                fail_silently=True
             )
 
             return render(request, 'users/register.html', {'otp': True, 'usr': usr})
@@ -85,10 +85,10 @@ def signup(request, *args, **kwargs):
     return render(request, 'users/register.html', {'form': form})
 
 
-def resend_otp(request, *args, **kwargs):
+def resend_otp(request, usr):
     print("function called")
     if request.method == "GET":
-        get_usr = request.GET['usr']
+        get_usr = usr
         if User.objects.filter(username=get_usr).exists() and not User.objects.get(username=get_usr).is_active:
             usr = User.objects.get(username=get_usr)
             usr_otp = random.randint(100000, 999999)
@@ -100,13 +100,13 @@ def resend_otp(request, *args, **kwargs):
                 mess,
                 'qpcom80@gmail.com',
                 [usr.email],
-                # fail_silently=False
+                fail_silently=True
             )
-            # messages.success(
-            #         request, f'{usr.username} your otp is sent to {user.email}')
-            return HttpResponse("Resend")
+            messages.success(
+                    request, f'{usr.username} your otp is sent to {usr.email}')
+            return JsonResponse({"msg":"Resend"})
 
-    return HttpResponse("Can't Send")
+    return JsonResponse({"msg":"Can't Send"})
 
 
 def login_view(request):
@@ -149,7 +149,7 @@ def login_view(request):
                 mess,
                 'qpcom80@gmail.com',
                 [usr.email],
-                fail_silently=False
+                fail_silently=True
             )
             return render(request, 'users/login.html', {'otp': True, 'usr': usr})
         else:

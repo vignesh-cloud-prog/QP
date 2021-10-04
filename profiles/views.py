@@ -4,8 +4,10 @@ from .models import Profile
 from django.contrib.auth.models import User
 from question_papers.models import Question_paper
 from provides.models import Provide
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def profile_view(request):
     my_papers_reviewing = Provide.objects.filter(provider=request.user)
     my_papers_uploaded = Question_paper.objects.filter(provider=request.user)

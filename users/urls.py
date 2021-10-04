@@ -24,7 +24,7 @@ urlpatterns = [
     path('<str:ref_code>', views.signup,name="signup_with_ref"),
     path('login/', views.login_view,name="login"),
     path('logout/', views.logoutUser,name="logout"),
-    path('resendOTP/', views.resend_otp,name="resend_otp"),
+    path('resendOTP/<str:usr>', views.resend_otp,name="resend_otp"),
     path("password-reset/", PasswordResetView.as_view(template_name='users/password_reset.html'),name="password_reset"),
 	path("password-reset/done/",PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'), name="password_reset_done"),
 	path("password-reset-confirm/<uidb64>/<token>/",PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'),name="password_reset_confirm"),

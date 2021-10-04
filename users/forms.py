@@ -8,4 +8,10 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model= User
         fields=['username','name','email','password1','password2']
+        error_messages = {
+            'username': {
+                'unique': ("A user with that username already exists. If it's you goto login"),
+            },
+        }
+
 

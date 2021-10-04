@@ -9,35 +9,36 @@
 {% block body %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 {% if otp %}
-<div class="login_container">
 
-    <form method="POST">
+
+    <form method="POST" class="container otp_container">
         {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom display">
-                <h3 class="float-left">Verify Your Email</h3>
 
-            </legend>
-            <input type="hidden" name="usr" value="{{usr.username}}">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">OTP</span>
-                </div>
-                <input type="text" class="form-control" placeholder="Enter Your OTP" aria-label="OTP"
-                    aria-describedby="basic-addon1" name='otp'>
-            </div>
 
-        </fieldset>
-        <div class="form-grounp">
-            <button class="btn mainbtn" type="submit">Verify</button>
-            <small class="float-right text-muted"><i><a href="#" class="text-dark"
-                        onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')"><i id="resendOTPmess">Resend</i>
-                        OTP</a></small>
+        <h3 class="float-left">Verify Your Email</h3>
 
+
+        <input type="hidden" name="usr" value="{{usr.username}}">
+        <div class="otp_field">
+
+            <p>One Time Password</p>
+
+            <input type="text" class="form-control" placeholder="Enter Your OTP" aria-label="OTP"
+                aria-describedby="basic-addon1" name='otp'>
         </div>
 
+        <button class="btn mainbtn" type="submit">Verify</button>
+
+
+        <a href="#" class="text-dark" onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')">
+            <i id="resendOTPmess">Resend</i>
+            OTP</a>
+
+
+
+
     </form>
-</div>
+
 {% else %}
 <div class="container login_form">
     <div class="login_head container">
@@ -60,33 +61,15 @@
     <div class="login_footer container">
         <button type="submit">Log In</button>
         </form>
-        {% endif %}
+
         <hr width="90%">
         <small><a href="{% url 'password_reset'%}" class="text-dark"> Forgotten
                 Password?</a></small>
         <small> New to QPWeb - <a href="{% url 'signup'%}">SignUp</a> </small>
     </div>
 </div>
-
+{% endif %}
+{% block scripts_tag %}
+<script src="{%static 'users/js/user.js'%}"></script>
+{% endblock scripts_tag %}
 {% endblock body %}
-<script>
-    function ReSendOTP(username, mess_id) {
-
-        mess = document.getElementById(mess_id);
-        mess.innerText = "Sending...";
-        $.ajax({
-            type: 'GET',
-            url: "{% url 'resend_otp' %}",
-            data: { usr: username },
-            success: function (data) {
-                mess.innerText = data;
-
-            }
-        })
-
-
-    }
-
-
-
-</script>

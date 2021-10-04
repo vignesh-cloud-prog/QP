@@ -9,7 +9,7 @@
 {% if otp %}
 <form method="POST">
     {% csrf_token %}
-    <div class="container register_form">
+    <div class="container otp_container">
         <legend class="">
             <h3 class="">Verify Your Email</h3>
         </legend>
@@ -22,8 +22,6 @@
                 name='otp'>
         </div>
 
-    </div>
-    <div class="">
         <button class="" type="submit">Verify</button>
 
         <small class=""><i><a href="#" class="" onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')"><i
@@ -75,20 +73,8 @@
 </div>
 
 
-<script>function ReSendOTP(username, mess_id) {
 
-        mess = document.getElementById(mess_id);
-        mess.innerText = "Sending...";
-        $.ajax({
-            type: 'GET',
-            url: "{% url 'resend_otp' %}",
-            data: { usr: username },
-            success: function (data) {
-                console.log(data);
-                mess.innerText = data;
-
-            }
-        })
-    }</script>
-
+    {% block scripts_tag %}
+    <script src="{%static 'users/js/user.js'%}"></script>
+    {% endblock scripts_tag %}
 {% endblock body %}
