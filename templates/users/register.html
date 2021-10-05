@@ -4,77 +4,78 @@
 {% endblock title %}
 
 {% block body %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<div class="container">
 
-{% if otp %}
-<form method="POST">
-    {% csrf_token %}
-    <div class="container otp_container">
-        <legend class="">
-            <h3 class="">Verify Your Email</h3>
-        </legend>
-        <input type="hidden" name="usr" value="{{usr.username}}">
-        <div class="">
-            <div class="">
-                <span class="" id="basic-addon1">OTP</span>
-            </div>
-            <input type="text" class="" placeholder="Enter Your OTP" aria-label="OTP" aria-describedby="basic-addon1"
-                name='otp'>
-        </div>
-
-        <button class="" type="submit">Verify</button>
-
-        <small class=""><i><a href="#" class="" onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')"><i
-                        id="resendOTPmess">Resend</i>
-                    OTP</a></small>
-
-    </div>
-
-</form>
-{% else %}
-<div class="container register_form">
-    <div class="login_head">
-        <h1>QP Web</h1>
-        <p id="desc">A platform to get your academics question papers and also give to some one like us.</p>
-    </div>
-    <hr width="90%">
-    <h1 class="title">Register Now</h1>
+    {% if otp %}
     <form method="POST">
         {% csrf_token %}
-
-        {% for field in form %}
-
-        <div class="field">
-            <div class="lable_title">{{field.label_tag}}</div>
-            <div class="input_data">
-                {% if field.errors %}
-                <div class="input_error"> {{field.errors}} </div>
-                {% endif %}
-                <div class="input_tag">{{field}} </div>
-                {% if field.help_text %}
-                <div class="help_text">{{field.help_text|safe}} </div>
-                {% endif %}
+        <div class="container otp_container">
+            <legend class="">
+                <h3 class="">Verify Your Email</h3>
+            </legend>
+            <input type="hidden" name="usr" value="{{usr.username}}">
+            <div class="">
+                <div class="">
+                    <span class="" id="basic-addon1">OTP</span>
+                </div>
+                <input type="number" required placeholder="Enter Your OTP" aria-label="OTP"
+                    aria-describedby="basic-addon1" name='otp'>
             </div>
+
+            <button class="" type="submit">Verify</button>
+
+            <small class=""><i><a href="#" class="" onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')"><i
+                            id="resendOTPmess">Resend</i>
+                        OTP</a></small>
+
         </div>
 
-        {% endfor %}
-
-        <button class="btn" type="submit">Next</button>
     </form>
-    <hr width="90%">
-    <br>
-    <div class="">
-        <small class="">Already have an account ?<a href="{% url 'login' %}">Login</a>
-        </small>
-    </div>
+    {% else %}
+    <div class="container register_form">
+        <div class="login_head">
+            <h1>QP Web</h1>
+            <p id="desc">A platform to get your academic question papers and also give to some one like you.</p>
+        </div>
+        <hr width="90%">
+        <h1 class="title">SignUp</h1>
+        <form method="POST">
+            {% csrf_token %}
 
-    {% endif %}
-    <br>
-</div>
+            {% for field in form %}
+
+            <div class="field">
+                <div class="lable_title">{{field.label_tag}}</div>
+                <div class="input_data">
+                    {% if field.errors %}
+                    <div class="input_error"> {{field.errors}} </div>
+                    {% endif %}
+                    <div class="input_tag">{{field}} </div>
+                    {% if field.help_text %}
+                    <div class="help_text">{{field.help_text|safe}} </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% endfor %}
+
+            <button class="btn" type="submit">Next</button>
+        </form>
+        <hr width="90%">
+        <br>
+        <div class="">
+            <small class="">Already have an account ?<a href="{% url 'login' %}">Login</a>
+            </small>
+        </div>
+
+        {% endif %}
+        <br>
+    </div>
 
 
 
     {% block scripts_tag %}
     <script src="{%static 'users/js/user.js'%}"></script>
     {% endblock scripts_tag %}
+</div>
 {% endblock body %}

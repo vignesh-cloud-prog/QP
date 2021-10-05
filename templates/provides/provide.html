@@ -10,18 +10,20 @@
 
 {% block body %}
 {% if request.user.is_authenticated %}
-<div class="container">
+<div class="provider_form_container">
     <h3>Provide Question Papers</h3>
     <div class="form">
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             {{form.as_p}}
     </div>
-    <button id="btn" type="submit" value="Submit" />Provide</button>
+    
+    <button class="btn" type="submit" value="Submit" />Provide</button>
+
+    <button class="btn" style="background-color: palevioletred;" id="ask"
+        onclick="sharefunc('/provider','Hello, Help others 😊.You can provide question papers through QP Web.')">Ask
+        your friend</button>
     </form>
 
-    <button style="background-color: palevioletred;" id="ask"
-        onclick="sharefunc('http:&#47;&#47;127.0.0.1:8000&#47;provide&#47;','Hello, Can you provide question papers through QP Web. Help others 😊')">Ask
-        your friend</button>
 
 </div>
 {% else %}

@@ -1,6 +1,7 @@
 {% load static %}
 {% if messages %}
 {% for message in messages %}
+<div class="msg_wrapper">
 <div class="{{ message.tags }}" id="msg_box">
     <div class="first_row">
         <p id="msg_title">Message :</p>
@@ -13,6 +14,7 @@
 
     {% comment %} <label for="click" class="msg_close_btn"
         onclick="this.parentElement.style.display='none';">Done</label> {% endcomment %}
+</div>
 </div>
 {% endfor %}
 {% endif %}
@@ -44,7 +46,7 @@
         <div class="explore flex">
             <div class="search">
                 <form class="flex" action="{% url 'search'%}">
-                    <input type="text" placeholder="search here" required id="search_input" name="query">
+                    <input type="text" placeholder="search " required id="search_input" name="query">
                     <button type="submit" id="search_btn"><img src="{%static 'question_papers/images/search.png'%}"
                             alt="Search"></button>
 
@@ -81,7 +83,7 @@
             <hr width="100%"><br>
             <p><a href="{% url 'profile'%}">View Profile</a></p>
             <p><a href="#"
-                    onclick="sharefunc('register&#47;{{request.user.profile.code}}','Hey, join QP Web the great website to share question papers')">Reffer
+                    onclick="sharefunc('/accounts/{{request.user.profile.code}}','Hey, join QP Web the great website to share and get question papers')">Reffer
                     friend</a> </p>
             {% endif %}
 

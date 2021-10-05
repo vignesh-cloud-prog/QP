@@ -13,6 +13,7 @@ a {
   max-width: 1200px;
   margin: auto;
   min-height: 100vh;
+
   margin-bottom: 2rem;
 }
 
@@ -50,7 +51,6 @@ a {
 
 #navitems {
   margin-bottom: 0;
-
   font-family: "Caladea", serif;
   margin-left: -2rem;
 }
@@ -88,13 +88,19 @@ a {
   width: 100%;
   font-size: 2rem;
   height: 30px;
+  outline: none;
   border: none;
 }
+
 
 .search button {
   max-width: 10%;
   background-color: white;
   border: none;
+}
+.search button img{
+  height: 100%;
+  width: 100%;
 }
 #user {
   margin-left: -1rem;
@@ -380,12 +386,12 @@ a {
   justify-content: center;
   align-items: center;
   color: white;
-  max-width: 90%;
+  max-width: 100%;
   margin: auto;
   padding: 1rem 5rem;
 
   flex-wrap: wrap;
-  margin: 2px auto;
+  margin: auto;
 }
 
 .center p {
@@ -395,7 +401,7 @@ a {
 
 @media only screen and (max-width: 1024px) {
   .colleges {
-    margin: 0.5rem;
+    margin: 1rem;
     padding: 0.5rem;
     margin-top: 2rem;
   }

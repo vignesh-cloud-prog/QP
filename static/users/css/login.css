@@ -3,11 +3,12 @@
     opacity: 25;
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
     max-width: 320px;
     max-height: 100vh;
     align-items: center;
     justify-content: center;
+    margin: 2rem auto;
     
     
 }

@@ -33,7 +33,7 @@
     Board papers are not uploaded till now!
     {% endfor %}
 
-    <h1>Choose your university course type :</h1>
+    <h1>Choose your course type :</h1>
 
     {% for qp in allqp %}
     {% if qp.paper_type == 'university'%}
@@ -49,4 +49,6 @@
     {% endfor %}
 
 </div>
+{% include 'provides/provide_pitch.html' %}
+
 {% endblock body %}

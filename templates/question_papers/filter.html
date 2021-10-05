@@ -6,64 +6,70 @@
 
 {% block body %}
 {% if context %}
-<div class="colleges">
-    {% for title in context %}
-    {% ifchanged course_name %}
-    <div class="titles">
-        <h1>{{title.education_type}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
-        </h1>
-        <h1>{{title.governing_body}}{% if title.governing_body == 'Mangolre University' %}
-            <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
-            {% elif title.governing_body == 'Kuvempu University'%}
-            <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
-            {% else %}
-            <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
-            {% endif %}
-        </h1>
-        <h1>{{title.course_name}} <img src="{%static 'question_papers/images/course.png'%}" alt="#">
-        </h1>
-        <a href="../">
-            <h1>{{title.period}} <img src="{%static 'question_papers/images/year.png'%}" alt="#">
+<div class="container">
+    <h1>Filtered Items</h1>
+    <div class="colleges">
+        {% for title in context %}
+        {% ifchanged course_name %}
+        <div class="titles">
+            <h1>{{title.education_type}}<img src="{%static 'question_papers/images/college.png' %}" alt="#">
             </h1>
-        </a>
-        <h1>{{title.subject_name}}<img src="{%static 'question_papers/images/subject.jpg'%}" alt="#"></h1>
-    </div>
-    {% endifchanged %}
-    {% endfor %}
-    <div class="paper">
-        {% for prepaper in context %}
+            <h1>{{title.governing_body}}{% if title.governing_body == 'Mangolre University' %}
+                <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#">
+                {% elif title.governing_body == 'Kuvempu University'%}
+                <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#">
+                {% else %}
+                <img src="{%static 'question_papers/images/university.jpg'%}" alt="#">
+                {% endif %}
+            </h1>
+            <h1>{{title.course_name}} <img src="{%static 'question_papers/images/course.png'%}" alt="#">
+            </h1>
+            <a href="../">
+                <h1>{{title.period}} <img src="{%static 'question_papers/images/year.png'%}" alt="#">
+                </h1>
+            </a>
+            <h1>{{title.subject_name}}<img src="{%static 'question_papers/images/subject.jpg'%}" alt="#"></h1>
+        </div>
+        {% endifchanged %}
+        {% endfor %}
         <div class="paper">
-            <div id="row">
-                <a href="{{prepaper.paper_doc.url}}" target="_blank">
-                    <h1 id="paper">{{prepaper.paper_title}} - {{prepaper.paper_year}}  </h1>
-                </a>
-                <div class="icons">
-                    <a href="{{prepaper.paper_doc.url}}" target="_blank" class="link">Open</a>
-                    <a href="{{prepaper.paper_doc.url}}" download class="link">
-                        <img src="{%static 'question_papers/images/download.png'%}" alt="download">
+            {% for prepaper in context %}
+            <div class="paper">
+                <div id="row">
+                    <a href="{{prepaper.paper_doc.url}}" target="_blank">
+                        <h1 id="paper">{{prepaper.paper_title}} - {{prepaper.paper_year}} </h1>
                     </a>
-                    <i class="link" id="share"  onclick="sharefunc(`{{prepaper.paper_doc.url}}`,'see this question paper from QP Web')">
-                        <img src="{%static 'question_papers/images/share.png'%}" alt="share">
-                       
-                    </i>
+                    <div class="icons">
+                        <a href="{{prepaper.paper_doc.url}}" target="_blank" class="link">Open</a>
+                        <a href="{{prepaper.paper_doc.url}}" download class="link">
+                            <img src="{%static 'question_papers/images/download.png'%}" alt="download">
+                        </a>
+                        <i class="link" id="share"
+                            onclick="sharefunc(`{{prepaper.paper_doc.url}}`,'see this question paper from QP Web')">
+                            <img src="{%static 'question_papers/images/share.png'%}" alt="share">
+
+                        </i>
+                    </div>
                 </div>
             </div>
+
+            {% endfor %}
         </div>
+        {% else %}
+        <div class="errors">
+            <p>Filter does not match </p><br>
+            <p>MAKE SURE_</p><br>
+            <li>You selected all correct relate options
+            </li><br>
+            <button>
+                <a href="../">Goback</a>
 
-        {% endfor %}
+            </button>
+        </div>
+        {% endif %}
+
     </div>
-    {% else %}
-    <div class="errors">
-        <p>Filter does not match </p><br>
-        <p>MAKE SURE_</p><br>
-        <li>You selected all correct relate options
-        </li><br>
-        <button>
-            <a href="../">Goback</a>
-
-        </button>
-    </div>
-    {% endif %}
-
 </div>
+{% include 'provides/provide_pitch.html' %}
+
 {% endblock body %}
