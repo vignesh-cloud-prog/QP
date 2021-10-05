@@ -29,6 +29,7 @@ all
 {% block body %}
 <div class="colleges">
     <p>Welcome to QP World</p>
+    
     {% for uni in university %}
     {% ifchanged college %}
     <div class="titles">
@@ -43,6 +44,8 @@ all
             {% endif %}
         </h1>
     </div>
+    <b class="sub_head">Choose your course:</b>
+
     {% endifchanged %}
     <div class="college">
         <a href="{{uni.course_name}}">

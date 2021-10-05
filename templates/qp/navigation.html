@@ -60,10 +60,10 @@
     {% if request.user.is_authenticated %}
     {% if request.user.profile.pic %}
 
-    <img id="user" src="{{request.user.profile.pic.url}}" alt="You">
+    <img class="user_pic" id="user" src="{{request.user.profile.pic.url}}" alt="You">
 
     {% else %}
-    <img id="user" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
+    <img class="user_pic" id="user" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
 
     {% endif %}
     {% else %}

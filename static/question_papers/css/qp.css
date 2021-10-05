@@ -102,9 +102,10 @@ a {
   height: 100%;
   width: 100%;
 }
-#user {
+.user_pic {
   margin-left: -1rem;
-  width: 3rem;
+  width: 1.5rem;
+  max-width: 2rem;
   border-radius: 50%;
 }
 
@@ -324,7 +325,8 @@ a {
 .colleges p {
   display: block;
   width: 90%;
-  margin: auto;
+  margin:   auto;
+  margin-bottom: 1rem;
   text-align: center;
   font-weight: bolder;
   font-size: 2rem;
@@ -375,6 +377,16 @@ a {
   margin-left: 0.2rem;
   width: auto;
   float: left;
+}
+
+.sub_head{
+  width: 100%;
+  display: block;
+  font-size: medium;
+  text-align: left;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+
 }
 
 /* footer section */

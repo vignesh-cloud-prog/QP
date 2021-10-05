@@ -1,157 +1,155 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>push</title>
-    <link rel="stylesheet" href="{%static 'provides_controller/css/push.css'%}">
+{% block title %}question_papers-Providers_form
+{% endblock title %}
 
-</head>
+{% block styles %}
+<link rel="stylesheet" href="{%static 'provides_controller/css/push.css'%}">
+{% endblock styles %}
 
-<body>
-    <h1>Push controller</h1>
-    {% for item in pushes %}
-    <form action="pushed" method="POST">
+{% block body %}
+<h1 id="title">Push controller</h1>
+{% for item in pushes %}
+<form  method="POST">
     {% csrf_token %}
 
-        <div class="container">
-            <input id="id" type="text" name="id" value="{{item.id}}">
-            <div class="row">
-                <div class="col-25">
-                    <label for="provider">Provider Name:</label>
+    <div class="push_container">
+        <input required readonly id="id" type="text" name="id" value="{{item.id}}">
+        <div class="row">
+            <div class="col-25">
+                <label for="provider">Provider Name:</label>
 
-                </div>
-                <div class="col-75">
-                    <input type="text" name="pro" value="{{item.provider}}">
-
-                </div>
             </div>
-           
-            <div class="row">
-                <div class="col-25">
-                    <label for="pro-email">Provider e-mail :</label>
+            <div class="col-75">
+                <input required type="text" name="pro" value="{{item.provider}}">
 
-                </div>
-                <div class="col-75">
-                    <input type="email" name="email" value="{{item.provider_email}}">
-
-                </div>
             </div>
-
-            <div class="row">
-                <div class="col-25">
-                    <label for="provider">Paper Type:</label>
-
-                </div>
-                <div class="col-75">
-                    <input type="text" name="paper_type" value="{{item.paper_type}}">
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-25">
-                    <label for="semister">Semister :</label>
-
-                </div>
-                <div class="col-75">
-                    <input type="text" name="semister" value="{{item.period}}">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="subject">Subject: </label>
-
-                </div>
-                <div class="col-75">
-                    <input type="text" name="subject" value="{{item.subject_name}}">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="course">Course: </label>
-
-                </div>
-                <div class="col-75">
-                    <input type="text" name="course" value="{{item.course_name}}">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="university">University</label>
-
-                </div>
-                <div class="col-75">
-                    <input type="text" name="university" value="{{item.governing_body}}">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="college">College type</label>
-
-                </div>
-                <div class="col-75">
-                    <input type="text" name="college" value="{{item.education_type}}">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="examination_year">Examination year</label>
-
-                </div>
-                <div class="col-75">
-                    <input type="date"  name="examination_year" value="{{item.paper_year|date:'Y-m-d'}}">
-                    {{item.paper_year|date:'Y-m-d'}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="examination_title">Examination title</label>
-
-                </div>
-                <div class="col-75">
-                    <input type="text" name="examination_title" value="{{item.paper_title}}">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="date">Provided date</label>
-
-                </div>
-                <div class="col-75">
-                    <input type="text" name="date" value="{{item.provided_date}}">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="upload">Upload file</label>
-                </div>
-                <div class="col-75 files" >
-                    <a class="file" href="{{item.doc.url}}">View file</a>
-                    <a class="file" download href="{{item.doc.url}}">Download file</a>
-                    <input type="file" name="paper">
-                </div>
-                
-            </div>
-            <button type="submit">Push</button>
-            
         </div>
 
-    </form>
-    {% endfor %}
+        <div class="row">
+            <div class="col-25">
+                <label for="pro-email">Provider e-mail :</label>
 
+            </div>
+            <div class="col-75">
+                <input required type="email" name="email" value="{{item.provider_email}}">
 
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-25">
+                <label for="provider">Paper Type:</label>
 
-</body>
+            </div>
+            <div class="col-75">
+                <input required type="text" name="paper_type" value="{{item.paper_type}}">
 
-</html>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="semister">Semister :</label>
+
+            </div>
+            <div class="col-75">
+                <input type="text" name="semister" value="{{item.period}}">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="subject">Subject: </label>
+
+            </div>
+            <div class="col-75">
+                <input required type="text" name="subject" value="{{item.subject_name}}">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label  for="course">Course: </label>
+
+            </div>
+            <div class="col-75">
+                <input  type="text" name="course" value="{{item.course_name}}">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label  for="university">University</label>
+
+            </div>
+            <div class="col-75">
+                <input required type="text" name="university" value="{{item.governing_body}}">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="college">College type</label>
+
+            </div>
+            <div class="col-75">
+                <input required type="text" name="college" value="{{item.education_type}}">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="examination_year">Examination year</label>
+
+            </div>
+            <div class="col-75">
+                <input required type="date" name="examination_year" value="{{item.paper_year|date:'Y-m-d'}}">
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="examination_title">Examination title</label>
+
+            </div>
+            <div class="col-75">
+                <input  required type="text" name="examination_title" value="{{item.paper_title}}">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="date">Provided date</label>
+
+            </div>
+            <div class="col-75">
+                <input type="text" name="date" value="{{item.provided_date}}">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="upload">Uploaded file</label>
+            </div>
+            <div class="col-75 files">
+                <a class="file" href="{{item.doc.url}}">View file</a>
+                <a class="file" download href="{{item.doc.url}}">Download file</a>
+                <input required type="file" name="paper">
+            </div>
+
+        </div>
+        <button type="submit">Push</button>
+
+    </div>
+
+</form>
+{% empty %}
+<h1>
+
+    No papers are provided to upload
+</h1>
+{% endfor %}
+
+{% endblock body %}

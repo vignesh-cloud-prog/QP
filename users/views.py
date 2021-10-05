@@ -102,8 +102,7 @@ def resend_otp(request, usr):
                 [usr.email],
                 fail_silently=True
             )
-            messages.success(
-                    request, f'{usr.username} your otp is sent to {usr.email}')
+            messages.success(request, f"{usr.username} your otp is sent to {usr.email}")
             return JsonResponse({"msg":"Resend"})
 
     return JsonResponse({"msg":"Can't Send"})

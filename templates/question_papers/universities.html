@@ -30,12 +30,14 @@ all
 {% block body %}
 <div class="colleges">
     <p>Welcome to QP World</p>
+    
     {% for clg in college %}
     {% ifchanged college %}
     <div class="titles">
         <h1>{{clg.education_type| title}}<img src="{%static 'question_papers/images/college.png'%}" alt="#">
         </h1>
     </div>
+    <b class="sub_head">Choose your university/board:</b>
     {% endifchanged %}
     <div class="college">
         {% if clg.paper_type == 'board' %}

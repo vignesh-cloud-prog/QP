@@ -16,7 +16,7 @@
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             {{form.as_p}}
     </div>
-    
+
     <button class="btn" type="submit" value="Submit" />Provide</button>
 
     <button class="btn" style="background-color: palevioletred;" id="ask"
@@ -36,8 +36,15 @@
     </div>
 
     <div>
-        <a  href="{% url 'login'%}"><button class="btn">Login</button></a>
-        <a href="{% url 'signup'%}"><button class="btn">Signup</button></a>
+        <a href="{% url 'login'%}"><button class="btn">Login</button></a>
+        
+        <button class="btn"
+        onclick="sharefunc('http:&#47;&#47;127.0.0.1:8000&#47;provide&#47;','Hello, Can you provide question papers through QP Web. Help others 😊')">
+            
+
+                Ask friends
+            </button>
+    
     </div>
 
 

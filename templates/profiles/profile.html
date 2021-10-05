@@ -22,10 +22,10 @@
             {% endif %}
             <div class="row-1">
                 {% if request.user.profile.pic %}
-                <img id="pic" class="img" src="{{request.user.profile.pic.url}}" alt="You" />
+                <img  class="img" src="{{request.user.profile.pic.url}}" alt="You" />
 
                 {% else %}
-                <img id="pic" class="img" src="{%static 'question_papers/images/user-circle.png'%}" alt="You" />
+                <img  class="img" src="{%static 'question_papers/images/user-circle.png'%}" alt="You" />
 
                 {% endif %}
                 <a href="{% url 'update_profile'%}" id="edit_btn"> Update <img id="edit_icon"
@@ -62,10 +62,12 @@
             </ol>
             <p class="userlinks" id="papers_reviewing">Papers provided by you reviewing</p>
             <ol>
-                {% for items in my_papers_reviewing %}
+                {% for paper in my_papers_reviewing %}
                 <li>
-                    {{items.board}}
-                    {{items.claass}}
+                    {{paper.governing_body}},
+                    {{paper.course_name}},
+                    {{paper.subject_name}},
+                    {{paper.paper_year}}
                 </li>
 
                 {% empty %}
