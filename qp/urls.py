@@ -25,3 +25,6 @@ urlpatterns = [
     path('push/', include('provides_controller.urls')),
     path('', include('question_papers.urls')),
 ]
+
+admin.site.site_header="QP Administration"
+

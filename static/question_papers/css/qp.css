@@ -1,11 +1,19 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 a {
   text-decoration: none;
   color: black;
+}
+
+.main{
+  max-width: 1200px;
+  margin: auto;
+  min-height: 100vh;
+  margin-bottom: 2rem;
 }
 
 .flex {
@@ -375,7 +383,7 @@ a {
   max-width: 90%;
   margin: auto;
   padding: 1rem 5rem;
-  border-radius: 8px;
+
   flex-wrap: wrap;
   margin: 2px auto;
 }
@@ -532,7 +540,7 @@ a {
 
 @media only screen and (min-width: 1024px) {
   #appshare {
-    position: absolute;
+    position: fixed;
     top: 12vh;
     right: 1vw;
     max-width: 500px;
@@ -540,7 +548,7 @@ a {
 }
 @media only screen and (max-width: 1024px) {
   #appshare {
-    position: absolute;
+    position: fixed;
     bottom: 2vh;
     margin: 0 8px;
   }
