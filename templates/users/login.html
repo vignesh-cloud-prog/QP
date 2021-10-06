@@ -15,24 +15,26 @@
     {% csrf_token %}
 
 
-    <h3 class="float-left">Verify Your Email</h3>
+    <h3 class="">Verify Your Email</h3>
 
 
     <input type="hidden" name="usr" value="{{usr.username}}">
-    <div class="otp_field">
-
-        <p>One Time Password</p>
+    <div class="">
+        <div>
+            <span class="" id="">OTP</span>
+        </div>
+       
 
         <input type="number" required class="form-control" placeholder="Enter Your OTP" aria-label="OTP"
-            aria-describedby="basic-addon1" name='otp'>
+            aria-describedby="" name='otp'>
     </div>
 
     <button class="btn mainbtn" type="submit">Verify</button>
 
 
-    <a href="#" class="text-dark" onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')">
-        <i id="resendOTPmess">Resend</i>
-        OTP</a>
+    <small class=""><i><a class="" onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')"><i
+        id="resendOTPmess">Resend</i>
+    OTP</a></small>
 
 
 
@@ -43,7 +45,7 @@
 <div class="container login_form">
     <div class="login_head container">
         <h1>QP Web</h1>
-        <p id="desc">A platform to get your academics question papers and also give to some one like us.</p>
+        <p id="desc">A platform to get your academic question papers and also give to some one you.</p>
     </div>
     <hr width="90%">
     <div class="login_body">

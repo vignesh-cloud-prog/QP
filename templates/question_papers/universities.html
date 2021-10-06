@@ -32,7 +32,7 @@ all
     <p>Welcome to QP World</p>
     
     {% for clg in college %}
-    {% ifchanged college %}
+    {% ifchanged governing_body %}
     <div class="titles">
         <h1>{{clg.education_type| title}}<img src="{%static 'question_papers/images/college.png'%}" alt="#">
         </h1>

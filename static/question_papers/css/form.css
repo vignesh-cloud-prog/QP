@@ -133,11 +133,13 @@ h3 {
 
 /*   otp form  */
 .otp_container {
+  max-width: 800px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
   background: white;
 }
 .otp_container a{
     width: 100%;
+   
     display: block;
     margin:auto;
 }

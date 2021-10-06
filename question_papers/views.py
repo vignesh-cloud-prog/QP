@@ -37,7 +37,8 @@ def college(request, college):
         return HttpResponse(qs_json, content_type='application/json')
 
     college = Question_paper.objects.filter(
-        education_type=college).order_by('education_type').distinct('education_type')
+        education_type=college).order_by('governing_body').distinct('governing_body')
+    print(college)
     college = {'college': college}
     return render(request, 'question_papers/universities.html', college)
 
@@ -53,6 +54,7 @@ def university(request, college, university):
         return HttpResponse(qs_json, content_type='application/json')
     university = Question_paper.objects.filter(
         governing_body=university, education_type=college).order_by('course_name').distinct('course_name')
+    print(university)
     university = {'university': university}
     return render(request, 'question_papers/courses.html', university)
 
