@@ -4,10 +4,12 @@
 {% load to_space %}
 
 {% comment %} Page title {% endcomment %}
-{% block title %}question_papers
+{% block title %}QP-Web Home
 {% endblock title %}
+
 {% comment %} page description {% endcomment %}
 {% block description %} 
+A website provides all type of academic question papers.
 {% for qp in allqp %}
 {{qp.education_type}}
 {% endfor %} question papers are available

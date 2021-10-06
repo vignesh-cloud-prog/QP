@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}question_papers-Providers_form
+{% block title %}provide question papers
 {% endblock title %}
+
+{% comment %} page description {% endcomment %}
+{% block description %} 
+Submit your question papers here. So it could be accessed by anyone in the world through qpweb.
+{% endblock description %}
 
 {% block styles %}
 <link rel="stylesheet" href="{%static 'provides/css/provider_form.css'%}">

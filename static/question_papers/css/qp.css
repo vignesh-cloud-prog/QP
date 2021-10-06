@@ -439,16 +439,15 @@ a {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: rgb(252, 252, 252);
   padding: 5px;
   margin: 4px 2px;
-  border-radius: 4px;
+  
 }
 
 #row {
   display: flex;
   background-color: rgb(206, 194, 194);
-  border-radius: 0.5rem;
+  border-radius: 0.5rem 0.5rem 0 0;
   justify-content: space-between;
   align-items: center;
 }
@@ -477,11 +476,16 @@ a {
   padding: 0.5rem;
   border-radius: 12px;
   font-size: 1rem;
+  min-width: 2rem;
+  text-align: center;
+  vertical-align: middle;
 }
 .paper center {
+  /* border-radius: 0 0 0.5rem 0.5rem; */
   background-color: rgb(107, 95, 95);
   color: white;
-  border-radius: 0.5rem;
+  padding: 0.2rem;
+ 
 }
 
 @media only screen and (max-width: 520px) {
@@ -490,6 +494,15 @@ a {
   }
   .link{
     margin-bottom: 0.5rem;
+    font-size: small;
+    min-width: 2rem;
+    max-height: 0.8rem;
+    vertical-align:middle;
+    text-align: center;
+  }
+  #paper_info{
+    font-size: small;
+
   }
 }
 
@@ -580,11 +593,12 @@ a {
   background-color: rgb(171, 171, 235);
   color: white;
   max-width: 90%;
-  margin: auto;
-  padding: 1rem 5rem;
+  margin: 2rem;
+  padding: 1rem ;
+  text-align: center;
   border-radius: 8px;
   flex-wrap: wrap;
-  margin: auto;
+  margin-top: 1rem;
 }
 
 .designer h1 {
@@ -602,10 +616,11 @@ a {
 .designer a img {
   border-radius: 8px;
   margin: 0px;
-  padding: 0px;
+  padding: 2px;
   overflow: hidden;
   height: 25px;
   width: 25px;
+  background: whitesmoke;
 }
 
 .designer a {

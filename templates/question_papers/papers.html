@@ -6,10 +6,20 @@
 {% block title %}
 {% for titles in paper %}
 {% ifchanged college %}
-{{titles.course}}_{{titles.year}}_{{titles.subject}}_question_papers
+{{titles.course_name}}-{{titles.governing_body}}-{{titles.subject_name}}-question_papers
 {% endifchanged %}
 {% endfor %}
 {% endblock title %}
+
+{% comment %} page description {% endcomment %}
+{% block description %} 
+{% for titles in paper %}
+{% ifchanged college %}
+{{titles.course_name}}-{{titles.governing_body}}-{{titles.subject_name}}
+{% endifchanged %}
+{{titles.paper_title}}-{{titles.paper_year}},
+{% endfor %} question papers are available
+{% endblock description %}
 
 
 {% block body %}
@@ -53,27 +63,16 @@
                 <a href="{{prepaper.paper_doc.url}}" download class="link">
                     <img src="{%static 'question_papers/images/download.png'%}" alt="Download">
                 </a>
-                <i class="link"
-                onclick="sharefunc(`{{prepaper.paper_doc.url}}`,'see this question paper from QP Web')">
-                <!-- ( '{{prepaper.paper_doc.url}}' ,'see this question paper from QP Web') -->
+                <i class="link" onclick="sharefunc(`{{prepaper.paper_doc.url}}`,'see this question paper from QP Web')">
+                    <!-- ( '{{prepaper.paper_doc.url}}' ,'see this question paper from QP Web') -->
                     <img src="{%static 'question_papers/images/share.png'%}" alt="Share">
                 </i>
 
             </div>
-
-            
-            <!-- <td colspan="3"><iframe src="{{prepaper.paper.url}}" frameborder="0"></iframe></td> -->
         </div>
 
-        <p>
-            {% if prepare.provider != 'None' %}
 
-            <center>Provided by {{prepaper.provider}}</center>
-            {% else %}
-            <center>Provided by Vignesh</center>
-
-            {% endif %}
-        </p>
+        <center>Provided by {{prepaper.provider}}</center>
     </div>
     {% endfor %}
 </div>

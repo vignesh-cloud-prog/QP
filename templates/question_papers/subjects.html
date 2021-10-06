@@ -6,10 +6,20 @@
 {% block title %}
 {% for title in year %}
 {% ifchanged college %}
-{{title.course}}_{{title.governing_body}}_{{title.year}}_question_papers
+{{title.course_name}}-{{title.governing_body}}-{{title.period}}-question_papers
 {% endifchanged %}
 {% endfor %}
 {% endblock title %}
+
+{% comment %} page description {% endcomment %}
+{% block description %} 
+{% for title in year %}
+{% ifchanged college %}
+{{title.course_name}} {{title.governing_body}} {{title.period}} semister
+{% endifchanged %}
+{{title.subject_name}},
+{% endfor %} question papers are available
+{% endblock description %}
 
 {% block body %}
 <div class="colleges">
