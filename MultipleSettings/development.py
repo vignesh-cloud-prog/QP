@@ -10,7 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import os
-
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+cloudinary.config( 
+  cloud_name = "vigneshnu", 
+  api_key = "171388165388187	", 
+  api_secret = "7JJelPVLSBmSihnY9nmxhMsoSKQ",
+  secure="true"
+)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -47,7 +55,8 @@ INSTALLED_APPS = [
     'provides_controller.apps.ProvidesControllerConfig',
 
     # Thirdparty apps
-    
+    # 'cloudinary_storage',
+    'cloudinary',
 
 ]
 
@@ -98,6 +107,8 @@ DATABASES = {
     }
 }
 
+
+
 # DATABASES = {
     # 'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
@@ -147,7 +158,6 @@ EMAIL_HOST_PASSWORD='vigneshqpweb'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
 
 STATIC_URL = '/static/'
 

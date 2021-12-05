@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
-
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Provide(models.Model):
@@ -23,7 +23,7 @@ class Provide(models.Model):
     subject_name= models.CharField(max_length=100)
     paper_year = models.DateField()
     paper_title=models.CharField(max_length=100)
-    doc = models.FileField(upload_to='provider',validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
+    doc = CloudinaryField()
     provided_date=models.DateTimeField(auto_now_add=True,)
     
     
