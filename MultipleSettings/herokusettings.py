@@ -54,11 +54,11 @@ INSTALLED_APPS = [
 ]
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'vigneshnu',
-    'API_KEY': '171388165388187',
-    'API_SECRET': '7JJelPVLSBmSihnY9nmxhMsoSKQ'
+    'CLOUD_NAME': 'qpweb',
+    'API_KEY': '868788217926331',
+    'API_SECRET': '4TeIGToAHUGpSJaaMCKYIBTtCYc'
 }
-
+ 
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',

@@ -14,10 +14,10 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 cloudinary.config( 
-  cloud_name = "vigneshnu", 
-  api_key = "171388165388187	", 
-  api_secret = "7JJelPVLSBmSihnY9nmxhMsoSKQ",
-  secure="true"
+  cloud_name = "qpweb", 
+  api_key = "868788217926331", 
+  api_secret = "4TeIGToAHUGpSJaaMCKYIBTtCYc",
+  secure=true
 )
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
