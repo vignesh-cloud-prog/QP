@@ -10,15 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import os
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-cloudinary.config( 
-  cloud_name = "qpweb", 
-  api_key = "868788217926331", 
-  api_secret = "4TeIGToAHUGpSJaaMCKYIBTtCYc",
-  secure=true
-)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -55,11 +47,16 @@ INSTALLED_APPS = [
     'provides_controller.apps.ProvidesControllerConfig',
 
     # Thirdparty apps
-    # 'cloudinary_storage',
+    'cloudinary_storage',
     'cloudinary',
 
 ]
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'qpweb',
+    'API_KEY': '868788217926331',
+    'API_SECRET': '4TeIGToAHUGpSJaaMCKYIBTtCYc'
+}
 
 MIDDLEWARE = [
     # 'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -164,8 +161,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-MEDIA_URL = '/media/'
-MEDIA_ROOT =os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'  # or any prefix you choose
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT =os.path.join(BASE_DIR,'media')
 
 
 

@@ -23,7 +23,7 @@ class Provide(models.Model):
     subject_name= models.CharField(max_length=100)
     paper_year = models.DateField()
     paper_title=models.CharField(max_length=100)
-    doc = models.ImageField(upload_to='provider',validators=[FileExtensionValidator(allowed_extensions=['pdf'])] ,storage=RawMediaCloudinaryStorage())
+    doc = models.FileField(upload_to='providers',validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage())
     provided_date=models.DateTimeField(auto_now_add=True,)
     
     

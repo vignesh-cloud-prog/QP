@@ -3,6 +3,7 @@ from datetime import datetime
 from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from cloudinary_storage.storage import RawMediaCloudinaryStorage
 
 
 # It is suggested to replace all spaces with underscore for best results
@@ -29,7 +30,7 @@ class Question_paper(models.Model):
     paper_year = models.DateField()
     #examination
     paper_title=models.SlugField(max_length=100)
-    paper_doc = models.FileField(upload_to='allqps',validators=[FileExtensionValidator(allowed_extensions=['pdf'])])
+    paper_doc = models.FileField(upload_to='qpweb',validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage())
     # complete_ref includes all the fields value used in query search
     complete_ref=models.CharField(max_length=800 , blank=True)
     created_at=models.DateTimeField(auto_now_add=True,blank=True,null=True)

@@ -19,8 +19,8 @@ def provider(request):
                     request, 'Thank you, we will check and update it soon .')
                 form = ProvideForm()
         
-            except:
-                messages.error(request,"something went wrong")
+            except Exception as e:
+                messages.error(request,f"something went wrong! ({e})")
         else:
              messages.warning(request,  form.errors)
 

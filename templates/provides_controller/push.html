@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load cloudinary %}
 {% block title %}question_papers-Providers_form
 {% endblock title %}
 
@@ -136,6 +136,7 @@
             <div class="col-75 files">
                 <a class="file" href="{{item.doc.url}}">View file</a>
                 <a class="file" download href="{{item.doc.url}}">Download file</a>
+                
                 <input required type="file" name="paper">
             </div>
 
