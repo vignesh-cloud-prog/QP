@@ -1,11 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .utils import generate_ref_code
-from cloudinary.models import CloudinaryField
+
 # Create your models here.
 class Profile(models.Model):
 	user=models.OneToOneField(User,related_name="profile", on_delete=models.CASCADE)
-	pic=CloudinaryField('image')
+	pic=models.ImageField(upload_to="profile_pics",blank=True)
 	bio=models.TextField(blank=True)
 	college=models.CharField(max_length=200,blank=True)
 	code=models.CharField(max_length=12,blank=True)

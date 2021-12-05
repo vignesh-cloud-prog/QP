@@ -11,13 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import django_heroku
 import os
-from cloudinary.models import CloudinaryField
-cloudinary.config( 
-  cloud_name = "vigneshnu", 
-  api_key = "171388165388187	", 
-  api_secret = "7JJelPVLSBmSihnY9nmxhMsoSKQ",
-  secure="true"
-)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -54,9 +48,16 @@ INSTALLED_APPS = [
     'provides_controller.apps.ProvidesControllerConfig',
 
     # Thirdparty apps
-    
+    'cloudinary_storage',
+    'cloudinary',
 
 ]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'vigneshnu',
+    'API_KEY': '171388165388187',
+    'API_SECRET': '7JJelPVLSBmSihnY9nmxhMsoSKQ'
+}
 
 
 MIDDLEWARE = [
@@ -162,8 +163,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-MEDIA_URL = '/media/'
-MEDIA_ROOT =os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'  # or any prefix you choose
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT =os.path.join(BASE_DIR,'media')
 
 django_heroku.settings(locals())
 
