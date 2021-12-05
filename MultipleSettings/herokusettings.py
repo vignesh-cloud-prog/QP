@@ -11,7 +11,13 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import django_heroku
 import os
-
+from cloudinary.models import CloudinaryField
+cloudinary.config( 
+  cloud_name = "vigneshnu", 
+  api_key = "171388165388187	", 
+  api_secret = "7JJelPVLSBmSihnY9nmxhMsoSKQ",
+  secure="true"
+)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
