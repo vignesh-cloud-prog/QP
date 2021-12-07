@@ -145,11 +145,12 @@ USE_TZ = True
 
 #Email Configarations
 EMAIL_USE_TLS=True
+EMAIL_USE_SSL=True
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
 EMAIL_HOST_USER='qpcom80@gmail.com'
-EMAIL_HOST_PASSWORD='vigneshqpweb'
-
+EMAIL_HOST_PASSWORD='yvdgeddmxtfbzwcg'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
