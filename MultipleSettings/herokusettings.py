@@ -54,9 +54,9 @@ INSTALLED_APPS = [
 ]
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'qpweb',
-    'API_KEY': '868788217926331',
-    'API_SECRET': '4TeIGToAHUGpSJaaMCKYIBTtCYc'
+    'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
+    'API_KEY': os.environ.get('API_KEY'),
+    'API_SECRET': os.environ.get('API_SECRET')
 }
  
 
