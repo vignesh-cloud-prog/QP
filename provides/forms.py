@@ -1,13 +1,28 @@
 from django import forms
 from .models import Provide
+from .utils import file_size,yearsago
+from datetime import datetime
+
+
+def doc_size(value):
+    file_size(value, size=5)
+
 
 class ProvideForm(forms.ModelForm):
+    doc = forms.FileField(required=True, validators=[doc_size])
+
+    def clean_paper_year(self):
+        date = self.cleaned_data['paper_year']
+        if(date > datetime.now().date() or date < yearsago(3)):
+            raise forms.ValidationError(
+                message="Date cannot be in future and less than 3 year ago")
+
     class Meta:
         model = Provide
         fields = '__all__'
-        exclude = ['provider','provider_email','provided_date','id']
-        labels={
-            'doc':("Document"),
+        exclude = ['provider', 'provider_email', 'provided_date', 'id']
+        labels = {
+            'doc': ("Document"),
         }
         help_texts = {
             'name': ('Some useful help text.'),
@@ -18,9 +33,8 @@ class ProvideForm(forms.ModelForm):
             },
         }
         widgets = {
-            'paper_type': forms.Select(attrs={'class': 'form-control',}),
-            'paper_year': forms.DateInput(attrs={'type': 'date',}),
+            'paper_type': forms.Select(attrs={'class': 'form-control', }),
+            'paper_year': forms.DateInput(attrs={'type': 'date', }),
             'course_name': forms.TextInput(attrs={}),
-            'doc': forms.FileInput(attrs={'type':"file", 'accept':"application/pdf",}),
+            'doc': forms.FileInput(attrs={'type': "file", 'accept': "application/pdf", }),
         }
-

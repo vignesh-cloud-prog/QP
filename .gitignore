@@ -4,4 +4,4 @@ db.sqlite3
 qp/git.txt
 media/
 .vscode/
-
+.env

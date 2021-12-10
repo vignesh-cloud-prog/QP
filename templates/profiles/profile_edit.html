@@ -61,8 +61,35 @@
 </div>
 <script>
     var loadFile = function (event) {
-        var image = document.getElementById('pic');
-        image.src = URL.createObjectURL(event.target.files[0]);
+       
+        const reader = new FileReader();
+
+        reader.readAsDataURL(event.target.files[0]);
+      
+        reader.onload = function (event) {
+          const imgElement = document.createElement("img");
+          imgElement.src = event.target.result;
+      
+          imgElement.onload = function (e) {
+            const canvas = document.createElement("canvas");
+            const MAX_WIDTH = 360;
+      
+            const scaleSize = MAX_WIDTH / e.target.width;
+            canvas.width = MAX_WIDTH;
+            //canvas.height = e.target.height * scaleSize;
+            canvas.height = 360;
+      
+            const ctx = canvas.getContext("2d");
+      
+            ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+      
+            const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg");
+      
+            // you can send srcEncoded to the server
+            document.querySelector("#pic").src = srcEncoded;
+            document.querySelector("#file").value = srcEncoded;
+          };
+        };
     };
 </script>
 {% endblock body %}
