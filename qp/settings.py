@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-import django_heroku
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -21,12 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2bzp&z&ou_i-dw^b-wy6cv+m##8!6rdcll9+%p0b-ar1gc^f+9'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['qpworld.herokuapp.com/','127.0.0.1','questionpaper.herokuapp.com']
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -43,19 +43,24 @@ INSTALLED_APPS = [
     'question_papers.apps.QuestionPapersConfig',
     'profiles.apps.ProfilesConfig',
     'users.apps.UsersConfig',
-    'contacts.app.ContactsConfig',
-    'provides.app.ProvidesConfig',
-    'provides_controller.app.ProvidesControllerConfig',
+    'contacts.apps.ContactsConfig',
+    'provides.apps.ProvidesConfig',
+    'provides_controller.apps.ProvidesControllerConfig',
 
     # Thirdparty apps
-    
+    'cloudinary_storage',
+    'cloudinary',
 
 ]
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
+    'API_KEY': os.environ.get('API_KEY'),
+    'API_SECRET': os.environ.get('API_SECRET')
+}
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+   
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -98,11 +103,6 @@ DATABASES = {
         'PORT': '',
     }
 }
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -137,28 +137,27 @@ USE_L10N = True
 USE_TZ = True
 
 #Email Configarations
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS=True
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
-EMAIL_HOST_USER='qpcom80@gmail.com'
-EMAIL_HOST_PASSWORD='vigneshqpweb'
+EMAIL_HOST_USER=os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-MEDIA_URL = '/media/'
-MEDIA_ROOT =os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'  # or any prefix you choose
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT =os.path.join(BASE_DIR,'media')
 
-django_heroku.settings(locals())
+
 
 
 
