@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from question_papers import views
 
+
 urlpatterns = [
     path('search/', views.search, name='search'),
     path('filter', views.filters, name='filter'),
@@ -39,3 +40,6 @@ urlpatterns = [
         # path('board/<str:board_type>/<str:board_name>/<str:year>/<str:subject>/', views.question_papers, name='question_papers'),
         
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+handler404 = 'question_papers.views.error_404'

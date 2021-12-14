@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Question_paper
-from django.http import request, HttpRequest
+from django.http import request, HttpRequest, response,Http404
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.core import serializers
@@ -33,15 +33,18 @@ def college(request, college):
         college = college.split("-")[1]
         college = Question_paper.objects.filter(
             education_type=college).order_by('education_type').distinct('education_type')
-        qs_json = serializers.serialize('json', college)
-        return HttpResponse(qs_json, content_type='application/json')
-
+        if college.exists():
+            qs_json = serializers.serialize('json', college)
+            return HttpResponse(qs_json, content_type='application/json')
+        # TODO : Exception to be handled
     college = Question_paper.objects.filter(
         education_type=college).order_by('governing_body').distinct('governing_body')
-    print(college)
-    college = {'college': college}
-    return render(request, 'question_papers/universities.html', college)
-
+    if college.exists():
+        print(college)
+        college = {'college': college}
+        return render(request, 'question_papers/universities.html', college)
+    else:
+        raise Http404("Page not found")
 # this function returns distinct values for different cousres in an universities
 
 
@@ -54,9 +57,11 @@ def university(request, college, university):
         return HttpResponse(qs_json, content_type='application/json')
     university = Question_paper.objects.filter(
         governing_body=university, education_type=college).order_by('course_name').distinct('course_name')
-    print(university)
-    university = {'university': university}
-    return render(request, 'question_papers/courses.html', university)
+    if university.exists():
+        university = {'university': university}
+        return render(request, 'question_papers/courses.html', university)
+    else:
+        raise Http404("Page not found")
 
 # this function returns distinct values for different semisters or years in an course
 
@@ -70,8 +75,11 @@ def course(request, college, university, course):
         return HttpResponse(qs_json, content_type='application/json')
     course = Question_paper.objects.filter(
         course_name=course, governing_body=university).order_by('period').distinct('period')
-    course = {'course': course}
-    return render(request, 'question_papers/classes.html', course)
+    if course.exists():
+        course = {'course': course}
+        return render(request, 'question_papers/classes.html', course)
+    else:
+        raise Http404("Page not found")
 
 # this function returns distinct values for distinct different subjects in a semisters
 
@@ -85,18 +93,24 @@ def year(request, college, university, course, year):
         return HttpResponse(qs_json, content_type='application/json')
     year = Question_paper.objects.filter(
         course_name=course, governing_body=university).order_by('subject_name').distinct('subject_name')
-    year = {'year': year}
-    return render(request, 'question_papers/subjects.html', year)
+    if year.exists():
+        year = {'year': year}
+        return render(request, 'question_papers/subjects.html', year)
+    else:
+        raise Http404("Page not found")
 
 # this function returns distinct values for different distinct avilable years of papers of a particular subject
 
 
 def question_papers(request, college, university, course, year, subject):
+
     papers = Question_paper.objects.filter(
         subject_name=subject, governing_body=university)
-    papers = {'paper': papers}
-    return render(request, 'question_papers/papers.html', papers)
-
+    if papers.exists():
+        papers = {'paper': papers}
+        return render(request, 'question_papers/papers.html', papers)
+    else:
+        raise Http404("Page not found")
 
 # this function returns filtered elements to a html page
 
@@ -126,6 +140,11 @@ def about(request):
 
     return render(request, 'question_papers/about.html')
 
+
+def error_404(request, exception):
+        data = {}
+        print(exception)
+        return render(request,'404.html', data)
 
 # TWITTER_ENDPOINT = 'https://twitter.com/intent/tweet?text=%s'
 # FACEBOOK_ENDPOINT = 'https://www.facebook.com/sharer/sharer.php?u=%s'

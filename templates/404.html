@@ -1,0 +1,12 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}Page Not Found {% endblock title %}
+  
+ {% block description %} The page you are searching for is not found. {% endblock description %} {% block styles %}
+{% comment %} <link rel="stylesheet" href="{%static 'provides/css/provider_form.css'%}" /> {% endcomment %}
+{% endblock styles %} {% block body %}
+<h1>Page Not Found</h1>
+<a href="../">GO BACK</a>
+<br />
+<a href="/">GO TO HOME</a>
+{% block scripts_tag %} {% endblock scripts_tag %} {% endblock body %}
