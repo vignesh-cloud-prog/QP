@@ -21,6 +21,18 @@ def filter_first_option(request):
 
 
 def colleges(request):
+    """
+    Displays all the college type of question papers available :model:`question_papers.Question_paper`.
+
+    **Context**
+
+    ``mymodel``
+        An instance of :model:`question_papers.Question_paper`.
+
+    **Template:**
+
+    :template:`question_papers/allpapers.html`
+    """
     allqp = Question_paper.objects.distinct('education_type')
     context = {'allqp': allqp, 'Select': 'Select Your Current Education : '}
     return render(request, 'question_papers/allpapers.html', context)

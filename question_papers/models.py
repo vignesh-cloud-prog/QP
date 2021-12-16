@@ -8,7 +8,11 @@ from cloudinary_storage.storage import RawMediaCloudinaryStorage
 
 # It is suggested to replace all spaces with underscore for best results
 class Question_paper(models.Model):
-    provider=models.ForeignKey(User, on_delete=models.SET_DEFAULT,default=1,blank=True)
+    """
+    Stores a Question paper, related to :model:`question_papers.Question_paper` and
+    :model:`auth.User`.
+    """
+    provider=models.ForeignKey(User, on_delete=models.SET_DEFAULT,default=1,blank=True,help_text="The user who share the question paper")
     PAPER_CHOICES=[('board','board'),('university','university'),('competitive','competitive')]
     paper_type=models.SlugField(max_length=12,choices=PAPER_CHOICES)
     # college means your education type (Ex: SSLC, PUC or Degree, Engineering, Diploma )
