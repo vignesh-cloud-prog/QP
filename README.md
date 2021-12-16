@@ -1,10 +1,10 @@
 # QP
 
-This is an website to help students get question papers from diffrent boards and universites. Question papers are accepted in pdf format from any authenticated user. Like every other websites this website also includes about and contact pages.
+This is an website to help students get question papers from diffrent boards and universites. Question papers are accepted in pdf format from any authenticated user.
 
-Users can easily signup by verifying their email through OTP and giving some basic informations. all contributions from you by providing question papers are recorded in your profile.
+Users can easily signup by verifying their email through OTP and giving some basic informations. all contributions from user by providing question papers are recorded in their profile.
 
-Right now verifications of question papers done manually. Users will get the confirmation email about accepting therir question papers. To avoid multiple instance of same question papers some checks are to be made.
+Right now verifications of question papers done manually. Users will get the confirmation email about accepting therir question papers.
 
 This website is hosted at https://qpweb.herokuapp.com/
 
@@ -71,6 +71,6 @@ python manage.py runserver --settings MultipleSettings.development
 ```
 
 * Visit website here http://127.0.0.1:8000/
-
+* Documentation http://127.0.0.1:8000/admin/doc/
 
 
