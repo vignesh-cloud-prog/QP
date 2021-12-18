@@ -29,12 +29,12 @@ _move to the main directory_
   ```
   * Create virtual environment
   ```shell
-  virtualenv QP_Env
+  virtualenv QP_env
   ```
   * Activating the virtual environment<br>
   _for Windows users_
   ```shell
-  .\QP_Env\Scripts\activate
+  .\QP_env\Scripts\activate
   ```
   \
   _for Linux/Mac Users_
