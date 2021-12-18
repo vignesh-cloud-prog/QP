@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Profile
 from django.contrib.auth.models import User
@@ -7,8 +7,22 @@ from provides.models import Provide
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+
+
 @login_required
 def profile_view(request):
+    """
+    Display an individual users profile :model:`profiles.Profile`.
+
+    **Context**
+
+    ``mymodel``
+        An instance of :model:`profiles.Profile`.
+
+    **Template:**
+
+    :template:`profiles/profile.html`
+    """
     my_papers_reviewing = Provide.objects.filter(provider=request.user)
     my_papers_uploaded = Question_paper.objects.filter(provider=request.user)
     print(my_papers_uploaded)
@@ -22,7 +36,20 @@ def profile_view(request):
 
     return render(request, 'profiles/profile.html', context)
 
+
 def profile_settings(request):
+    """
+    Helps to update users profile information :model:`profiles.Profile`.
+
+    **Context**
+
+    ``mymodel``
+        An instance of :model:`profiles.Profile`.
+
+    **Template:**
+
+    :template:'profiles/profile_edit.html`
+    """
     if request.method == "POST" or None or request.FILES:
 
         user_id = request.POST.get('user_id')

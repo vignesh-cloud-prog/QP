@@ -1,5 +1,5 @@
 import random
-from django.http import JsonResponse,HttpResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth.models import User
 from .models import UserOTP
 from profiles.models import Profile
@@ -8,13 +8,29 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import CreateUserForm
-# Create your views here.
+
 
 def logoutUser(request):
+    """
+    View to logout user and redirect to home 
+    """
     logout(request)
     return redirect("home")
 
+
 def signup(request, *args, **kwargs):
+    """
+    Displays and takes user signup form :model:`auth.User`.
+
+    **Context**
+
+    ``mymodel``
+        An instance of :model:`auth.User` and :model:`profiles.Profile` and :model:`users.UserOTP`.
+
+    **Template:**
+
+    :template:`users/register.html`
+    """
     code = str(kwargs.get('ref_code'))
     try:
         profile = Profile.objects.get(code=code)
@@ -86,6 +102,15 @@ def signup(request, *args, **kwargs):
 
 
 def resend_otp(request, usr):
+    """
+    View to resend OTP :model:`users.UserOTP`.
+
+    **Context**
+
+    ``mymodel``
+        An instance of :model:`users.UserOTP`.
+
+    """
     print("function called")
     if request.method == "GET":
         get_usr = usr
@@ -102,13 +127,26 @@ def resend_otp(request, usr):
                 [usr.email],
                 fail_silently=True
             )
-            messages.success(request, f"{usr.username} your otp is sent to {usr.email}")
-            return JsonResponse({"msg":"Resend"})
+            messages.success(
+                request, f"{usr.username} your otp is sent to {usr.email}")
+            return JsonResponse({"msg": "Resend"})
 
-    return JsonResponse({"msg":"Can't Send"})
+    return JsonResponse({"msg": "Can't Send"})
 
 
 def login_view(request):
+    """
+    View to login user and verify user email if not already verified :model:`auth.User`.
+
+    **Context**
+
+    ``mymodel``
+        An instance of :model:`auth.User`.
+
+    **Template:**
+
+    :template:`users/login.html`
+    """
     if request.user.is_authenticated:
         return redirect('profile')
     if request.method == 'POST':
@@ -160,6 +198,3 @@ def login_view(request):
 
     }
     return render(request, 'users/login.html', context)
-
-
-

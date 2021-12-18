@@ -6,6 +6,10 @@ from cloudinary_storage.storage import RawMediaCloudinaryStorage
 
 # Create your models here.
 class Provide(models.Model):
+    """
+    Stores all the question papers shared by user, which are to be reviewed , related to :model:`provides.Provide` and
+    :model:`auth.User`.
+    """
     provider=models.ForeignKey(User, on_delete=models.SET_DEFAULT,default=1,blank=True)
     provider_email=models.EmailField()
     # All fields used below are same as Question_paper model inter changebly used between universities and boards related items
