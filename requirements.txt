@@ -5,7 +5,7 @@ cloudinary==1.28.0
 Django==3.2.10
 django-cloudinary-storage==0.3.0
 django-dotenv==1.4.2
-docutils==0.18.1
+docutils==0.17
 idna==3.3
 Pillow==8.4.0
 psycopg2==2.9.2
@@ -16,6 +16,7 @@ six==1.16.0
 sqlparse==0.4.2
 typing_extensions==4.0.1
 urllib3==1.26.7
+beautifulsoup4>=4.9.0
 
 #heroku
 dj-database-url==0.5.0
