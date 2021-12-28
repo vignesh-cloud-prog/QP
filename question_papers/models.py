@@ -4,6 +4,7 @@ from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from cloudinary_storage.storage import RawMediaCloudinaryStorage
+import os
 
 
 # It is suggested to replace all spaces with underscore for best results
@@ -34,7 +35,11 @@ class Question_paper(models.Model):
     paper_year = models.DateField(help_text="year when the question paper was released")
     #examination
     paper_title=models.SlugField(max_length=100, help_text="title of the paper")
-    paper_doc = models.FileField(upload_to='qpweb',validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage(),help_text="The actual paper documnet")
+    if str(os.environ.get('DEBUG')) == "1":
+        paper_doc = models.FileField(upload_to='qpweb_dev',validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage(),help_text="The actual paper documnet")
+    else:
+        paper_doc = models.FileField(upload_to='qpweb',validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage(),help_text="The actual paper documnet")
+
     # complete_ref includes all the fields value used in query search
     complete_ref=models.CharField(max_length=800 , blank=True,help_text="a complete reference which is used in search")
     created_at=models.DateTimeField(auto_now_add=True,blank=True,null=True)

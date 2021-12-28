@@ -9,13 +9,13 @@ def doc_size(value):
 
 
 class ProvideForm(forms.ModelForm):
-    doc = forms.FileField(required=True, validators=[doc_size])
+    doc = forms.FileField(required=True, validators=[doc_size],widget=forms.FileInput(attrs={'type': "file", 'accept': "application/pdf", }),)
 
-    def clean_paper_year(self):
-        date = self.cleaned_data['paper_year']
-        if(date > datetime.now().date() or date < yearsago(3)):
-            raise forms.ValidationError(
-                message="Date cannot be in future and less than 3 year ago")
+    # def clean_paper_year(self):
+    #     date = self.cleaned_data['paper_year']
+    #     if(date > datetime.now().date() or date < yearsago(3)):
+    #         raise forms.ValidationError(
+    #             message="Date cannot be in future and less than 3 year ago")
 
     class Meta:
         model = Provide
@@ -34,7 +34,6 @@ class ProvideForm(forms.ModelForm):
         }
         widgets = {
             'paper_type': forms.Select(attrs={'class': 'form-control', }),
-            'paper_year': forms.DateInput(attrs={'type': 'date', }),
+            'paper_year': forms.DateInput(attrs={'type': 'date','max':datetime.now().date(),'min':yearsago(3), }),
             'course_name': forms.TextInput(attrs={}),
-            'doc': forms.FileInput(attrs={'type': "file", 'accept': "application/pdf", }),
         }

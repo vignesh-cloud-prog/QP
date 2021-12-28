@@ -11,7 +11,7 @@
 {% block body %}
 <h1 id="title">Push controller</h1>
 {% for item in pushes %}
-<form  method="POST">
+<form  method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="push_container">
@@ -137,7 +137,7 @@
                 <a class="file" href="{{item.doc.url}}">View file</a>
                 <a class="file" download href="{{item.doc.url}}">Download file</a>
                 
-                <input required type="file" name="paper">
+                <input required type="file" accept="application/pdf" name="paper">
             </div>
 
         </div>

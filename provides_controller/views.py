@@ -22,29 +22,29 @@ def push(request):
 
     :template:`provides_controller/push.html`
     """
-    if request.method == 'POST':
+    if request.method == 'POST'or None or request.FILES:
         try:
-            username = request.POST['pro']
+            username = request.POST.get('pro')
             from_user = User.objects.get(username=username)
-            paper_type = request.POST['paper_type']
-            emailid = request.POST['email']
-            college = request.POST['college']
-            university = request.POST['university']
-            course = request.POST['course']
+            paper_type = request.POST.get('paper_type')
+            emailid = request.POST.get('email')
+            college = request.POST.get('college')
+            university = request.POST.get('university')
+            course = request.POST.get('course')
             print(paper_type)
             if paper_type == "board":
                 course = "board"
             print(course)
-            year = request.POST['semister']
-            subject = request.POST['subject']
-            examination_year = request.POST['examination_year']
+            year = request.POST.get('semister')
+            subject = request.POST.get('subject')
+            examination_year = request.POST.get('examination_year')
 
-            examination_title = request.POST['examination_title']
-            paper = request.POST['paper']
-            date = request.POST['date']
-
-            pro_id = request.POST['id']
-            emailid = request.POST['email']
+            examination_title = request.POST.get('examination_title')
+            paper = request.FILES.get('paper')
+            date = request.POST.get('date')
+            print(paper)
+            pro_id = request.POST.get('id')
+            emailid = request.POST.get('email')
             push = Question_paper(provider=from_user, paper_type=paper_type, education_type=college, governing_body=university,
                                   course_name=course, period=year, subject_name=subject, paper_year=examination_year, paper_title=examination_title, paper_doc=paper)
             push.save()
@@ -60,8 +60,8 @@ def push(request):
                 fail_silently=True,
             )
             messages.success(request, f"The paper has been uploaded")
-        except:
-            messages.error(request, "something went wrong")
+        except Exception as e:
+            messages.error(request, f"something went wrong ({e})")
 
     pushes = Provide.objects.all()
     push = {'pushes': pushes}

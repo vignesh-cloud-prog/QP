@@ -1,4 +1,5 @@
 from django.db import models
+import os
 from datetime import datetime
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
@@ -27,7 +28,12 @@ class Provide(models.Model):
     subject_name= models.CharField(max_length=100)
     paper_year = models.DateField()
     paper_title=models.CharField(max_length=100)
-    doc = models.FileField(upload_to='providers',validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage())
+    if str(os.environ.get('DEBUG')) == "1":
+        doc = models.FileField(upload_to='providers_dev',validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage())
+    else:
+        doc = models.FileField(upload_to='providers',validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage())
+
+
     provided_date=models.DateTimeField(auto_now_add=True,)
     
     
