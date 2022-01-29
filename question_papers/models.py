@@ -6,6 +6,16 @@ from django.template.defaultfilters import slugify
 from cloudinary_storage.storage import RawMediaCloudinaryStorage
 import os
 
+def update_filename_and_path(instance, filename):
+    path = f"qpweb/{instance.paper_type}/{instance.education_type}/{instance.governing_body}/{instance.course_name}/{instance.period}/"
+    extension = "." + filename.split('.')[-1]
+    format = f"{instance.paper_year}_{instance.subject_name }_{instance.paper_title}_{extension}"
+    return os.path.join(path, format)
+def update_filename_and_path_dev(instance, filename):
+    path = f"qpweb/dev/{instance.paper_type}/{instance.education_type}/{instance.governing_body}/{instance.course_name}/{instance.period}/"
+    extension = "." + filename.split('.')[-1]
+    format = f"{instance.paper_year}_{instance.subject_name }_{instance.paper_title}_{extension}"
+    return os.path.join(path, format)
 
 # It is suggested to replace all spaces with underscore for best results
 class Question_paper(models.Model):
@@ -36,9 +46,9 @@ class Question_paper(models.Model):
     #examination
     paper_title=models.SlugField(max_length=100, help_text="title of the paper")
     if str(os.environ.get('DEBUG')) == "1":
-        paper_doc = models.FileField(upload_to='qpweb_dev',validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage(),help_text="The actual paper documnet")
+        paper_doc = models.FileField(upload_to=update_filename_and_path_dev,validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage(),help_text="The actual paper documnet",max_length=200)
     else:
-        paper_doc = models.FileField(upload_to='qpweb',validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage(),help_text="The actual paper documnet")
+        paper_doc = models.FileField(upload_to=update_filename_and_path,validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage(),help_text="The actual paper documnet",max_length=200)
 
     # complete_ref includes all the fields value used in query search
     complete_ref=models.CharField(max_length=800 , blank=True,help_text="a complete reference which is used in search")

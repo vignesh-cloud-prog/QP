@@ -6,6 +6,18 @@ from django.core.validators import FileExtensionValidator
 from cloudinary_storage.storage import RawMediaCloudinaryStorage
 
 # Create your models here.
+
+def update_filename_and_path(instance, filename):
+    path = f"qpweb/provides/{instance.paper_type}/{instance.education_type}/{instance.governing_body}/{instance.course_name}/{instance.period}/"
+    extension = "." + filename.split('.')[-1]
+    format = f"{instance.paper_year}_{instance.subject_name }_{instance.paper_title}_{extension}"
+    return os.path.join(path, format)
+def update_filename_and_path_dev(instance, filename):
+    path = f"qpweb/provides/dev/{instance.paper_type}/{instance.education_type}/{instance.governing_body}/{instance.course_name}/{instance.period}/"
+    extension = "." + filename.split('.')[-1]
+    format = f"{instance.paper_year}_{instance.subject_name }_{instance.paper_title}_{extension}"
+    return os.path.join(path, format)
+
 class Provide(models.Model):
     """
     Stores all the question papers shared by user, which are to be reviewed , related to :model:`provides.Provide` and
@@ -29,9 +41,9 @@ class Provide(models.Model):
     paper_year = models.DateField()
     paper_title=models.CharField(max_length=100)
     if str(os.environ.get('DEBUG')) == "1":
-        doc = models.FileField(upload_to='providers_dev',validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage())
+        doc = models.FileField(upload_to=update_filename_and_path_dev,validators=[FileExtensionValidator(allowed_extensions=['pdf'])],max_length=300, storage=RawMediaCloudinaryStorage())
     else:
-        doc = models.FileField(upload_to='providers',validators=[FileExtensionValidator(allowed_extensions=['pdf'])], storage=RawMediaCloudinaryStorage())
+        doc = models.FileField(upload_to=update_filename_and_path,validators=[FileExtensionValidator(allowed_extensions=['pdf'])],max_length=300, storage=RawMediaCloudinaryStorage())
 
 
     provided_date=models.DateTimeField(auto_now_add=True,)

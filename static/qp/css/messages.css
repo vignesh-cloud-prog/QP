@@ -1,6 +1,7 @@
 /* Message starting */
 .msg_wrapper{
   position: absolute;
+  top: 10vh;
    width: 100vw;
   z-index: 5;
 }

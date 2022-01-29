@@ -20,6 +20,11 @@ def provider(request):
 
     :template:`provides/provide.html`
     """
+
+    providers = {
+        'form': ProvideForm
+    }
+    print(type(request.POST))
     if request.method == 'POST':
         form = ProvideForm(request.POST or None, request.FILES)
         if form.is_valid():
@@ -31,15 +36,17 @@ def provider(request):
                 provide.save()
                 messages.success(
                     request, 'Thank you, we will check and update it soon .')
-                form = ProvideForm()
+                providers["form"] = ProvideForm()
 
             except Exception as e:
+                print(request.POST)
+                providers["form"] = ProvideForm(initial=(request.POST.dict()))
                 messages.error(request, f"something went wrong! ({e})")
         else:
+            print(request.POST)
+            providers["form"] = ProvideForm(initial=(request.POST.dict()))
             messages.warning(request,  form.errors)
 
-    providers = {
-        'form': ProvideForm
-    }
+    
 
     return render(request, 'provides/provide.html', providers)
