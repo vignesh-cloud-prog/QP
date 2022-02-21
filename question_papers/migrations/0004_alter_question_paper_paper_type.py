@@ -6,12 +6,12 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('provides', '0003_alter_provide_paper_type'),
+        ('question_papers', '0003_alter_question_paper_paper_type'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='provide',
+            model_name='question_paper',
             name='paper_type',
             field=models.SlugField(choices=[('board', 'board'), ('university', 'university')], help_text='Different levels of schools and colleges like Board and University', max_length=12),
         ),

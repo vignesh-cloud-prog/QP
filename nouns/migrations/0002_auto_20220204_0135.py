@@ -6,13 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('provides', '0003_alter_provide_paper_type'),
+        ('nouns', '0001_initial'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='provide',
+            model_name='examinationtype',
             name='paper_type',
             field=models.SlugField(choices=[('board', 'board'), ('university', 'university')], help_text='Different levels of schools and colleges like Board and University', max_length=12),
+        ),
+        migrations.AlterField(
+            model_name='governingbody',
+            name='education',
+            field=models.ManyToManyField(to='nouns.ExaminationType'),
+        ),
+        migrations.DeleteModel(
+            name='PaperType',
         ),
     ]

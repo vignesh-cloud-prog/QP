@@ -7,7 +7,9 @@ def file_size(value,size=1):
 
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
+
 def yearsago(years, from_date=None):
-    if from_date is None:
-        from_date = datetime.now().date()
-    return from_date - relativedelta(years=years)
+    # if from_date is None:
+    #     from_date = datetime.now().date()
+    # return from_date - relativedelta(years=years)
+    pass

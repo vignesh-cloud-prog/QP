@@ -5,12 +5,22 @@
 {% endblock title %}
 
 {% comment %} page description {% endcomment %}
-{% block description %} 
+{% block description %}
 Submit your question papers here. So it could be accessed by anyone in the world through qpweb.
 {% endblock description %}
 
 {% block styles %}
 <link rel="stylesheet" href="{%static 'provides/css/provider_form.css'%}">
+<script type="text/javascript" src="{%static 'provides/js/selectize.js'%}"></script>
+<link rel="stylesheet" href="{%static 'provides/css/selectize.css'%}">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/js/standalone/selectize.min.js" integrity="sha512-pF+DNRwavWMukUv/LyzDyDMn8U2uvqYQdJN0Zvilr6DDo/56xPDZdDoyPDYZRSL4aOKO/FGKXTpzDyQJ8je8Qw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/css/selectize.bootstrap3.min.css" integrity="sha512-MNbWZRRuTPBahfBZBeihNr9vTJJnggW3yw+/wC3Ev1w6Z8ioesQYMS1MtlHgjSOEKBpIlx43GeyLM2QGSIzBDg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 {% endblock styles %}
 
 {% block body %}
@@ -19,7 +29,76 @@ Submit your question papers here. So it could be accessed by anyone in the world
     <h3>Provide Question Papers</h3>
     <div class="form">
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
-            {{form.as_p}}
+            {% comment %} {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            {% endfor %} {% endcomment %}
+
+            <div class="fieldWrapper">
+                {{ form.paper_type.errors }}
+                <div class="selected">
+
+
+                    {{ form.paper_type.label_tag }}
+                    <div class="select-box">
+                        <div class="options-container">
+                            {{ form.paper_type }}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="fieldWrapper">
+                {{ form.education_type.errors }}
+                {{ form.education_type.label_tag }}
+                {{ form.education_type }}
+            
+            </div>
+            <div class="fieldWrapper">
+                {{ form.governing_body.errors }}
+                {{ form.governing_body.label_tag }}
+                {{ form.governing_body }}
+               
+            </div>
+            <div class="fieldWrapper">
+                {{ form.course_name.errors }}
+                {{ form.course_name.label_tag }}
+                {{ form.course_name }}
+              
+            </div>
+            <div class="fieldWrapper">
+                {{ form.period.errors }}
+                {{ form.period.label_tag }}
+                {{ form.period }}
+          
+            </div>
+            <div class="fieldWrapper">
+                {{ form.subject_name.errors }}
+                {{ form.subject_name.label_tag }}
+                {{ form.subject_name }}
+               
+            </div>
+            <div class="fieldWrapper">
+                {{ form.paper_year.errors }}
+                {{ form.paper_year.label_tag }}
+                {{ form.paper_year }}
+
+            </div>
+            <div class="fieldWrapper">
+                {{ form.paper_title.errors }}
+                {{ form.paper_title.label_tag }}
+                {{ form.paper_title }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.doc.errors }}
+                {{ form.doc.label_tag }}
+                {{ form.doc }}
+            </div>
     </div>
 
     <button class="btn" type="submit" value="Submit" />Provide</button>
@@ -42,14 +121,14 @@ Submit your question papers here. So it could be accessed by anyone in the world
 
     <div>
         <a href="{% url 'login'%}"><button class="btn">Login</button></a>
-        
-        <button class="btn"
-        onclick="sharefunc('/provider','Hello, Can you provide question papers through QP Web. Help others 😊')">
-            
 
-                Ask friends
-            </button>
-    
+        <button class="btn"
+            onclick="sharefunc('/provider','Hello, Can you provide question papers through QP Web. Help others 😊')">
+
+
+            Ask friends
+        </button>
+
     </div>
 
 

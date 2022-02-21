@@ -24,6 +24,7 @@ urlpatterns = [
     path('contact/', include('contacts.urls')),
     path('provider/', include('provides.urls')),
     path('push/', include('provides_controller.urls')),
+    path('nouns/', include('nouns.urls')),
     path('', include('question_papers.urls')),
 ]
 

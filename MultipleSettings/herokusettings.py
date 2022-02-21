@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'contacts.apps.ContactsConfig',
     'provides.apps.ProvidesConfig',
     'provides_controller.apps.ProvidesControllerConfig',
+    'nouns.apps.NounsConfig',
 
     # Thirdparty apps
     'cloudinary_storage',

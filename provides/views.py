@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponse
+from django.core import serializers
+from django.db.models import Q
+from question_papers.models import Question_paper
 from .forms import ProvideForm
 from django.contrib import messages
 
@@ -50,3 +53,28 @@ def provider(request):
     
 
     return render(request, 'provides/provide.html', providers)
+
+def filter_provide_form_ajax(request,*args,**qwargs):
+    paper_type = request.GET.get('paper_type')
+    print(paper_type)
+    education_type = request.GET.get('education_type')
+    # print(type)
+    governing_body = request.GET.get('governing_body')
+    course_name = request.GET.get('course_name')
+    period = request.GET.get('period')
+    # print(company)
+    query = Q(paper_type=paper_type)
+    if education_type:
+        query = query & Q(education_type=education_type)
+    if governing_body:
+        query = query & Q(governing_body=governing_body)
+    if course_name:
+        query = query & Q(course_name=course_name)
+    if period:
+        query = query & Q(period=period)
+    # print(query)
+    papers = Question_paper.objects.filter(query)
+    # print(vehical_names)
+    data = serializers.serialize('json', papers)
+
+    return HttpResponse(data, content_type='application/json')
