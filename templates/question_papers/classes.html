@@ -5,43 +5,54 @@
 
 {% block title %}
 {% for title in course %} {% ifchanged college %}
-{{title.course}}_{{title.university}}_{{title.year}}_question_papers
+{{title.course_name}}-{{title.governing_body}}-{{title.period}}-question-papers
 {% endifchanged %} {% endfor %}
 {% endblock title %}
+
+{% block description %}
+{% for title in course %} {% ifchanged college %}
+{{title.course_name}}-{{title.governing_body}}-{{title.period}},
+{% endifchanged %} {% endfor %} question papers are available
+{% endblock description %}
 
 {% block body %}
 <div class="colleges">
   <p>Welcome to QP World</p>
+
   {% for cour in course %}
 
-  {% ifchanged course %}
+  {% ifchanged course_name %}
   <div class="titles">
     <h1>
-      {{cour.college| to_space |title}}<img src="{%static 'question_papers/images/college.png' %}" alt="#" />
+      {{cour.education_type| to_space |title}}<img src="{%static 'question_papers/images/college.png' %}" alt="#" />
     </h1>
     <h1>
-      {{cour.university| to_space | title}}
-      {% if cour.university == 'manglore_university' %}
+      {{cour.governing_body| to_space | title}}
+      {% if cour.governing_body == 'manglore_university' %}
       <img src="{%static 'question_papers/images/mangloreuniversity.jpg'%}" alt="#" />
-      {% elif cour.university == 'kuvempu_university'%}
+      {% elif cour.governing_body == 'kuvempu_university'%}
       <img src="{%static 'question_papers/images/Kuvempu_University.jpg'%}" alt="#" />
       {% else %}
       <img src="{%static 'question_papers/images/university.jpg'%}" alt="#" />
       {% endif %}
     </h1>
     <h1>
-      {{cour.course| to_space |upper}}
+      {{cour.course_name| to_space |upper}}
       <img src="{%static 'question_papers/images/course.png'%}" alt="#" />
     </h1>
   </div>
-  {% endifchanged %}
-  <div class="college">
-    <a href="{{cour.year}}">
-      <img src="{%static 'question_papers/images/year.png'%}" alt="#" />
-      <h4>{{cour.year| to_space |title}}</h4>
-    </a>
-  </div>
-  {% endfor %}
+
+<b class="sub_head">Choose your semister/year:</b>
+
+{% endifchanged %}
+<div class="college">
+  <a href="{{cour.period}}">
+    <img src="{%static 'question_papers/images/year.png'%}" alt="#" />
+    <h4>{{cour.period| to_space |title}}</h4>
+  </a>
 </div>
+{% endfor %}
+</div>
+{% include 'provides/provide_pitch.html' %}
 
 {% endblock body %}

@@ -1,0 +1,28 @@
+<form method="POST">
+    {% csrf_token %}
+    <div class="container otp_container">
+        <legend class="">
+            <h3 class="">Verify Your Email</h3>
+        </legend>
+        <input type="hidden" name="usr" value="{{usr.username}}">
+        <div class="">
+            <div class="">
+                <span class="" id="">Enter Your OTP</span>
+                <br>
+                <i>Check your spam folder too!</i>
+            </div>
+            <br>
+            <input autofocus type="number" required placeholder="Enter Your OTP" aria-label="OTP"
+                aria-describedby="" name='otp' min=000000 max=999999  id="otp">
+        </div>
+        <br>
+        
+        <button class="" type="submit">Verify</button>
+
+        <small class=""><i><a  class="" onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')"><i
+                        id="resendOTPmess">Resend</i>
+                    OTP</a></small>
+
+    </div>
+
+</form>

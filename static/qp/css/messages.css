@@ -1,6 +1,12 @@
 /* Message starting */
-
+.msg_wrapper{
+  position: absolute;
+  top: 10vh;
+   width: 100vw;
+  z-index: 5;
+}
 .first_row{
+  
     display: flex;
     justify-content: space-between;
   }
@@ -8,12 +14,11 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    width: 98%;
-    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    margin:  0.2rem;
     padding: 1rem;
-    position: absolute;
-    box-sizing:border-box;
-    z-index: 5;
+    
     border-radius: 12px;
   }
   #msg_title{
@@ -22,7 +27,7 @@
   #msg_body{
     text-indent: 40px;
     font-size: medium;
-    display: block;
+    display: inline-block;
     margin-top: 0.5rem;
   }
   .msg_close_btn{

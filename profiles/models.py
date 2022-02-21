@@ -4,6 +4,10 @@ from .utils import generate_ref_code
 
 # Create your models here.
 class Profile(models.Model):
+	"""
+    Stores a user profile information, related to :model:`profiles.Profile` and
+    :model:`auth.User`.
+    """
 	user=models.OneToOneField(User,related_name="profile", on_delete=models.CASCADE)
 	pic=models.ImageField(upload_to="profile_pics",blank=True)
 	bio=models.TextField(blank=True)

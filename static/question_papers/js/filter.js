@@ -1,4 +1,4 @@
-
+// filter section
 let selector_university = document.getElementById("university");
 let selector_course = document.getElementById("course");
 let selector_year = document.getElementById("year");
@@ -10,7 +10,6 @@ let select_third = document.getElementById("course");
 let select_four = document.getElementById("year");
 let select_college = document.getElementById("college");
 
-
 let university;
 let college;
 let course;
@@ -19,20 +18,16 @@ let subject;
 let year;
 let examination;
 
-
-
-let options = `<option>--select--</option>`;
+const base_url = window.location.origin;
 
 function get_filter_first_option() {
-  console.log("host "+window.location.href);
-  console.log("You have changed the filter");
-  console.log("value " + select_first.value);
+  let options = `<option>--select--</option>`;
+
   const value = select_first.value;
 
   // Instantiate an xhr object
   const xhr = new XMLHttpRequest();
-  url = `http://127.0.0.1:8000/filter_first_option`;
-  console.log(url);
+  url = `${base_url}/filter_first_option`;
   // Open the object
   xhr.open("GET", url, true);
 
@@ -43,17 +38,10 @@ function get_filter_first_option() {
       console.log(obj);
       let str;
       for (key in obj) {
-        university = obj[key].fields.university;
-        examination = obj[key].fields.examination;
-        college = obj[key].fields.college;
-        course = obj[key].fields.course;
-        paper = obj[key].fields.paper;
-        provider = obj[key].fields.provider;
-        subject = obj[key].fields.subject;
-        year = obj[key].fields.year;
+        college = obj[key].fields.education_type;
 
         let option = ` <option value="${college}" name="${college}">${college}</option>`;
-        options += Option;
+        options += option;
       }
       select_college.innerHTML = options;
     } else {
@@ -66,12 +54,14 @@ function get_filter_first_option() {
 }
 
 function sel_First_Func() {
+  let options = `<option>--select--</option>`;
+
   const value = select_first.value;
 
   // Instantiate an xhr object
   const xhr = new XMLHttpRequest();
-  url = `http://127.0.0.1:8000/json-${value}`;
-  console.log(url);
+  url = `${base_url}/json-${value}`;
+
   // Open the object
   xhr.open("GET", url, true);
 
@@ -79,25 +69,15 @@ function sel_First_Func() {
   xhr.onload = function () {
     if (this.status === 200) {
       let obj = JSON.parse(this.responseText);
-      console.log(obj);
+
       let str;
       for (key in obj) {
-        university = obj[key].fields.university;
-        examination = obj[key].fields.examination;
-        college = obj[key].fields.college;
-        course = obj[key].fields.course;
-        paper = obj[key].fields.paper;
-        provider = obj[key].fields.provider;
-        subject = obj[key].fields.subject;
-        year = obj[key].fields.year;
+        university = obj[key].fields.governing_body;
 
-        let option = document.createElement("option");
-        option.text = university;
-        option.setAttribute("name", "university");
-        option.value = university;
-        selector_university.appendChild(option);
-        university = "";
+        let option = ` <option value="${university}" name="${university}">${university}</option>`;
+        options += option;
       }
+      selector_university.innerHTML = options;
     } else {
       console.log("Some error occured");
     }
@@ -108,13 +88,15 @@ function sel_First_Func() {
 }
 
 function sel_Sec_Func() {
+  let options = `<option>--select--</option>`;
+
   const value1 = select_first.value;
   const value2 = select_second.value;
 
   // Instantiate an xhr object
   const xhr = new XMLHttpRequest();
-  url = `http://127.0.0.1:8000/json-${value1}/${value2}`.replace(" ", "");
-  console.log(url);
+  url = `${base_url}/json-${value1}/${value2}`.replace(" ", "");
+
   // Open the object
   xhr.open("GET", url, true);
 
@@ -122,25 +104,15 @@ function sel_Sec_Func() {
   xhr.onload = function () {
     if (this.status === 200) {
       let obj = JSON.parse(this.responseText);
-      console.log(obj);
+
       let str;
       for (key in obj) {
-        university = obj[key].fields.university;
-        examination = obj[key].fields.examination;
-        college = obj[key].fields.college;
-        course = obj[key].fields.course;
-        paper = obj[key].fields.paper;
-        provider = obj[key].fields.provider;
-        subject = obj[key].fields.subject;
-        year = obj[key].fields.year;
+        course = obj[key].fields.course_name;
 
-        let option = document.createElement("option");
-        option.text = course;
-        option.setAttribute("name", "course");
-        option.value = course;
-        selector_course.appendChild(option);
-        course = "";
+        let option = ` <option value="${course}" name="${course}">${course}</option>`;
+        options += option;
       }
+      selector_course.innerHTML = options;
     } else {
       console.log("Some error occured");
     }
@@ -151,14 +123,16 @@ function sel_Sec_Func() {
 }
 
 function sel_Third_Func() {
+  let options = `<option>--select--</option>`;
+  console.log("You have changed the filter");
+  console.log("value " + select_first.value);
   const value1 = select_first.value;
   const value2 = select_second.value;
   const value3 = select_third.value;
 
   // Instantiate an xhr object
   const xhr = new XMLHttpRequest();
-  url = `http://127.0.0.1:8000/json-${value1}/${value2}/${value3}`;
-  console.log(url);
+  url = `${base_url}/json-${value1}/${value2}/${value3}`;
   // Open the object
   xhr.open("GET", url, true);
 
@@ -169,22 +143,12 @@ function sel_Third_Func() {
       console.log(obj);
       let str;
       for (key in obj) {
-        university = obj[key].fields.university;
-        examination = obj[key].fields.examination;
-        college = obj[key].fields.college;
-        course = obj[key].fields.course;
-        paper = obj[key].fields.paper;
-        provider = obj[key].fields.provider;
-        subject = obj[key].fields.subject;
-        year = obj[key].fields.year;
+        year = obj[key].fields.period;
 
-        let option = document.createElement("option");
-        option.text = year;
-        option.setAttribute("name", "year");
-        option.value = year;
-        selector_year.appendChild(option);
-        year = "";
+        let option = ` <option value="${year}" name="${year}">${year}</option>`;
+        options += option;
       }
+      selector_year.innerHTML = options;
     } else {
       console.log("Some error occured");
     }
@@ -195,6 +159,8 @@ function sel_Third_Func() {
 }
 
 function sel_Four_Func() {
+  let options = `<option>--select--</option>`;
+
   const value1 = select_first.value;
   const value2 = select_second.value;
   const value3 = select_third.value;
@@ -202,12 +168,11 @@ function sel_Four_Func() {
 
   // Instantiate an xhr object
   const xhr = new XMLHttpRequest();
-  url =
-    `http://127.0.0.1:8000/json-${value1}/${value2}/${value3}/${value4}`.replace(
-      " ",
-      ""
-    );
-  console.log(url);
+  url = `${base_url}/json-${value1}/${value2}/${value3}/${value4}`.replace(
+    " ",
+    ""
+  );
+
   // Open the object
   xhr.open("GET", url, true);
 
@@ -218,22 +183,12 @@ function sel_Four_Func() {
       console.log(obj);
       let str;
       for (key in obj) {
-        university = obj[key].fields.university;
-        examination = obj[key].fields.examination;
-        college = obj[key].fields.college;
-        course = obj[key].fields.course;
-        paper = obj[key].fields.paper;
-        provider = obj[key].fields.provider;
-        subject = obj[key].fields.subject;
-        year = obj[key].fields.year;
+        subject = obj[key].fields.subject_name;
 
-        let option = document.createElement("option");
-        option.text = subject;
-        option.setAttribute("name", "subject");
-        option.value = subject;
-        selector_subject.appendChild(option);
-        subject = "";
+        let option = ` <option value="${subject}" name="${subject}">${subject}</option>`;
+        options += option;
       }
+      selector_subject.innerHTML = options;
     } else {
       console.log("Some error occured");
     }
@@ -242,3 +197,4 @@ function sel_Four_Func() {
   // send the request
   xhr.send();
 }
+// end of filter section

@@ -1,6 +1,7 @@
 {% load static %}
 {% if messages %}
 {% for message in messages %}
+<div class="msg_wrapper">
 <div class="{{ message.tags }}" id="msg_box">
     <div class="first_row">
         <p id="msg_title">Message :</p>
@@ -13,6 +14,7 @@
 
     {% comment %} <label for="click" class="msg_close_btn"
         onclick="this.parentElement.style.display='none';">Done</label> {% endcomment %}
+</div>
 </div>
 {% endfor %}
 {% endif %}
@@ -38,13 +40,13 @@
         <a href="/">Home</a>
         <a href="{% url 'provider'%}">Provide</a>
         <a href="{% url 'contact'%}">Contact</a>
-        <a href="#"> About</a>
+        <a href="{% url 'about'%}""> About</a>
     </div>
     <div id="rightnav">
         <div class="explore flex">
             <div class="search">
                 <form class="flex" action="{% url 'search'%}">
-                    <input type="text" placeholder="search here" id="search_input" name="query">
+                    <input type="text" placeholder="search " required id="search_input" name="query">
                     <button type="submit" id="search_btn"><img src="{%static 'question_papers/images/search.png'%}"
                             alt="Search"></button>
 
@@ -58,10 +60,10 @@
     {% if request.user.is_authenticated %}
     {% if request.user.profile.pic %}
 
-    <img id="user" src="{{request.user.profile.pic.url}}" alt="You">
+    <img class="user_pic" id="user" src="{{request.user.profile.pic.url}}" alt="You">
 
     {% else %}
-    <img id="user" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
+    <img class="user_pic" id="user" src="{%static 'question_papers/images/user-circle.png'%}" alt="You">
 
     {% endif %}
     {% else %}
@@ -81,7 +83,7 @@
             <hr width="100%"><br>
             <p><a href="{% url 'profile'%}">View Profile</a></p>
             <p><a href="#"
-                    onclick="sharefunc('http:&#47;&#47;127.0.0.1:8000&#47;register&#47;{{request.user.profile.code}}','Hey, join QP Web the great website to share question papers')">Reffer
+                    onclick="sharefunc('/accounts/{{request.user.profile.code}}','Hey, join QP Web the great website to share and get question papers')">Reffer
                     friend</a> </p>
             {% endif %}
 

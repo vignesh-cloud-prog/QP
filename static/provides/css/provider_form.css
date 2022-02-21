@@ -1,0 +1,37 @@
+.provider_form_container{
+    padding: 1rem;
+    max-width: 800px;
+    margin: 1rem ;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
+    background: white;
+}
+.provider_form_container header{
+    font-weight: bold;
+}
+.provider_form_container main{
+    margin: 1rem 0;
+}
+.provider_form_container button{
+    display: block;
+    margin:  1rem auto;
+    
+}
+
+@media screen and (min-width:600px){
+    .provider_form_container{
+        margin: 2rem auto;
+    }
+    .provider_form_container p{
+        display: flex;
+        width: 100%;
+
+        justify-content: space-between;
+        align-items: center;
+    }
+    .provider_form_container p input,select,textarea{
+        width: 60%;
+        margin: 8px;
+    }
+    
+}
+ 

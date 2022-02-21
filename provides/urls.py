@@ -21,4 +21,5 @@ from provides import views
 
 urlpatterns = [
     path('', views.provider, name='provider'),
+    path('provide_filter/', views.filter_provide_form_ajax, name='provide_filter'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

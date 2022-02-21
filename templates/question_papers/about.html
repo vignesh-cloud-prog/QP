@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}About
+{% endblock title %}
+
+{% comment %} page description {% endcomment %}
+{% block description %}
+This website is developed by Vignesh N U. Know more about us here.
+{% endblock description %}
+
+{% block body %}
+<div class="designer">
+    <p>
+        This website is developed by
+    </p>
+    <h1>VIGNESH</h1>
+    <p>Contact: +91 7338085595 / vigneshun80@gmail.com</p>
+    <a href="https://vigneshnu.herokuapp.com">Portfolio Website</a> 
+    
+
+    <p>follow us on:</p>
+    <p>
+        <a href="https://www.facebook.com/vignesh.viggi.775" target="_blank"><img
+                src="{%static 'question_papers/images/facebook.png'%}" alt="#">
+        </a>
+        <a href="https://www.instagram.com/vignesh_n_u/" target="_blank"><img
+                src="{%static 'question_papers/images/instagram.png'%}" alt="#">
+        </a>
+        <a href="https://github.com/vignesh-cloud-prog" target="_blank"><img
+                src="{%static 'question_papers/images/github.png'%}" alt="#">
+        </a>
+        <a href="https://twitter.com/VigneshNU2" target="_blank"><img
+                src="{%static 'question_papers/images/twitter.png'%}" alt="#">
+        </a>
+        <a href="https://www.linkedin.com/in/vignesh-n-u/" target="_blank"><img
+                src="{%static 'question_papers/images/linkedin.png'%}" alt="#">
+        </a>
+    </p>
+</div>
+{% endblock body %}

@@ -18,11 +18,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from profiles import views
+from django.views.generic import RedirectView
+
 
 urlpatterns = [
 
     path('update', views.profile_settings, name='update_profile'),
     path('', views.profile_view, name='profile'),
-        
+    path('favicon.ico/',RedirectView.as_view(url='/static/favicon.ico')),
         
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

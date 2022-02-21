@@ -14,16 +14,16 @@
 {% for result in results %}
 <div class="result">
     <div id="1" class="title">
-        <p>{{result.course| upper}}</p>
-        <p>{{result.university| title}}</p>
+        <p>{{result.course_name| upper}}</p>
+        <p>{{result.governing_body| title}}</p>
     </div>
     <div id="2" class="title">
-        <p>{{result.year| title}}</p>
-        <p>{{result.subject| title}}</p>
+        <p>{{result.paper_year| title}}</p>
+        <p>{{result.subject_name| title}}</p>
     </div>
     <div id="3" class="title">
-        <a href="{{result.paper.url}}"> view</a>
-        <a href="{{result.paper.url}}" download>download</a>
+        <a href="{{result.paper_doc.url}}"> view</a>
+        <a href="{{result.paper_doc.url}}" download>download</a>
     </div>
 </div>
 {% endfor %}

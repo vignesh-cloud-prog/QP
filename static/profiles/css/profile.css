@@ -1,132 +1,137 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-#outerbox{
-    width: 90%;
-    padding: 0.5rem;
-    margin: auto;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
-    border-radius: 2%;   
+#outerbox {
+  width: 90%;
+  padding: 0.5rem;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.4);
+  border-radius: 2%;
 }
-#outerbox h1{
-    text-align: center;
-    margin: 0.5rem;
+#outerbox h1 {
+  text-align: center;
+  margin: 0.5rem;
 }
-#profile{
-    display: grid;
-    grid-template-columns: 1fr 2fr;
+#profile {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 2fr;
 }
-#user_info{
-    width: max-content;
-    margin: auto;
-    border-right: 2px solid black;
-    padding: 2rem;
-    padding-right: 6rem;
-    margin: 20px;
+#user_info {
+  width: max-content;
+  margin: auto;
+  border-right: 2px solid black;
+  padding: 2rem;
+  padding-right: 6rem;
+  margin: 20px;
 }
-#user_info p{
-    margin: 0.5rem;
+#user_info p {
+  margin: 0.5rem;
 }
-.row-1{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+.row-1 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
-.img{
-    border-radius: 50%;
-    max-width: 10rem;
-    max-height: 10rem;
+.img {
+  border-radius: 50%;
+  max-width: 10rem;
+  max-height: 10rem;
+  border: 4px solid rgb(101, 101, 226);
 }
-#edit_btn{
-    border-radius: 10%;
-    background-color: white;
-    font-size: 12px;
-    text-align: center;
-    border: 1px solid rgb(95, 95, 95);
-    padding: 5px;
-    height: max-content;
+#edit_btn {
+  border-radius: 10%;
+  background-color: white;
+  font-size: 12px;
+  text-align: center;
+  border: 1px solid rgb(95, 95, 95);
+  padding: 5px;
+  height: max-content;
 }
-#edit_icon{
-    height: 12px;
-    margin-bottom: -3px;
-    
-}
-
-#user_activity{
-    width: max-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 2rem;
+#edit_icon {
+  height: 12px;
+  margin-bottom: -3px;
 }
 
-.userlinks{
-    text-transform: uppercase;
-    color: blue;
-    font-size: 1rem;
+#user_activity {
+  width: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2rem;
+  overflow: hidden;
+}
+#user_activity li {
+  word-wrap: break-word;
+  list-style-position: inside;
+}
+.userlinks {
+  text-transform: uppercase;
+  color: blue;
+  font-size: 1rem;
 }
 
-.profile_update{
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    max-width: 600px;
-    margin: auto;
+.profile_update {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
 }
-.profile_update form{
-    width: 90%;
+.profile_update form {
+  width: 90%;
 }
-.profile_update fieldset{
-    margin:  1rem 0;
-    width: 100%;
-    border-radius: 12px;
-    
+.profile_update fieldset {
+  margin: 1rem 0;
+  width: 90%;
+  border-radius: 12px;
 }
-.profile_update input[type=text]{
+.profile_update input[type="text"] {
+  border: none;
+  margin: 0.5rem;
+}
+.profile_update input[type="text"]:focus {
+  outline: none;
+}
+.profile_update button {
+  padding: 6px 20px;
+  border: 2px solid white;
+  background-color: rgb(94, 94, 216);
+  color: white;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: auto;
+  display: block;
+}
+#photo {
+  position: relative;
+}
+#img_input {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  #profile {
+    overflow: scroll;
+    grid-template-columns: auto;
+    align-items: flex-start;
+  }
+  #user_info {
     border: none;
-    margin: 0.5rem;
-}
-.profile_update input[type=text]:focus{
-    outline: none;
-}
-.profile_update button{
-    padding: 6px 20px;
-    border: 2px solid white;
-    background-color: rgb(94, 94, 216);
-    color: white;
-    font-size: 1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    margin: auto;
-    display: block;
-}
-#photo{
-    position: relative;
-}
-#img_input{
-    position: absolute;
-    bottom: 0.5rem;
-    right: 0.5rem;
+    border-bottom: 2px solid black;
+    padding: 1rem;
     
-}
-
-@media only screen and (max-width: 1024px){
-    #profile{
-        grid-template-columns: auto;
-        align-items: center;
-    }  
-    #user_info{
-        border: none;
-        border-bottom: 2px solid black;
-        padding: 1rem;
-        margin: auto;
-    } 
-    #user_activity{
-        margin: auto;
-    }
+  }
+  #user_activity {
+    margin: auto;
+  }
 }

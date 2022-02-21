@@ -19,6 +19,5 @@ from django.urls import path
 from provides_controller import views
 
 urlpatterns = [
-    path('pushed', views.pushed, name='pushed'),
     path('', views.push, name='push'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

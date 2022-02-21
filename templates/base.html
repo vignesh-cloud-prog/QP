@@ -6,42 +6,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QP Web | {% block title %} {% endblock title %}</title>
+  <title>{% block title %} {% endblock title %} | Question Paper</title>
+  <link rel="shortcut icon" href="{%static 'favicon.ico'%}" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="description"
+    content="Free Website for all kind of question papers. {% block description %} {% endblock description %} ">
+  <meta name="keywords" content="questions, papers, {% block keywords %} {% endblock keywords %}">
+  <meta name="application-name" content="QP Web">
+
 
   <link rel="stylesheet" href="{%static 'question_papers/css/form.css'%}" />
   <link rel="stylesheet" href="{%static 'question_papers/css/qp.css'%}" />
   <link rel="stylesheet" href="{%static 'qp/css/messages.css'%}" />
-  <link rel="shortcut icon" href="{%static 'question_papers/images/favicon.png'%}" type="image/x-icon">
+  <link rel="stylesheet" href="{%static 'provides/css/provide_pitch.css'%}" />
   <!-- Google fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+    </style>
   <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Caladea:wght@700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Average+Sans&display=swap" rel="stylesheet" />
   {% block styles %}
   {% endblock styles %}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZVNN27SZW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GZVNN27SZW');
+  </script>
 </head>
 
 <body>
   {% block navigation %}
   {% include 'qp/navigation.html' %}
   {% endblock navigation %}
+  <div class="main">
 
-  {% block body %}
-  {% endblock body %}
+    {% block body %}
+    {% endblock body %}
 
 
-
-  {% block share %}
-  {% include 'qp/share.html' %}
-  {% endblock share %}
-  {% block footer %}
-  {% include 'qp/footers.html' %}
-  {% endblock footer %}
+    {% block share %}
+    {% include 'qp/share.html' %}
+    {% endblock share %}
+  </div>
+    {% block footer %}
+    {% include 'qp/footers.html' %}
+    {% endblock footer %}
+  
   <script src="{%static 'question_papers/js/qp.js'%}"></script>
   <script src="{%static 'question_papers/js/filter.js'%}"></script>
   <script src="{%static 'qp/js/share.js'%}"></script>
-  <script src="{%static 'question_papers/js/jquery3.4.1 .min.js'%}"></script>
   {% block scripts_tag %}
   {% endblock scripts_tag %}
 </body>

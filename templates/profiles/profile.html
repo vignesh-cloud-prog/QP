@@ -12,17 +12,25 @@
 <div id="outerbox">
     <h1>Profile</h1>
     <div id="profile">
+        
+       
+            
         <div id="user_info">
-            <div class="row-1">
-            {% if request.user.profile.pic %}
-            <img id="pic" class="img" src="{{request.user.profile.pic.url}}" alt="You"/>
-
-            {% else %}
-            <img id="pic" class="img"src="{%static 'question_papers/images/user-circle.png'%}" alt="You"/>
-
+            {% if request.user.first_name|length < 3 or request.user.profile.college|length < 3  %}
+            
+            <div id="warning" style="color: darkgoldenrod;">Your profile is incomplete.Update your profile</div>
             {% endif %}
-            <a href="{% url 'update_profile'%}" id="edit_btn"> Update <img id="edit_icon" src="{%static 'question_papers/images/pensil.png'%}" alt=""/></a>
-        </div>
+            <div class="row-1">
+                {% if request.user.profile.pic %}
+                <img  class="img" src="{{request.user.profile.pic.url}}" alt="You" />
+
+                {% else %}
+                <img  class="img" src="{%static 'question_papers/images/user-circle.png'%}" alt="You" />
+
+                {% endif %}
+                <a href="{% url 'update_profile'%}" id="edit_btn"> Update <img id="edit_icon"
+                        src="{%static 'question_papers/images/pensil.png'%}" alt="" /></a>
+            </div>
             <p style="display: none;">{{request.user.id}}</p>
 
             <p id="username">{{request.user.first_name}}</p>
@@ -37,23 +45,47 @@
         </div>
         <div id="user_activity">
             <p class="userlinks" id="papers_uploaded">Papers provided by you uploaded</p>
-            {% for paper in my_papers_uploaded %}
-            {{paper.university}}
-            {{paper.course}}
-            <br>
-            {% endfor %}
+            <ol>
+                {% for paper in my_papers_uploaded %}
+                <li>
+                    {{paper.governing_body}},
+                    {{paper.course_name}},
+                    {{paper.subject_name}},
+                    {{paper.paper_year}}
+                </li>
+
+
+
+                {% empty %}
+                No records found
+                {% endfor %}
+            </ol>
             <p class="userlinks" id="papers_reviewing">Papers provided by you reviewing</p>
-            {% for items in my_papers_reviewing %}
-            {{items.board}}
-            {{items.claass}}
-            <br>
-            {% endfor %}
+            <ol>
+                {% for paper in my_papers_reviewing %}
+                <li>
+                    {{paper.governing_body}},
+                    {{paper.course_name}},
+                    {{paper.subject_name}},
+                    {{paper.paper_year}}
+                </li>
+
+                {% empty %}
+                No records found
+                {% endfor %}
+            </ol>
             <p class="userlinks" id="refs_by_me"> People reffered by you</p>
-            {% for people in my_recs %}
-            {{people.user.first_name}}
-            {{people.user.username}}
-            <br>
-            {% endfor %}
+            <ol>
+                {% for people in my_recs %}
+                <li>
+                    {{people.user.first_name}}
+                   ( {{people.user.username}} )
+                </li>
+                {% empty %}
+                No records found
+                {% endfor %}
+            </ol>
+
         </div>
     </div>
 

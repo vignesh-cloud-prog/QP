@@ -17,11 +17,16 @@ from django.contrib import admin
 from django.urls import path,include
 
 urlpatterns = [
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('users.urls')),
     path('profile/', include('profiles.urls')),
     path('contact/', include('contacts.urls')),
     path('provider/', include('provides.urls')),
     path('push/', include('provides_controller.urls')),
+    path('nouns/', include('nouns.urls')),
     path('', include('question_papers.urls')),
 ]
+
+admin.site.site_header="QP Administration"
+
