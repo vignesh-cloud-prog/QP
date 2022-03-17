@@ -235,6 +235,28 @@ def about(request):
     :template:`question_papers/about.html`
     """
     return render(request, 'question_papers/about.html')
+def privacy(request):
+    """
+    Display the information related to website and developer.
+
+    **Context**
+
+    **Template:**
+
+    :template:`question_papers/about.html`
+    """
+    return render(request, 'question_papers/privacy.html')
+def terms(request):
+    """
+    Display the information related to website and developer.
+
+    **Context**
+
+    **Template:**
+
+    :template:`question_papers/about.html`
+    """
+    return render(request, 'question_papers/terms.html')
 
 
 def error_404(request, exception):

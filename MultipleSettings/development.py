@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admindocs',
+    #Added
+    'django.contrib.sites',
 
     # own apps
     'question_papers.apps.QuestionPapersConfig',
@@ -47,12 +49,33 @@ INSTALLED_APPS = [
     'contacts.apps.ContactsConfig',
     'provides.apps.ProvidesConfig',
     'provides_controller.apps.ProvidesControllerConfig',
+   
 
     # Thirdparty apps
     'cloudinary_storage',
     'cloudinary',
 
+    # All auth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+SITE_ID = 1
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
@@ -160,6 +183,10 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT =os.path.join(BASE_DIR,'media')
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 
 
