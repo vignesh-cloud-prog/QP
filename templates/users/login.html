@@ -22,11 +22,14 @@
     <div class="">
         <div>
             <span class="" id="">OTP</span>
+            <p style="color: goldenrod;">! also check inside the spam folder</p><br>
         </div>
        
-
-        <input type="number" required class="form-control" placeholder="Enter Your OTP" aria-label="OTP"
-            aria-describedby="" name='otp'>
+<center>
+    <input type="number" required class="form-control" placeholder="Enter Your OTP" aria-label="OTP"
+    aria-describedby="" name='otp' >
+</center>
+       
     </div>
 
     <button class="btn mainbtn" type="submit">Verify</button>
@@ -45,7 +48,7 @@
 <div class="container login_form">
     <div class="login_head container">
         <h1>QP Web</h1>
-        <p id="desc">A platform to get your academic question papers and also give to some one you.</p>
+        <p id="desc">A platform to get your academic question papers and also to give some others.</p>
     </div>
     <hr width="90%">
     <div class="login_body">
@@ -67,7 +70,9 @@
         <hr width="90%">
         <small><a href="{% url 'password_reset'%}" class="text-dark"> Forgotten
                 Password?</a></small>
-        <small> New to QPWeb - <a href="{% url 'signup'%}">SignUp</a> </small>
+                
+        <small> New to QP Web ? </small>
+        <a href="{% url 'signup'%}"> <button>  SignUp </button> </a>
     </div>
 </div>
 {% endif %}
