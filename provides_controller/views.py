@@ -54,7 +54,7 @@ def push(request):
 
             send_mail(
                 'Your paper is now live on QP Web',
-                f"The paper provided by you, ({university}, {course}, {year}, {subject}, {examination_title}, {examination_year}) has been appproved.\nYou can check on our website ➡  https://qpweb.herokuapp.com/.",
+                f"The paper provided by you, ({university}, {course}, {year}, {subject}, {examination_title}, {examination_year}) has been appproved. You can check on our website ➡  https://qpweb.herokuapp.com/.",
                 'qpcom80@gmail.com',
                 [emailid],
                 fail_silently=True,

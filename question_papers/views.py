@@ -112,11 +112,11 @@ def course(request, college, university, course):
     """
     if college.startswith("json"):
         college = college.split("-")[1]
-        course = Question_paper.objects.filter(
+        course = Question_paper.objects.filter(education_type=college,
             course_name=course, governing_body=university).order_by('period').distinct('period')
         qs_json = serializers.serialize('json', course)
         return HttpResponse(qs_json, content_type='application/json')
-    course = Question_paper.objects.filter(
+    course = Question_paper.objects.filter(education_type=college,
         course_name=course, governing_body=university).order_by('period').distinct('period')
     if course.exists():
         course = {'course': course}
@@ -140,12 +140,12 @@ def year(request, college, university, course, year):
     """
     if college.startswith("json"):
         college = college.split("-")[1]
-        year = Question_paper.objects.filter(
-            course_name=course, governing_body=university).order_by('subject_name').distinct('subject_name')
+        year = Question_paper.objects.filter(education_type=college,
+            course_name=course, governing_body=university,period=year).order_by('subject_name').distinct('subject_name')
         qs_json = serializers.serialize('json', year)
         return HttpResponse(qs_json, content_type='application/json')
-    year = Question_paper.objects.filter(
-        course_name=course, governing_body=university).order_by('subject_name').distinct('subject_name')
+    year = Question_paper.objects.filter(education_type=college,
+        course_name=course, governing_body=university,period=year).order_by('subject_name').distinct('subject_name')
     if year.exists():
         year = {'year': year}
         return render(request, 'question_papers/subjects.html', year)
@@ -169,7 +169,8 @@ def question_papers(request, college, university, course, year, subject):
     :template:`question_papers/papers.html`
     """
     papers = Question_paper.objects.filter(
-        subject_name=subject, governing_body=university)
+        education_type=college,
+        course_name=course, governing_body=university,period=year,subject_name=subject)
     if papers.exists():
         papers = {'paper': papers}
         return render(request, 'question_papers/papers.html', papers)
