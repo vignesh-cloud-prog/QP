@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import ProvideForm
 from django.contrib import messages
-
+from django.core.mail import send_mail
 # Create your views here.
 
 # this function helps users to upload therir question papers to qpweb
@@ -36,6 +36,13 @@ def provider(request):
                 provide.save()
                 messages.success(
                     request, 'Thank you, we will check and update it soon .')
+                send_mail(
+                    f'A new question paper by {request.user.username}',
+                    f"The paper provided by {request.user.email} and you can check on the website ➡ https://qpweb.herokuapp.com/push.",
+                    'qpcom80@gmail.com',
+                    ['vigneshun80@gmail.com'],
+                    fail_silently=True,
+                    )
                 providers["form"] = ProvideForm()
 
             except Exception as e:
