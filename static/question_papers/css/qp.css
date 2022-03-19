@@ -406,7 +406,7 @@ a {
   margin: auto;
 }
 
-.center p,a {
+footer p,footer a {
   text-align: center;
   color: white;
   padding: 4px;
