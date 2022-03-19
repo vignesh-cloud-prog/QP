@@ -24,6 +24,8 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('filter', views.filters, name='filter'),
     path('about', views.about, name='about'),
+    path('privacy-policy', views.privacy, name='privacy'),
+    path('terms-of-service', views.terms, name='terms'),
     path('filter_first_option', views.filter_first_option, name='filter_first_option'),
 
         path('<str:college>/', views.college, name='college'),

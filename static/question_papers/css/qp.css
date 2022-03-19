@@ -406,8 +406,9 @@ a {
   margin: auto;
 }
 
-.center p {
+.center p,a {
   text-align: center;
+  color: white;
   padding: 4px;
 }
 
