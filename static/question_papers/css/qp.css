@@ -443,10 +443,12 @@ footer p,footer a {
   padding: 5px;
   margin: 4px 2px;
   
+  
 }
 
 #row {
   display: flex;
+  flex-direction: column;
   background-color: rgb(206, 194, 194);
   border-radius: 0.5rem 0.5rem 0 0;
   justify-content: space-between;
@@ -463,30 +465,51 @@ footer p,footer a {
   margin: 0;
 }
 
+
 .icons {
   display: flex;
   align-items: stretch;
   justify-content: stretch;
+  margin: 4px 0;
 }
 .icons img {
   width: 1rem;
 }
-.link{
-  background: white;
+
+
+.button {
   margin: 0 0.5rem;
   padding: 0.5rem;
-  border-radius: 12px;
+  min-width: 4rem;
+  text-decoration: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: start;
   font-size: 1rem;
-  min-width: 2rem;
-  text-align: center;
-  vertical-align: middle;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18); 
 }
-.paper center {
+
+.icon-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  padding: 0.35em;
+
+}
+.provided_by  {
   /* border-radius: 0 0 0.5rem 0.5rem; */
   background-color: rgb(107, 95, 95);
   color: white;
-  padding: 0.2rem;
- 
+  padding: 0.2rem 0;
+  display: inline-block;
+  border-radius:  0 0 0.5rem 0.5rem;
+  width: 100% !important; 
 }
 
 @media only screen and (max-width: 520px) {

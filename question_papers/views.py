@@ -18,7 +18,7 @@ def filter_first_option(request):
     return HttpResponse(qs_json, content_type='application/json')
 
 
-def colleges(request):
+def home(request):
     """
     Displays all the college type of question papers available :model:`question_papers.Question_paper`.
 
@@ -38,7 +38,7 @@ def colleges(request):
 # this function returns distinct values for different universities and boards in college types
 
 
-def college(request, college):
+def get_governing_bodies(request, college):
     """
     Display distinct values for different universities and boards in college types.
 
@@ -69,7 +69,7 @@ def college(request, college):
         raise Http404("Page not found")
 
 
-def university(request, college, university):
+def get_courses(request, college, university):
     """
     Display distinct values for different cousres in an universities.
 
@@ -97,7 +97,7 @@ def university(request, college, university):
         raise Http404("Page not found")
 
 
-def course(request, college, university, course):
+def get_periods(request, college, university, course):
     """
     Display distinct values for different semisters or years in an course.
 
@@ -125,7 +125,7 @@ def course(request, college, university, course):
         raise Http404("Page not found")
 
 
-def year(request, college, university, course, year):
+def get_subjects(request, college, university, course, year):
     """
     Display distinct values for distinct different subjects in a semisters.
 
@@ -155,7 +155,7 @@ def year(request, college, university, course, year):
 # this function returns distinct values for different distinct avilable years of papers of a particular subject
 
 
-def question_papers(request, college, university, course, year, subject):
+def get_years(request, college, university, course, year, subject):
     """
     Display distinct values for different distinct avilable years of papers of a particular subject.
 
@@ -170,14 +170,35 @@ def question_papers(request, college, university, course, year, subject):
     """
     papers = Question_paper.objects.filter(
         education_type=college,
-        course_name=course, governing_body=university,period=year,subject_name=subject)
+        course_name=course, governing_body=university,period=year,subject_name=subject).distinct('paper_year__year')
+    if papers.exists():
+        papers = {'paper': papers}
+        return render(request, 'question_papers/years.html', papers)
+    else:
+        raise Http404("Page not found")
+
+def get_question_papers(request, college, university, course, period, subject,year):
+    """
+    Display distinct values for different distinct avilable years of papers of a particular subject.
+
+    **Context**
+
+    ``mymodel``
+        The instances of :model:`question_papers.Question_paper`.
+
+    **Template:**
+
+    :template:`question_papers/papers.html`
+    """
+    papers = Question_paper.objects.filter(
+        education_type=college,
+        course_name=course, governing_body=university,period=period,subject_name=subject,paper_year__year=year)
     if papers.exists():
         papers = {'paper': papers}
         return render(request, 'question_papers/papers.html', papers)
     else:
         raise Http404("Page not found")
 
-# this function returns filtered elements to a html page
 
 
 def filters(request):

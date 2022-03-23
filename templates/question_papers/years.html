@@ -26,7 +26,7 @@
 <div class="colleges">
     <p>Welcome to QP World</p>
     {% for title in paper %}
-    {% ifchanged course_name %}
+    {% ifchanged paper_year %}
     <div class="titles">
         <h1>{{title.education_type| to_space |title}}<img src="{%static 'question_papers/images/college.png' %}"
                 alt="#">
@@ -47,39 +47,18 @@
         </a>
         <h1>{{title.subject_name| to_space |title}}<img src="{%static 'question_papers/images/subject.jpg'%}" alt="#">
         </h1>
-        <h1>{{title.paper_year}}<img src="{%static 'question_papers/images/calendar.png'%}" alt="#">
-        </h1>
     </div>
+    <b class="sub_head">Choose your year:</b>
     {% endifchanged %}
-    {% endfor %}
-    {% for prepaper in paper %}
-    <div class="paper">
-        <div id="row">
-            <span class="head">
-                <a href="{{prepaper.paper_doc.url}}" target="_blank">
-                    <h1 id="paper_info"> {{prepaper.paper_title| to_space |title}} </h1>
-                </a>
-            </span>
-            <iframe src="{{prepaper.paper_doc.url}}#toolbar=0" width="95%" height="400px">
-            </iframe>
-        
-            <div class="icons">
-                
-                <a href="{{prepaper.paper_doc.url}}" target="blank" download class="button">
-                    <img src="{%static 'question_papers/images/download.png'%}"  class="icon_button" alt="Download">download
-                </a>
-                <a class="button" onclick="sharefunc(`{{ request.get_full_path }}`,'see this question paper from QP Web')" >
-                    <img class="icon_button" src="{%static 'question_papers/images/share.png'%}" alt="Share">share
-                </a>
-
-            </div>
-        </div>
-
-
-        <p class="provided_by">Provided by {{prepaper.provider}}</p>
+    <div class="college">
+        <a href="{{title.paper_year|date:"Y"}}">
+            <img src="{%static 'question_papers/images/calendar.png' %}" alt="#">
+            <h4>{{title.paper_year}}</h4>
+        </a>
     </div>
-
     {% endfor %}
+    
+    
 </div>
 {% include 'provides/provide_pitch.html' %}
 
