@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import ProvideForm
 from django.contrib import messages
 from django.core.mail import send_mail
+from question_papers.models import Question_paper
 # Create your views here.
 
 # this function helps users to upload therir question papers to qpweb
@@ -20,8 +21,14 @@ def provider(request):
 
     :template:`provides/provide.html`
     """
+    governing_body_list=Question_paper.objects.values('governing_body').distinct()
+    course_name_list=Question_paper.objects.values('course_name').distinct()
+    subject_name_list=Question_paper.objects.values('subject_name').distinct()
 
     providers = {
+        'governing_body_list':governing_body_list,
+        'course_name_list':course_name_list,
+        'subject_name_list':subject_name_list,
         'form': ProvideForm
     }
     print(type(request.POST))

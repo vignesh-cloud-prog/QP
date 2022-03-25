@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load to_space %}
 
 {% block title %}provide question papers
 {% endblock title %}
@@ -19,6 +20,21 @@ Submit your question papers here. So it could be accessed by anyone in the world
     <h3>Provide Question Papers</h3>
     <div class="form">
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <datalist id="governing_body_list">
+                {% for governing_body in governing_body_list %}
+                <option value="{{governing_body.governing_body| to_space |title}}">{{governing_body.governing_body| to_space |title}} </option>   
+                {% endfor %}    
+            </datalist>
+            <datalist id="subject_name_list">
+                {% for subject_name in subject_name_list %}
+                <option value="{{subject_name.subject_name| to_space |title}}">{{subject_name.subject_name| to_space |title}} </option>           
+                {% endfor %}               
+            </datalist>
+            <datalist id="course_name_list">
+                {% for course_name in course_name_list %}
+                <option value="{{course_name.course_name| to_space |upper}}">{{course_name.course_name| to_space |upper}} </option>              
+                {% endfor %}              
+            </datalist>
             {{form.as_p}}
     </div>
 

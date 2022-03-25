@@ -35,8 +35,8 @@ class ProvideForm(forms.ModelForm):
         widgets = {
             'paper_type': forms.Select(attrs={'class': 'form-control', }),
             'paper_year': forms.DateInput(attrs={'type': 'date','min':yearsago(5), }),
-            'governing_body': forms.TextInput(attrs={'placeholder': 'Ex: Magalore University'}),
-            'course_name': forms.TextInput(attrs={'placeholder': 'Ex: BCA'}),
-            'subject_name': forms.TextInput(attrs={'placeholder': 'Ex: Python'}),
+            'governing_body': forms.TextInput(attrs={'placeholder': 'Ex: Mangalore University','list':'governing_body_list'}),
+            'course_name': forms.TextInput(attrs={'placeholder': 'Ex: BCA','list':'course_name_list'}),
+            'subject_name': forms.TextInput(attrs={'placeholder': 'Ex: Python','list':'subject_name_list'}),
             # 'paper_title': forms.TextInput(attrs={'placeholder': 'Ex: Semister Examination'}),
         }
