@@ -61,14 +61,14 @@
                     <h1 id="paper_info"> {{prepaper.paper_title| to_space |title}} </h1>
                 </a>
             </span>
-            <!-- <object type="application/pdf" data="{{prepaper.paper_doc.url}}#toolbar=0" width="95%" height="400px">
+            <object type="application/pdf" data="{{prepaper.paper_doc.url}}#toolbar=0" width="95%" height="400px">
                 <p>Your web browser doesn't have a PDF plugin.
                     Instead you can <a href="{{prepaper.paper_doc.url}}">click here to
                     view the PDF file.</a></p>
-            </object> -->
-            <iframe src="http://docs.google.com/gview?url={{prepaper.paper_doc.url}}&embedded=true"
-            width="95%" height="400px">
-        </iframe>
+            </object>
+            <!-- <iframe src="http://docs.google.com/gview?url={{prepaper.paper_doc.url}}&embedded=true"
+            width="95%" height="400px"> -->
+        <!-- </iframe> -->
             <div class="icons">
                 
                 <a href="{{prepaper.paper_doc.url}}" target="blank"  class="button">
