@@ -38,3 +38,10 @@ setTimeout(() => {
     msg_box.style.display = "none";
   }
 }, 10000);
+
+document.addEventListener('DOMContentLoaded', function() {
+  let hour = new Date().getHours();
+  let wish=(`Good ${hour < 12 && "Morning" || hour < 18 && "Afternoon" || "Evening"}`)
+  document.getElementById("timeBasedGreet").innerHTML=wish
+}, false);
+

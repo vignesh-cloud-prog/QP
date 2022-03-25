@@ -53,7 +53,7 @@
     <div class="college">
         <a href="{{title.paper_year|date:"Y"}}">
             <img src="{%static 'question_papers/images/calendar.png' %}" alt="#">
-            <h4>{{title.paper_year}}</h4>
+            <h4>{{title.paper_year|date:"Y"}}</h4>
         </a>
     </div>
     {% endfor %}

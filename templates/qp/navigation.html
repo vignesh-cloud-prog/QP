@@ -78,12 +78,12 @@
             {% if request.user.is_authenticated %}
 
             <p id="call">Hii {{request.user.first_name}}</p>
-            <p id="greet">Good morning <br>have a great day</p><br>
+            <p id="greet"> <span id="timeBasedGreet">Good morning</span>  <br>have a great day</p><br>
 
             <hr width="100%"><br>
             <p><a href="{% url 'profile'%}">View Profile</a></p>
             <p><a href="#"
-                    onclick="sharefunc('/accounts/{{request.user.profile.code}}','Hey, join QP Web the great website to share and get question papers')">Reffer
+                    onclick="sharefunc('/accounts/{{request.user.profile.code}}','Hey, join QP Web the great website to share and get question papers')">Refer 
                     friend</a> </p>
             {% endif %}
 
