@@ -39,7 +39,10 @@ class Provide(models.Model):
     period=models.CharField(max_length=12,choices=PERIOD_CHOICES)
     subject_name= models.CharField(max_length=100)
     paper_year = models.DateField()
-    paper_title=models.CharField(max_length=100)
+    PAPER_CHOICES=[
+        ('final_examination','Final Examination'),('reexamination','Re-examination'),('model','Model Question Paper')
+    ]
+    paper_title=models.CharField(max_length=100,choices=PAPER_CHOICES)
     if str(os.environ.get('DEBUG')) == "1":
         doc = models.FileField(upload_to=update_filename_and_path_dev,validators=[FileExtensionValidator(allowed_extensions=['pdf'])],max_length=300, storage=RawMediaCloudinaryStorage())
     else:

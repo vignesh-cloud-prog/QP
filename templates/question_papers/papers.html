@@ -48,7 +48,7 @@
         </a>
         <h1>{{title.subject_name| to_space |title}}<img src="{%static 'question_papers/images/subject.jpg'%}" alt="#">
         </h1>
-        <h1>{{title.paper_year}}<img src="{%static 'question_papers/images/calendar.png'%}" alt="#">
+        <h1>{{title.paper_year|date:"Y"}}<img src="{%static 'question_papers/images/calendar.png'%}" alt="#">
         </h1>
     </div>
     {% endifchanged %}
