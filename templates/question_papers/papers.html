@@ -48,7 +48,7 @@
         </a>
         <h1>{{title.subject_name| to_space |title}}<img src="{%static 'question_papers/images/subject.jpg'%}" alt="#">
         </h1>
-        <h1>{{title.paper_year|date:"Y"}}<img src="{%static 'question_papers/images/calendar.png'%}" alt="#">
+        <h1>{{title.paper_year}}<img src="{%static 'question_papers/images/calendar.png'%}" alt="#">
         </h1>
     </div>
     {% endifchanged %}
@@ -61,18 +61,18 @@
                     <h1 id="paper_info"> {{prepaper.paper_title| to_space |title}} </h1>
                 </a>
             </span>
-            <object type="application/pdf" data="{{prepaper.paper_doc.url}}#toolbar=0" width="95%" height="400px">
+            <!-- <object type="application/pdf" data="{{prepaper.paper_doc.url}}#toolbar=0" width="95%" height="400px">
                 <p>Your web browser doesn't have a PDF plugin.
                     Instead you can <a href="{{prepaper.paper_doc.url}}">click here to
                     view the PDF file.</a></p>
-            </object>
-            <!-- <iframe src="http://docs.google.com/gview?url={{prepaper.paper_doc.url}}&embedded=true"
-            width="95%" height="400px"> -->
-        <!-- </iframe> -->
+            </object> -->
+            <iframe src="https://docs.google.com/gview?url={{prepaper.paper_doc.url}}&embedded=true"
+            width="95%" height="400px">
+        </iframe>
             <div class="icons">
                 
                 <a href="{{prepaper.paper_doc.url}}" target="blank"  class="button">
-                    <img src="{%static 'question_papers/images/view.png'%}"  class="icon_button" alt="Download"> view
+                    <img src="{%static 'question_papers/images/view.png'%}"  class="icon_button" alt="Download">view
                 </a>
                 <a href="{{prepaper.paper_doc.url}}" target="blank" download class="button">
                     <img src="{%static 'question_papers/images/download.png'%}"  class="icon_button" alt="Download">download
