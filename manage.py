@@ -10,14 +10,14 @@ def main():
     """Run administrative tasks."""
     DOT_ENV_PATH = pathlib.Path() / '.env'
     if DOT_ENV_PATH.exists():
-        dotenv.read_dotenv(str(DOT_ENV_PATH))
+        dotenv.load_dotenv(str(DOT_ENV_PATH))
 
-    if str(os.environ.get('DEBUG')) == "1":
+    if str(os.environ.get('DEBUG')) == "True":
         os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                               'MultipleSettings.development')
     else:
         os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                              'MultipleSettings.herokusettings')
+                              'MultipleSettings.production')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
